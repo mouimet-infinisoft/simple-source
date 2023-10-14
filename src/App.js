@@ -15,7 +15,8 @@ const options = {
   eventHubOptions: [],
   stateOptions: {
     initializer: {
-      contacts:[]
+      contacts:[],
+      calendarEvents:[]
     }
   },
   loggerOptions: [

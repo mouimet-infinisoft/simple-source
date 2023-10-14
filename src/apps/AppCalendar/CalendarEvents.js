@@ -160,4 +160,4 @@ const otherEvents = {
   ]
 };
 
-export { calendarEvents, birthdayEvents, holidayEvents, discoveredEvents, meetupEvents, otherEvents };
+export const calenderEventsList =  [ calendarEvents, birthdayEvents, holidayEvents, discoveredEvents, meetupEvents, otherEvents ]

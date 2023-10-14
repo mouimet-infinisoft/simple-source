@@ -16,7 +16,7 @@ import GalleryVideo from "../apps/GalleryVideo";
 import Tasks from "../apps/Tasks";
 import Contacts from "../apps/Contacts/Contacts";
 import Chat from "../apps/Chat";
-import AppCalendar from "../apps/AppCalendar";
+import AppCalendar from "../apps/AppCalendar/AppCalendar";
 import Email from "../apps/Email";
 import FileManager from "../apps/FileManager";
 
