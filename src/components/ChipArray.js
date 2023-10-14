@@ -10,7 +10,7 @@ function ChipArray({ initialItems = [], placeholder = "Enter value and press spa
     };
 
     const handleKeyDown = (e) => {
-        if (e.key === ' ') {
+        if (e.key === ' ' || e.key === 'Enter') {
             e.preventDefault();
             if (currentInput.trim() !== '') {
                 const newItems = [...items, currentInput.trim()];
