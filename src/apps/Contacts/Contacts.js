@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import Header from "../../layouts/Header";
-import Footer from "../../layouts/Footer";
 import { Button, Col, Nav, Row } from "react-bootstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import Avatar from "../../components/Avatar";
-import { useBrainStack, core } from "../../App";
-import { useMemo } from "react";
-import { contactList } from "./contactList";
-import { ContactSDK } from "./ContactSDK";
+
 import ChipArray from "../../components/ChipArray";
 import ConfirmModal from "../../components/ConfirmModal";
+import Header from "../../layouts/Header";
+import Footer from "../../layouts/Footer";
+import Avatar from "../../components/Avatar";
+import { useBrainStack } from "../../App";
+import { crudSDK } from "../../modules/crudSDK";
+
+import img11 from "../../assets/img/img11.jpg";
+import { contactList } from "./contactList";
 
 function ContactsBase({ contacts, create, update, trash, logger }) {
   useEffect(() => {
@@ -169,8 +171,18 @@ function ContactsBase({ contacts, create, update, trash, logger }) {
 
 export default function Contacts() {
   const bstack = useBrainStack()
-  const contactSdk = useMemo(() => ContactSDK(contactList, core), [])
+  const contactSdk = useMemo(() => 
+  crudSDK('contacts', 
+    {
+      "status": "",
+      "thumb": img11,
+      "name": "",
+      "contact": "",
+      "phones": [],
+      "address": "",
+      "jobtitle": "",
+      "emails": [],
+    })(contactList), []);
 
   return <ContactsBase contacts={contactSdk.list()} create={contactSdk.create} update={contactSdk.update} trash={contactSdk.trash} logger={bstack.log} />
-  // return <ContactsBase contacts={[]}/>
 }
