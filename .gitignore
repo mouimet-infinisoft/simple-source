@@ -7,3 +7,5 @@
 /package-lock.jsonZone.Identifier
 /package.jsonZone.Identifier
 /README.mdZone.Identifier
+
+*.Identifier
