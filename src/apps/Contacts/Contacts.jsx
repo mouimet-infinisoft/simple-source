@@ -14,7 +14,7 @@ import ChipArray from '../../components/ChipArray';
 import ConfirmModal from '../../components/ConfirmModal';
 import Avatar from '../../components/Avatar';
 
-export default function Contacts() {
+const Contacts = () => {
   const bstack = useBrainStack();
   const { list, create, update, trash } = useMemo(
     () => crudSDK('contacts', { ...defaultModel })(contactList),
@@ -217,4 +217,6 @@ export default function Contacts() {
       </div>
     </React.Fragment>
   );
-}
+};
+
+export default Contacts;
