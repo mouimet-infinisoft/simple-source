@@ -44,6 +44,7 @@ export function useContacts({ contacts, create, update, trash, logger }) {
   function handleUpdate(val, field) {
     setActiveContact(s => {
       const newState = { ...s, [field]: val };
+      newState.contact = [...newState.phones, ...newState.emails][0];
       update(newState);
       return newState;
     });
