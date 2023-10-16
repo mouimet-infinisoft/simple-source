@@ -3,9 +3,10 @@ import moment from 'moment';
 const curYear = moment().format('YYYY');
 const curMonth = moment().format('MM');
 
+// please note id of events should be 0..1..2.. etc..
 const events = {
   calendar: {
-    id: 1,
+    id: 0,
     backgroundColor: '#d9e8ff',
     borderColor: '#0168fa',
     events: [
@@ -61,7 +62,7 @@ const events = {
   },
 
   birthday: {
-    id: 2,
+    id: 1,
     backgroundColor: '#c3edd5',
     borderColor: '#10b759',
     events: [
@@ -93,7 +94,7 @@ const events = {
   },
 
   holiday: {
-    id: 3,
+    id: 2,
     backgroundColor: '#fcbfdc',
     borderColor: '#f10075',
     events: [
@@ -119,7 +120,7 @@ const events = {
   },
 
   discovered: {
-    id: 4,
+    id: 3,
     backgroundColor: '#bff2f2',
     borderColor: '#00cccc',
     events: [
@@ -132,7 +133,7 @@ const events = {
     ],
   },
   meetup: {
-    id: 5,
+    id: 4,
     backgroundColor: '#dedafe',
     borderColor: '#5b47fb',
     events: [
@@ -152,7 +153,7 @@ const events = {
   },
 
   other: {
-    id: 6,
+    id: 5,
     backgroundColor: '#ffdec4',
     borderColor: '#fd7e14',
     events: [

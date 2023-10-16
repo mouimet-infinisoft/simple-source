@@ -61,25 +61,31 @@ export function useCalendar({ create, list, update }) {
       end: moment(endDate).format('YYYY-MM-DD'),
     };
 
+    const newList = { ...list() };
+
     // update
     if (editingEvent) {
-      console.log(editingEvent)
-      // update({ ...editingEvent, ...event });
-    // create
+      const eType = newList[editingEvent.srcId];
+      let foundEvent = eType.events.filter(x => x.id === editingEvent.id)[0];
+      foundEvent.title = editingEvent.title;
+      foundEvent.start = moment(editingEvent.start).format('YYYY-MM-DD');
+      foundEvent.end = moment(editingEvent.end).format('YYYY-MM-DD');
+      update(eType);
+      // create
     } else {
       const model = { ...event, id: uuidv4() };
       const idx = calendarEventsKeys.indexOf(eventOption);
-
-      const newList = { ...list() };
-      newList[idx].events.push(model);
-      update(newList[idx]);
+      const eType = newList[idx];
+      eType.events.push(model);
+      update(eType);
     }
 
     handleModalClose();
   };
 
   const handleEventClick = info => {
-    handleModalShowWithEvent(info.event);
+    const { id, title, start, end, source } = info.event;
+    handleModalShowWithEvent({ id, title, start, end, srcId: source.id });
   };
 
   const handleModalShow = () => setModalShow(true);
