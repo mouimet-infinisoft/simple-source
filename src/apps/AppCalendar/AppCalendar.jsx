@@ -7,7 +7,6 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import frLocale from '@fullcalendar/core/locales/fr';
-import { useBrainStack } from '../../App';
 import {
   // calendarEvents,
   // birthdayEvents,
@@ -15,15 +14,14 @@ import {
   // discoveredEvents,
   // meetupEvents,
   // otherEvents,
-  calenderEventsList,
+  calendarEventsList,
 } from './calendarEvents';
 import { useCalendar, defaultModel } from './useCalendar';
 import { crudSDK } from '../../modules/crudSDK';
 
 export default function AppCalendar() {
-  const logger = useBrainStack().log;
   const { list, create, update, trash } = useMemo(
-    () => crudSDK('calendarEvents', { ...defaultModel })(calenderEventsList),
+    () => crudSDK('calendarEvents', { ...defaultModel })(calendarEventsList),
     []
   );
 
@@ -48,7 +46,7 @@ export default function AppCalendar() {
     handleEventType,
     handleEventDescription,
     handleEventOption,
-  } = useCalendar({ create, update, logger });
+  } = useCalendar({ create, list, update });
 
   return (
     <React.Fragment>
@@ -114,6 +112,7 @@ export default function AppCalendar() {
                 placeholder="Entrez le titre de l'événement"
               />
             </div>
+
             <div className='mb-3'>
               <Form.Check
                 type='radio'
@@ -132,13 +131,11 @@ export default function AppCalendar() {
                 onChange={() => handleEventType('Reminder')}
               />
             </div>
+
             <div className='mb-3'>
               <Form.Group>
                 <Form.Label>Select event type:</Form.Label>
-                <Form.Select
-                  defaultValue={eventOption}
-                  value={eventOption}
-                  onChange={handleEventOption}>
+                <Form.Select value={eventOption} onChange={handleEventOption}>
                   <option value='calendar'>Calendrier</option>
                   <option value='birthday'>Anniversaire</option>
                   <option value='holiday'>Vacances</option>
@@ -156,13 +153,16 @@ export default function AppCalendar() {
                   onChange={handleStartDate}
                 />
               </Col>
+
               <Col>
                 <Form.Label>Date de fin:</Form.Label>
                 <ReactDatePicker selected={endDate} onChange={handleEndDate} />
               </Col>
             </Row>
+
             <div>
               <Form.Label>Description</Form.Label>
+
               <Form.Control
                 as='textarea'
                 rows='3'
@@ -177,6 +177,7 @@ export default function AppCalendar() {
             <Button variant='' className='btn-white' onClick={handleModalClose}>
               Fermer
             </Button>
+
             <Button variant='primary' onClick={handleSaveEvent}>
               {editingEvent ? 'Update Event' : 'Add Event'}
             </Button>

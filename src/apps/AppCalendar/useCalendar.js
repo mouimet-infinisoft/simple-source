@@ -1,15 +1,18 @@
+import moment from 'moment';
 import { useEffect, useState } from 'react';
+import { calendarEventsKeys } from './calendarEvents';
+import { v4 as uuidv4 } from 'uuid';
 
 export const defaultModel = {
-  backgroundColor: '#d9e8ff',
-  borderColor: '#0168fa',
-  events: [],
+  start: new Date(),
+  end: new Date(),
+  title: '',
 };
 
 const defaultEventOption = 'calendar';
 const defaultEventType = 'Event';
 
-export function useCalendar({ create, update, logger }) {
+export function useCalendar({ create, list, update }) {
   useEffect(() => {
     document.body.classList.add('app-calendar');
     return () => {
@@ -35,6 +38,9 @@ export function useCalendar({ create, update, logger }) {
     setEventDescription('');
     setEventOption(defaultEventOption);
   };
+
+  // HANDLER
+
   const handleModalClose = () => {
     setModalShow(false);
     setEditingEvent(null);
@@ -49,14 +55,26 @@ export function useCalendar({ create, update, logger }) {
 
   const handleSaveEvent = () => {
     const event = {
+      ...defaultModel,
       title: eventTitle,
-      // ... other event attributes
+      start: moment(startDate).format('YYYY-MM-DD'),
+      end: moment(endDate).format('YYYY-MM-DD'),
     };
+
+    // update
     if (editingEvent) {
-      update({ ...editingEvent, ...event });
+      console.log(editingEvent)
+      // update({ ...editingEvent, ...event });
+    // create
     } else {
-      create(event);
+      const model = { ...event, id: uuidv4() };
+      const idx = calendarEventsKeys.indexOf(eventOption);
+
+      const newList = { ...list() };
+      newList[idx].events.push(model);
+      update(newList[idx]);
     }
+
     handleModalClose();
   };
 
