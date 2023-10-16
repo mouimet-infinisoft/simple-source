@@ -6,7 +6,10 @@ export const defaultModel = {
   events: [],
 };
 
-export function useCalendar({ create, update }) {
+const defaultEventOption = 'calendar';
+const defaultEventType = 'Event';
+
+export function useCalendar({ create, update, logger }) {
   useEffect(() => {
     document.body.classList.add('app-calendar');
     return () => {
@@ -18,25 +21,28 @@ export function useCalendar({ create, update }) {
 
   // State for form fields in the modal
   const [eventTitle, setEventTitle] = useState('');
-  const [eventType, setEventType] = useState('Event');
+  const [eventOption, setEventOption] = useState(defaultEventOption);
+  const [eventType, setEventType] = useState(defaultEventType);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [eventDescription, setEventDescription] = useState('');
 
-  const handleModalClose = () => {
-    setModalShow(false);
-    setEditingEvent(null);
-    // Reset form fields
+  const resetModalFields = () => {
     setEventTitle('');
     setEventType('Event');
     setStartDate(new Date());
     setEndDate(new Date());
     setEventDescription('');
+    setEventOption(defaultEventOption);
+  };
+  const handleModalClose = () => {
+    setModalShow(false);
+    setEditingEvent(null);
+    resetModalFields();
   };
 
   const handleModalShowWithEvent = event => {
     setEventTitle(event.title);
-    // Set other event attributes...
     setEditingEvent(event);
     setModalShow(true);
   };
@@ -60,6 +66,8 @@ export function useCalendar({ create, update }) {
 
   const handleModalShow = () => setModalShow(true);
 
+  const handleEventOption = e => setEventOption(e.target.value);
+
   const handleStartDate = setStartDate;
 
   const handleEndDate = setEndDate;
@@ -74,6 +82,7 @@ export function useCalendar({ create, update }) {
     editingEvent,
     endDate,
     eventDescription,
+    eventOption,
     eventTitle,
     eventType,
     modalShow,
@@ -81,6 +90,7 @@ export function useCalendar({ create, update }) {
     handleEndDate,
     handleEventClick,
     handleEventDescription,
+    handleEventOption,
     handleEventTitle,
     handleEventType,
     handleModalClose,
