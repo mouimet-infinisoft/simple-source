@@ -75,9 +75,8 @@ export function useCalendar({ create, list, update }) {
     } else {
       const model = { ...event, id: uuidv4() };
       const idx = calendarEventsKeys.indexOf(eventOption);
-      const eType = newList[idx];
-      eType.events.push(model);
-      update(eType);
+      newList[idx].events.push(model);
+      update(newList[idx]);
     }
 
     handleModalClose();
