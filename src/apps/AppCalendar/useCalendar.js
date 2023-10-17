@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { calendarEventsKeys } from './calendarEvents';
+import { calendarEventsKeys } from './CalendarEvents1';
 import { v4 as uuidv4 } from 'uuid';
 
 export const defaultModel = {
@@ -82,8 +82,11 @@ export function useCalendar({ create, list, update }) {
     handleModalClose();
   };
 
+  const [selectedItemId, setSelectedItemId] = useState(null)
+
   const handleEventClick = info => {
     const { id, title, start, end, source } = info.event;
+    setSelectedItemId(info?.event?.id)
     handleModalShowWithEvent({ id, title, start, end, srcId: source.id });
   };
 
@@ -102,6 +105,7 @@ export function useCalendar({ create, list, update }) {
   const handleEventDescription = setEventDescription;
 
   return {
+    selectedItemId,
     editingEvent,
     endDate,
     eventDescription,

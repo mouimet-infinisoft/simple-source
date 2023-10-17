@@ -15,19 +15,24 @@ import {
   // meetupEvents,
   // otherEvents,
   calendarEventsList,
-} from './calendarEvents';
+} from './CalendarEvents1';
 import { useCalendar, defaultModel } from './useCalendar';
 import { crudSDK } from '../../modules/crudSDK';
+import { useBrainStack, getValue, createEventHandlerMutator } from '../../App';
 
 export default function AppCalendar() {
-  const { list, create, update, trash } = useMemo(
-    () => crudSDK('calendarEvents', { ...defaultModel })(calendarEventsList),
-    []
-  );
+  const bstack = useBrainStack()
+  const { read, update, create, list } = bstack.store.createCRUDObject('calendarEvents')
+
+  // const { list:l, create:c, update:u, trash } = useMemo(
+  //   () => crudSDK('calendarEvents', { ...defaultModel })(calendarEventsList),
+  //   []
+  // );
 
   const calendarList = list();
 
   const {
+    selectedItemId,
     modalShow,
     eventType,
     startDate,
@@ -86,7 +91,7 @@ export default function AppCalendar() {
             }}
             locales={[frLocale]}
             locale={'fr'}
-            eventSources={calendarList}
+            events={Object.values(list())}
             eventClick={handleEventClick}
           />
         </div>
@@ -98,7 +103,7 @@ export default function AppCalendar() {
           centered>
           <Modal.Header closeButton>
             <Modal.Title>
-              {editingEvent ? 'Edit Event' : 'Create New Event'}
+              {getValue(`calendarEvents.${selectedItemId}.title`)}
             </Modal.Title>
           </Modal.Header>
 
@@ -107,8 +112,8 @@ export default function AppCalendar() {
               <Form.Label>Titre de l'événement:</Form.Label>
               <Form.Control
                 type='text'
-                value={eventTitle}
-                onChange={e => handleEventTitle(e.target.value)}
+                value={getValue(`calendarEvents.${selectedItemId}.title`)}
+                onChange={createEventHandlerMutator(`calendarEvents.${selectedItemId}.title`)}
                 placeholder="Entrez le titre de l'événement"
               />
             </div>
@@ -126,7 +131,7 @@ export default function AppCalendar() {
                 type='radio'
                 name='etype'
                 inline
-                label='Rapper'
+                label='Rappel'
                 checked={eventType === 'Reminder'}
                 onChange={() => handleEventType('Reminder')}
               />
@@ -166,8 +171,8 @@ export default function AppCalendar() {
               <Form.Control
                 as='textarea'
                 rows='3'
-                value={eventDescription}
-                onChange={e => handleEventDescription(e.target.value)}
+                value={getValue(`calendarEvents.${selectedItemId}.description`)}
+                onChange={createEventHandlerMutator(`calendarEvents.${selectedItemId}.description`)}
                 placeholder='Écrire une description (facultatif)'
               />
             </div>
@@ -178,9 +183,9 @@ export default function AppCalendar() {
               Fermer
             </Button>
 
-            <Button variant='primary' onClick={handleSaveEvent}>
+            {/* <Button variant='primary' onClick={handleSaveEvent}>
               {editingEvent ? 'Update Event' : 'Add Event'}
-            </Button>
+            </Button> */}
           </Modal.Footer>
         </Modal>
       </div>

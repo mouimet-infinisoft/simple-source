@@ -9,22 +9,21 @@ import { createBrainstack } from '@brainstack/react';
 import "./assets/css/remixicon.css";
 // import scss
 import "./scss/style.scss";
+import { calendarEventsList, events } from "./apps/AppCalendar/CalendarEvents1";
 
 // Create BrainStack instance with options
 const options = {
   eventHubOptions: [],
   stateOptions: {
-    initializer: {
-      contacts:[],
-      calendarEvents:[]
-    }
+      contacts: [],
+      calendarEvents: events
   },
   loggerOptions: [
     5
   ],
 };
 
-export const { BrainStackProvider, useBrainStack, core } = createBrainstack(options);
+export const { BrainStackProvider, useBrainStack, core, getValue, createEventHandlerMutator } = createBrainstack(options);
 
 // set skin on load
 window.addEventListener("load", function () {
