@@ -1,60 +1,60 @@
 
 const dashboardMenu = [
+  // {
+  //   "label": "Finance Monitoring",
+  //   "link": "/dashboard/finance",
+  //   "icon": "ri-pie-chart-2-line"
+  // },
   {
-    "label": "Finance Monitoring",
-    "link": "/dashboard/finance",
-    "icon": "ri-pie-chart-2-line"
-  },
-  {
-    "label": "Events Management",
+    "label": "Mon espace",
     "link": "/dashboard/events",
     "icon": "ri-calendar-todo-line"
   },
-  {
-    "label": "Sales Monitoring",
-    "link": "/dashboard/sales",
-    "icon": "ri-shopping-bag-3-line"
-  },
-  {
-    "label": "Website Analytics",
-    "link": "/dashboard/analytics",
-    "icon": "ri-bar-chart-2-line"
-  },
-  {
-    "label": "Cryptocurrency",
-    "link": "/dashboard/crypto",
-    "icon": "ri-coin-line"
-  },
-  {
-    "label": "Helpdesk Service",
-    "link": "/dashboard/helpdesk",
-    "icon": "ri-service-line"
-  },
-  {
-    "label": "Storage Management",
-    "link": "/dashboard/storage",
-    "icon": "ri-hard-drive-2-line"
-  },
-  {
-    "label": "Product Management",
-    "link": "/dashboard/product",
-    "icon": "ri-suitcase-2-line"
-  }
+  // {
+  //   "label": "Sales Monitoring",
+  //   "link": "/dashboard/sales",
+  //   "icon": "ri-shopping-bag-3-line"
+  // },
+  // {
+  //   "label": "Website Analytics",
+  //   "link": "/dashboard/analytics",
+  //   "icon": "ri-bar-chart-2-line"
+  // },
+  // {
+  //   "label": "Cryptocurrency",
+  //   "link": "/dashboard/crypto",
+  //   "icon": "ri-coin-line"
+  // },
+  // {
+  //   "label": "Helpdesk Service",
+  //   "link": "/dashboard/helpdesk",
+  //   "icon": "ri-service-line"
+  // },
+  // {
+  //   "label": "Storage Management",
+  //   "link": "/dashboard/storage",
+  //   "icon": "ri-hard-drive-2-line"
+  // },
+  // {
+  //   "label": "Product Management",
+  //   "link": "/dashboard/product",
+  //   "icon": "ri-suitcase-2-line"
+  // }
 ];
 
 const applicationsMenu = [
   {
-    "label": "File Manager",
+    "label": "Documents",
     "link": "/apps/file-manager",
     "icon": "ri-folder-2-line"
   },
   {
-    "label": "Email",
+    "label": "Courriel",
     "link": "/apps/email",
     "icon": "ri-mail-send-line"
   },
   {
-    "label": "Calendar",
+    "label": "Calendrier",
     "link": "/apps/calendar",
     "icon": "ri-calendar-line"
   },
@@ -69,25 +69,26 @@ const applicationsMenu = [
     "icon": "ri-contacts-book-line"
   },
   {
-    "label": "Task Manager",
+    "label": "Tâches",
     "link": "/apps/tasks",
     "icon": "ri-checkbox-multiple-line"
   },
   {
-    "label": "Media Gallery",
+    "label": "Média",
     "icon": "ri-gallery-line",
     "submenu": [
       {
-        "label": "Music Stream",
+        "label": "Musique",
         "link": "/apps/gallery-music"
       },
       {
-        "label": "Video Stream",
+        "label": "Vidéo",
         "link": "/apps/gallery-video"
       }
     ]
   }
-];
+]
+
 
 const pagesMenu = [
   {
