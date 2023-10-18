@@ -8,13 +8,13 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import frLocale from '@fullcalendar/core/locales/fr';
 import interactionPlugin from '@fullcalendar/interaction'
-import { createEventHandlerMutatorShallow, useBrainStack } from '../../App';
+import { useBrainStack } from '../../App';
 import EventModal from './EventModal';
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function AppCalendar() {
   const bstack = useBrainStack()
-  const { create, list} = bstack.store.createCRUDObject('calendarEvents')
+  const { update, create, list} = bstack.store.createCRUDObject('calendarEvents')
   const [activeDate, setActiveDate] = useState(new Date())
   const [selectedItemId, setSelectedItemId] = useState(null)
   const [modalShow, setModalShow] = useState(false)
@@ -68,7 +68,7 @@ export default function AppCalendar() {
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             editable={true} 
             eventDrop={(info) => {
-              createEventHandlerMutatorShallow(`calendarEvents.${info.event.id}`)(info.event)
+              update({id: info.event.id, start: info.event.start, end: info.event.end})
             }}
             initialView='dayGridMonth'
             headerToolbar={{
