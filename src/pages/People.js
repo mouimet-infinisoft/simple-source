@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, Col, Nav, Row, Form, Button } from "react-bootstrap";
 import Footer from "../layouts/Footer";
 import HeaderMobile from "../layouts/HeaderMobile";
-import Avatar from "../components/Avatar";
+import Avatar from "../components/atoms/Avatar";
 
 import img1 from "../assets/img/img1.jpg";
 import img6 from "../assets/img/img6.jpg";

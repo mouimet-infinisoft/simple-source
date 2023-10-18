@@ -3,7 +3,7 @@ import { Button, Card, Col, Row, Nav, Table, ProgressBar, Form } from "react-boo
 import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
 import { Link } from "react-router-dom";
-import Avatar from "../components/Avatar";
+import Avatar from "../components/atoms/Avatar";
 import { Bar } from 'react-chartjs-2';
 import ReactApexChart from "react-apexcharts";
 import { dp3 } from "../data/DashboardData";

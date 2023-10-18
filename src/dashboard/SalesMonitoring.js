@@ -3,7 +3,7 @@ import { Card, Col, Nav, OverlayTrigger, Row, Table, Tooltip } from "react-boots
 import { Link } from "react-router-dom";
 import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
-import Avatar from "../components/Avatar";
+import Avatar from "../components/atoms/Avatar";
 import ReactApexChart from "react-apexcharts";
 import { Bar } from 'react-chartjs-2';
 import { dp1, dp2, dp3 } from "../data/DashboardData";

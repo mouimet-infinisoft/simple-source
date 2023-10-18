@@ -10,9 +10,9 @@ import { contactList } from './contactList';
 
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
-import ChipArray from '../../components/ChipArray';
-import ConfirmModal from '../../components/ConfirmModal';
-import Avatar from '../../components/Avatar';
+import ChipArray from '../../components/atoms/ChipArray';
+import ConfirmModal from '../../components/atoms/ConfirmModal';
+import Avatar from '../../components/atoms/Avatar';
 
 const Contacts = () => {
   const bstack = useBrainStack();
