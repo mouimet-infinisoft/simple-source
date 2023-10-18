@@ -9,7 +9,7 @@ import { createBrainstack } from '@brainstack/react';
 import "./assets/css/remixicon.css";
 // import scss
 import "./scss/style.scss";
-import { calendarEventsList, events } from "./apps/AppCalendar/CalendarEvents1";
+import {  events } from "./apps/AppCalendar/datamock";
 
 // Create BrainStack instance with options
 const options = {
@@ -23,7 +23,7 @@ const options = {
   ],
 };
 
-export const { BrainStackProvider, useBrainStack, core, getValue, createEventHandlerMutator } = createBrainstack(options);
+export const { BrainStackProvider, useBrainStack, core, getValue, createEventHandlerMutator, createEventHandlerMutatorShallow } = createBrainstack(options);
 
 // set skin on load
 window.addEventListener("load", function () {
