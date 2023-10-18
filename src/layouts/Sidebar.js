@@ -130,10 +130,10 @@ class SidebarMenu extends Component {
                     <div className="nav-label" onClick={this.toggleMenu}>Pages</div>
                     {this.populateMenu(pagesMenu)}
                 </div>
-                <div className="nav-group show">
+                {/* <div className="nav-group show">
                     <div className="nav-label" onClick={this.toggleMenu}>Éléments UI</div>
                     {this.populateMenu(uiElementsMenu)}
-                </div>
+                </div> */}
             </React.Fragment>
         )
     }
