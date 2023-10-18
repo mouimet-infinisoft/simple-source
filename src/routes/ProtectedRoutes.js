@@ -80,6 +80,7 @@ import MapLeaflet from "../docs/MapLeaflet";
 import MapVector from "../docs/MapVector";
 import IconRemix from "../docs/IconRemix";
 import IconFeather from "../docs/IconFeather";
+import DemandesList from "../apps/Demandes/List";
 
 const protectedRoutes = [
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
@@ -98,6 +99,7 @@ const protectedRoutes = [
   { path: "apps/calendar", element: <AppCalendar /> },
   { path: "apps/email", element: <Email /> },
   { path: "apps/file-manager", element: <FileManager /> },
+  { path: "apps/demandes", element: <DemandesList /> },
   { path: "pages/pricing", element: <Pricing /> },
   { path: "pages/faq", element: <Faq /> },
   { path: "pages/profile", element: <Profile /> },
