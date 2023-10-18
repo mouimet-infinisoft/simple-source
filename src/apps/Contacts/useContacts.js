@@ -37,8 +37,11 @@ export function useContacts({ contacts, create, update, trash, logger }) {
   }
 
   function handleClickCreate() {
-    setActiveContact(create({ ...defaultModel }));
-    logger.info('Created: ', activeContact);
+    setActiveContact(() => {
+      const newState = create({ ...defaultModel })
+    logger.info('Created: ', newState);
+    return newState      
+    });
   }
 
   function handleUpdate(val, field) {
@@ -46,9 +49,10 @@ export function useContacts({ contacts, create, update, trash, logger }) {
       const newState = { ...s, [field]: val };
       newState.contact = [...newState.phones, ...newState.emails][0];
       update(newState);
+      logger.info('Updated: ', newState);
       return newState;
     });
-    logger.info('Updated: ', activeContact);
+
   }
 
   function handleHideDeleteContact() {

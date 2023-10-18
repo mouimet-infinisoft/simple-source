@@ -18,6 +18,7 @@ import img19 from "../assets/img/img19.jpg";
 
 
 export default function Tasks() {
+
   useEffect(() => {
     document.body.classList.add('app-task')
     return () => {
