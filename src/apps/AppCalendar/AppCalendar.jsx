@@ -7,7 +7,8 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import frLocale from '@fullcalendar/core/locales/fr';
-import { useBrainStack } from '../../App';
+import interactionPlugin from '@fullcalendar/interaction'
+import { createEventHandlerMutatorShallow, useBrainStack } from '../../App';
 import EventModal from './EventModal';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -64,7 +65,11 @@ export default function AppCalendar() {
         <div className='calendar-body'>
           <FullCalendar
             ref={calendarRef}
-            plugins={[dayGridPlugin, timeGridPlugin]}
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            editable={true} 
+            eventDrop={(info) => {
+              createEventHandlerMutatorShallow(`calendarEvents.${info.event.id}`)(info.event)
+            }}
             initialView='dayGridMonth'
             headerToolbar={{
               left: 'custom1 prev,next today',
