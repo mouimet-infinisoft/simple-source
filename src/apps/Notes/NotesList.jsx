@@ -6,6 +6,9 @@ import { useBrainStack } from '../../App';
 import { Button, Nav } from 'react-bootstrap';
 import ListSideBar from '../../components/atoms/ListComponent';
 import { useNotes } from './useNotes';
+import { Editor } from 'react-draft-wysiwyg';
+
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 export default function NotesList() {
   const bstack = useBrainStack();
@@ -18,7 +21,7 @@ export default function NotesList() {
 
   const notes = list();
 
-  const { onDeleteItem, onSelectItem } = useNotes({
+  const { editorState, setEditorState, getActiveNote, onDeleteItem, onSelectItem } = useNotes({
     notes,
     create,
     update,
@@ -28,6 +31,8 @@ export default function NotesList() {
   const entries = Object.entries(notes);
 
   const notesCount = entries?.length || '';
+
+  const activeNote = getActiveNote()[1];
 
   return (
     <React.Fragment>
@@ -46,8 +51,30 @@ export default function NotesList() {
             onSelectItem={onSelectItem}
             onClickCreate={() => {}}
           />
+          {activeNote && (
+            <div className="contact-body p-3">
+              <div>
+                <h1
+                  contentEditable="true"
+                  plaintext-only="true"
+                  onInput={(e) => console.log(e.target.innerText)}
+                >
+                  {activeNote.name}
+                </h1>
+              </div>
 
-          {JSON.stringify(notes, null, 2)}
+              <hr />
+
+              <Editor
+                editorState={editorState}
+                onEditorStateChange={setEditorState}
+              />
+
+              <div>{activeNote.content}</div>
+            </div>
+          )}
+
+          {/* {JSON.stringify(activeNote, null, 2)} */}
         </div>
         <Footer />
       </div>

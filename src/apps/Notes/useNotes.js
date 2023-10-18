@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { EditorState } from 'draft-js';
+
 
 export function useNotes({ notes, create, update, trash, logger }) {
   useEffect(() => {
@@ -8,13 +10,20 @@ export function useNotes({ notes, create, update, trash, logger }) {
     };
   }, []);
 
+  const [editorState, setEditorState] = useState(
+    () => EditorState.createEmpty(),
+  );
+
+  const entries = () => Object.entries({ ...notes });
+
+  const getActiveNote = () =>
+    entries()?.filter(([idx, payload]) => payload.isActive)[0];
+
   const onSelectItem = (id) => {
-    console.log(notes);
     Object.entries({ ...notes }).forEach(([idx, payload]) => {
       payload.isActive = idx === id;
       update(payload);
     });
-    console.log('select', id);
   };
 
   const onDeleteItem = (id) => {
@@ -22,6 +31,9 @@ export function useNotes({ notes, create, update, trash, logger }) {
   };
 
   return {
+    editorState,
+    setEditorState,
+    getActiveNote,
     onDeleteItem,
     onSelectItem,
   };
