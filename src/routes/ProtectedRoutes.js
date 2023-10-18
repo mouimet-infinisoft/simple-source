@@ -82,7 +82,7 @@ import IconRemix from "../docs/IconRemix";
 import IconFeather from "../docs/IconFeather";
 import DemandesList from "../apps/Demandes/List";
 import UsersList from "../apps/UsersManagement/List";
-import NotesList from "../apps/Notes/List";
+import NotesList from "../apps/Notes/NotesList";
 
 const protectedRoutes = [
   { path: "dashboard/finance", element: <FinanceMonitoring /> },

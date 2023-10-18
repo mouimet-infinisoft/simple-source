@@ -63,6 +63,7 @@ const Contacts = () => {
             basketLabel="Corbeille"
             totalLabel="Tous les contacts"
             totalAmount={contacts()?.length ?? ''}
+            iconTotal="ri-contacts-fill"
             onClickCreate={handleClickCreate}
           />
 
