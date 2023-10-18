@@ -9,18 +9,20 @@ import { createBrainstack } from '@brainstack/react';
 import "./assets/css/remixicon.css";
 // import scss
 import "./scss/style.scss";
-import {  events } from "./apps/AppCalendar/datamock";
+import { events } from "./apps/AppCalendar/datamock";
 import { demandesList } from "./apps/Demandes/datamock";
-import {usersList} from './apps/UsersManagement/datamock'
+import { usersList } from './apps/UsersManagement/datamock'
+import { notesList } from "./apps/Notes/datamock";
 
 // Create BrainStack instance with options
 const options = {
   eventHubOptions: [],
   stateOptions: {
-      contacts: [],
-      calendarEvents: events,
-      demandes: demandesList,
-      users: usersList
+    contacts: [],
+    calendarEvents: events,
+    demandes: demandesList,
+    users: usersList,
+    notes: notesList
   },
   loggerOptions: [
     5

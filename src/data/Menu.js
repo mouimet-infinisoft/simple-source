@@ -71,7 +71,7 @@ const applicationsMenu = [
   },
   {
     "label": "Notes",
-    "link": "/apps/chat",
+    "link": "/apps/notes",
     "icon": "ri-sticky-note-line"
   },
   {
