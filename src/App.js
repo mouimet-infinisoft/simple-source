@@ -11,6 +11,7 @@ import "./assets/css/remixicon.css";
 import "./scss/style.scss";
 import {  events } from "./apps/AppCalendar/datamock";
 import { demandesList } from "./apps/Demandes/datamock";
+import {usersList} from './apps/UsersManagement/datamock'
 
 // Create BrainStack instance with options
 const options = {
@@ -18,7 +19,8 @@ const options = {
   stateOptions: {
       contacts: [],
       calendarEvents: events,
-      demandes: demandesList
+      demandes: demandesList,
+      users: usersList
   },
   loggerOptions: [
     5
