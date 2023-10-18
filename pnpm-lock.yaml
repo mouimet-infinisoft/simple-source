@@ -6,13 +6,16 @@ settings:
 
 dependencies:
   '@brainstack/react':
-    specifier: ^1.3.35
-    version: 1.3.35
+    specifier: ^1.3.49
+    version: 1.3.49
   '@fullcalendar/core':
     specifier: ^6.1.4
     version: 6.1.9
   '@fullcalendar/daygrid':
     specifier: ^6.1.4
+    version: 6.1.9(@fullcalendar/core@6.1.9)
+  '@fullcalendar/interaction':
+    specifier: ^6.1.9
     version: 6.1.9(@fullcalendar/core@6.1.9)
   '@fullcalendar/react':
     specifier: ^6.1.4
@@ -1611,60 +1614,60 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: false
 
-  /@brainstack/auth@1.0.30:
-    resolution: {integrity: sha512-5I0coaNoWg5nRNiuwASLoA+wM/Xyet/nmttG9XW18KJ7DkTV300qBAjtrGgCxJI3oqpgKMtACAC1+nc17S7G3w==}
+  /@brainstack/auth@1.0.44:
+    resolution: {integrity: sha512-HG9sCdLim6S/+JhFaE0/fuLknc+SikBQPZqKAMhtqmJZ+S/7xfLtZb9YFdvPtQqIPvyu/o3PKCaR9M4rlzvbhg==}
     dev: false
 
-  /@brainstack/config@1.0.28:
-    resolution: {integrity: sha512-bsq/b1t/FiIlp+4L4P33UmEUw4pn/p2rcncve5CBTSkTHNmupbH7NUxXl8IztwEp8DiAObK3FfgrLeXEmdArvQ==}
+  /@brainstack/config@1.0.42:
+    resolution: {integrity: sha512-JtAFhi96lW9qmzIbcshS93lsZ4Al0hax37XrcZL4p60mpAJORQmj8ETS/eUtiXqueAenaf7MJfZDEzRkveimmw==}
     dev: false
 
-  /@brainstack/core@1.2.26:
-    resolution: {integrity: sha512-Dm8KCwc6JnRHvAMDAaURBmc42+IsCtZZ5ab2aSHJu49Ez9FCZCFZXms2YMnG7ZlIJtHjLL1ciZ71tpDNH9NX8w==}
+  /@brainstack/core@1.2.40:
+    resolution: {integrity: sha512-1vGRwF60+OKFOK5msbnV9Z8KziA5OoptL+bAbQw1hKbJKrx4S2WNdzdp/GhCuXepvEDmBJcsEe4/sySTrSTtBw==}
     dependencies:
-      '@brainstack/auth': 1.0.30
-      '@brainstack/config': 1.0.28
-      '@brainstack/crud': 1.0.24
-      '@brainstack/hub': 1.1.29
-      '@brainstack/inject': 1.2.25
-      '@brainstack/log': 1.1.33
-      '@brainstack/state': 1.1.29
-      '@brainstack/store': 1.0.24
+      '@brainstack/auth': 1.0.44
+      '@brainstack/config': 1.0.42
+      '@brainstack/crud': 1.0.38
+      '@brainstack/hub': 1.1.43
+      '@brainstack/inject': 1.2.39
+      '@brainstack/log': 1.1.46
+      '@brainstack/state': 1.1.43
+      '@brainstack/store': 1.0.38
     dev: false
 
-  /@brainstack/crud@1.0.24:
-    resolution: {integrity: sha512-BLO7pC+ikAqYgSxvTPQpQjmVDW1DZ/1af5hLap589bFOEWWfREz8Y+p5Fgp98lJj0rL3y3vZxUCvYXFP+QIGXA==}
+  /@brainstack/crud@1.0.38:
+    resolution: {integrity: sha512-d+me5z+LZ30YEwlAFz/eRBc7PqjHlqhAjgDn4Gv8GgzVgnA7G6GxeQMRpyhsoolMGLelkba4vHLS24SvKyrUvg==}
     dev: false
 
-  /@brainstack/hub@1.1.29:
-    resolution: {integrity: sha512-sSakuxJd1F1qAWbKTj4oXL/hcQkbZk024ysX60VKykBeGZjpsRdfR/rtIOfBQknKKYjC5L4ATmbK17lKgT3R6A==}
+  /@brainstack/hub@1.1.43:
+    resolution: {integrity: sha512-VkKB6r1ZsUfOAk0fgfjpUgCwsCDwqOTV+nvCVLGdSCV7BxN254X45bjN4jnGPULTMP7AyL/75sbf2NrehSME6Q==}
     dependencies:
-      '@brainstack/log': 1.1.33
+      '@brainstack/log': 1.1.46
     dev: false
 
-  /@brainstack/inject@1.2.25:
-    resolution: {integrity: sha512-LL4hLaKny2QrUdiM2IRCXZf1LQyJk2DEP/0vy84Np+vhwjMk3BRhwQUZzVuS4rVvrTCLETkh/j4YfCmcXvaA5A==}
+  /@brainstack/inject@1.2.39:
+    resolution: {integrity: sha512-tMYgwER57TTmeZxDfq47l4Qj0jTFoBiSttOeeQjqS8Di8WaW0M5QvQTt3FcPeesNl1A73g5Ip47O+nE9PylcIg==}
     dev: false
 
-  /@brainstack/log@1.1.33:
-    resolution: {integrity: sha512-hRsfDt3w+aXqI2Gynnml65qM9J5TDBJnuxg1dFfEeEY7+lCKZNG5zimZLh9xEgm30dfKYQ76MCJBuyyx7LtlKw==}
+  /@brainstack/log@1.1.46:
+    resolution: {integrity: sha512-qTsVgj7ajvMFm7zAuVdA5ByEwpUzxp/NFmtnPpjgXioA151EYZlQWytfPFQsQ2eT1z8791fmANob3Z0Kn76CAQ==}
     dev: false
 
-  /@brainstack/react@1.3.35:
-    resolution: {integrity: sha512-GQ2TZAaZfCtxQDVhC40BAYfWym60DVigFdjr+0I2M47Jv4KD/ed8cwI/rc7kDLRjUQ6RgrTfOwD+yZB8/DB2Pg==}
+  /@brainstack/react@1.3.49:
+    resolution: {integrity: sha512-z4Oe6aoEQGtFLwnEXl4Ur0VROL7Sn/MUMpsPw7DxWSQv7BD5zKSx9mY3YByh+ngYzFOuS8DPIqochAvkjob+Sg==}
     dependencies:
-      '@brainstack/core': 1.2.26
+      '@brainstack/core': 1.2.40
     dev: false
 
-  /@brainstack/state@1.1.29:
-    resolution: {integrity: sha512-lMCu4LOpwQu9xUQRGMdkytcysqVNqUVHUYmNOJZA4IHjUW/xq9PtoSE6lfzYzObK32EA7hZ0mpyj1E/hlDEjFA==}
+  /@brainstack/state@1.1.43:
+    resolution: {integrity: sha512-HYptNSggyl3urN40sVlEJDrrlnZRzwM9xH30kKgtYRfAIgMkAtMrzENngyyMriyHUj0C3hjDmxsA5BjJHmkD2A==}
     dev: false
 
-  /@brainstack/store@1.0.24:
-    resolution: {integrity: sha512-/quDPF2EXuhRB4OsRHZK3A/0nMWKNXBSGQ2iK3H0tCqlc8Ew6a3ps23D/he1jyqWOhbQ5gKKDdACngUvmagkqg==}
+  /@brainstack/store@1.0.38:
+    resolution: {integrity: sha512-TR1Tv63blXgn9lnVUejupzd+SBMRpx6q4wNbQLOluld+9OLK6XZKdMXn/CTqHQqnmKp2V89ohehntTMdWUgZLQ==}
     dependencies:
-      '@brainstack/hub': 1.1.29
-      '@brainstack/state': 1.1.29
+      '@brainstack/hub': 1.1.43
+      '@brainstack/state': 1.1.43
     dev: false
 
   /@csstools/normalize.css@12.0.0:
@@ -1974,6 +1977,14 @@ packages:
 
   /@fullcalendar/daygrid@6.1.9(@fullcalendar/core@6.1.9):
     resolution: {integrity: sha512-o/6joH/7lmVHXAkbaa/tUbzWYnGp/LgfdiFyYPkqQbjKEeivNZWF1WhHqFbhx0zbFONSHtrvkjY2bjr+Ef2quQ==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.9
+    dependencies:
+      '@fullcalendar/core': 6.1.9
+    dev: false
+
+  /@fullcalendar/interaction@6.1.9(@fullcalendar/core@6.1.9):
+    resolution: {integrity: sha512-I3FGnv0kKZpIwujg3HllbKrciNjTqeTYy3oJG226oAn7lV6wnrrDYMmuGmA0jPJAGN46HKrQqKN7ItxQRDec4Q==}
     peerDependencies:
       '@fullcalendar/core': ~6.1.9
     dependencies:
