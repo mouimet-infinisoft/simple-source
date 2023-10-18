@@ -13,7 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function AppCalendar() {
   const bstack = useBrainStack()
-  const { create, list } = bstack.store.createCRUDObject('calendarEvents')
+  const { create, list} = bstack.store.createCRUDObject('calendarEvents')
   const [activeDate, setActiveDate] = useState(new Date())
   const [selectedItemId, setSelectedItemId] = useState(null)
   const [modalShow, setModalShow] = useState(false)
