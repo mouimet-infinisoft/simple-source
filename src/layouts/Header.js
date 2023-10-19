@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import userAvatar from "../assets/img/img1.jpg";
 import notification from "../data/Notification";
+import { createEventHandlerMutator, getValue } from "../App";
 
 export default function Header({ onSkin }) {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -111,7 +112,7 @@ export default function Header({ onSkin }) {
       <Link onClick={toggleSidebar} className="menu-link me-3 me-lg-4"><i className="ri-menu-2-fill"></i></Link>
 
       <div className="form-search me-auto">
-        <input type="text" className="form-control" placeholder="Search" />
+        <input type="text" value={getValue('search')} onChange={createEventHandlerMutator('search')} className="form-control" placeholder="Recherche" />
         <i className="ri-search-line"></i>
       </div>
 

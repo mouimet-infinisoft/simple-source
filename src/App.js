@@ -18,6 +18,7 @@ import { notesList } from "./apps/Notes/datamock";
 const options = {
   eventHubOptions: [],
   stateOptions: {
+    search:"",
     contacts: [],
     calendarEvents: events,
     demandes: demandesList,
