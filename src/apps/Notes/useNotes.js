@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { EditorState, ContentState } from 'draft-js';
+
+const defaultModel = () => ({
+  id: uuidv4(),
+  name: 'Untitled',
+  content: '',
+});
 
 export function useNotes({ notes, create, update, trash, logger }) {
   useEffect(() => {
@@ -15,11 +22,17 @@ export function useNotes({ notes, create, update, trash, logger }) {
     entries()?.filter(([_idx, payload]) => payload.isActive)[0];
 
   const [showTitle, setShowTitle] = useState(true);
+
   const [editorState, setEditorState] = useState(() =>
     EditorState.createWithContent(
       ContentState.createFromText(getActiveNote()[1].content)
     )
   );
+
+  const onCreate = () => {
+    const newModel = defaultModel();
+    create(newModel);
+  };
 
   const onSelectItem = (id) => {
     let active = undefined;
@@ -39,10 +52,9 @@ export function useNotes({ notes, create, update, trash, logger }) {
 
   const onEditorChange = (e) => {
     setEditorState(e);
-    const active = getActiveNote()[1]
-    active.content = e.getCurrentContent().getPlainText()
-    update(active)
-    console.log(e.getCurrentContent().getPlainText());
+    const active = getActiveNote()[1];
+    active.content = e.getCurrentContent().getPlainText();
+    update(active);
   };
 
   const onClickTitle = () => setShowTitle(false);
@@ -65,5 +77,6 @@ export function useNotes({ notes, create, update, trash, logger }) {
     onClickTitle,
     onChangeTitle,
     onBlurTitle,
+    onCreate,
   };
 }

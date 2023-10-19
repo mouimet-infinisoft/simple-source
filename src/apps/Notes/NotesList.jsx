@@ -28,6 +28,7 @@ export default function NotesList() {
     onClickTitle,
     onChangeTitle,
     onBlurTitle,
+    onCreate,
   } = useNotes({
     notes,
     create,
@@ -55,7 +56,7 @@ export default function NotesList() {
             entries={entries}
             totalAmount={notesCount}
             onSelectItem={onSelectItem}
-            onClickCreate={() => {}}
+            onClickCreate={onCreate}
           />
           {activeNote && (
             <div className="contact-body p-3">
