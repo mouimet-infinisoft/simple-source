@@ -99,3 +99,10 @@ Contact: themepixels@gmail.com
 
 // Skin
 @import "dark";
+
+.hover-pointer {
+    :hover {
+        cursor: pointer;
+    }
+}
+
