@@ -7,6 +7,7 @@ import { Button, Nav } from 'react-bootstrap';
 import ListSideBar from '../../components/atoms/ListComponent';
 import { useNotes } from './useNotes';
 import { Editor } from 'react-draft-wysiwyg';
+import Typewriter from 'typewriter-effect';
 
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -74,7 +75,21 @@ export default function NotesList() {
                 }}
               />
 
-              <p>{activeNote.content}</p>
+              {/* <p className='typewriter'>{activeNote.content}</p> */}
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter.typeString(activeNote.content)
+                    .callFunction(() => {
+                      console.log('String typed out!');
+                    })
+                    .pauseFor(2500)
+                    .deleteAll()
+                    .callFunction(() => {
+                      console.log('All strings were deleted');
+                    })
+                    .start();
+                }}
+              />
             </div>
           )}
 
