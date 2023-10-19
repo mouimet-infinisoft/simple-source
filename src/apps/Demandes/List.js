@@ -46,11 +46,33 @@ export default function DemandesList() {
   const onClickFilter = (_value) => () => { createEventHandlerMutatorShallow('search')(_value) }
   const onChangeStatus = (_value, status) => () => { update({ ..._value, status }) }
 
-  const test = () => {
-    fetch('/api/smartnotes')
-      .then(bstack.log.info)
-      .catch(bstack.log.error)
-  }
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const base64Image = reader.result;
+        const response = await fetch('/api/smartnotes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ image: base64Image }),
+        });
+
+        const data = await response.json();
+        bstack.log.info(data);
+      } catch (error) {
+        bstack.log.error(error);
+      }
+    };
+    reader.onerror = (error) => {
+      bstack.log.error(error);
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <React.Fragment>
@@ -59,7 +81,16 @@ export default function DemandesList() {
         <PerfectScrollbar className="file-sidebar">
           <div className="d-grid mb-4">
             <Button variant="primary" href="">Nouvelle</Button>
-            <Button variant="primary" onClick={test}>Test</Button>
+            <input
+              type="file"
+              id="imagePicker"
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+            />
+            <Button variant="primary" onClick={() => document.getElementById('imagePicker').click()}>
+              Upload Image for OCR
+            </Button>
 
           </div>
 
