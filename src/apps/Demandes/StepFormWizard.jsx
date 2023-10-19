@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { getValue } from '../../App';
+import { getValue, useBrainStack } from '../../App';
 import Header from "../../layouts/Header";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import ContactForm from '../Contacts/ContactForm';
 
 function StepFormWizard() {
   const { id } = useParams()
   const [key, setKey] = useState('step1');
+    const bstack = useBrainStack()
+  const { list, search, create, update, delete: trash } = bstack.store.createCRUDObject('contacts')
+  const [selectedId, setSelectedId] = useState(null)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const handleNext = () => {
     if (key === 'step1') setKey('step2');
@@ -33,6 +38,8 @@ function StepFormWizard() {
               {/* Your Step 1 form content goes here */}
               <p>Content for Step 1</p>
               {getValue(`demandes.${id}.status`)}
+
+              <ContactForm selectedId={selectedId} handleShowDeleteContact={()=>{setShowDeleteConfirm(true)}} handleUpdate={()=>{}}/>
             </Tab>
             <Tab eventKey="step2" title="Services">
               {/* Your Step 2 form content goes here */}

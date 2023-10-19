@@ -4,6 +4,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import { Button, Card, Col, Dropdown, Nav, Row, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { createEventHandlerMutatorShallow, getValue, useBrainStack } from "../../App";
+import DemandesStats from "./DemandesStats";
 
 function countStatus(demandes) {
   return Object.values(demandes).reduce((acc, demande) => {
@@ -43,7 +44,7 @@ export default function DemandesList() {
 
   const isActive = (_value) => getValue('search') === _value ? "active" : ""
   const onClickFilter = (_value) => () => { createEventHandlerMutatorShallow('search')(_value) }
-  const onChangeStatus = (_value, status) => () => { update({..._value, status}) }
+  const onChangeStatus = (_value, status) => () => { update({ ..._value, status }) }
 
   return (
     <React.Fragment>
@@ -66,64 +67,7 @@ export default function DemandesList() {
 
         <PerfectScrollbar className="file-content p-3 p-lg-4">
           <h1>Demandes</h1>
-          <Row className="g-3 mb-3">
-
-            <Col xs="6" sm>
-              <Card className="card-one">
-                <Card.Body className="p-3">
-                  <div className="d-block fs-40 lh-1 text-primary mb-1">
-                    <i className="ri-time-line"></i>
-                  </div>
-                  <h1 className="card-value mb-0 ls--1 fs-32">{statusCount?.["En attente"] ?? "0"}</h1>
-                  <label className="d-block mb-1 fw-medium text-dark">En attentes</label>
-                  <small>
-                    <span className="d-inline-flex text-danger">0.7% <i className="ri-arrow-down-line"></i></span> depuis la semaine dernière
-                  </small>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col xs="6" sm>
-              <Card className="card-one">
-                <Card.Body className="p-3">
-                  <div className="d-block fs-40 lh-1 text-ui-02 mb-1">
-                    <i className="ri-loader-2-line"></i>
-                  </div>
-                  <h1 className="card-value mb-0 fs-32 ls--1">{statusCount?.["En cours"] ?? "0"}</h1>
-                  <label className="d-block mb-1 fw-medium text-dark">En cours</label>
-                  <small><span className="d-inline-flex text-success">1.2% <i className="ri-arrow-up-line"></i></span> depuis la semaine dernière</small>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col sm>
-              <Card className="card-one">
-                <Card.Body className="p-3">
-                  <div className="d-block fs-40 lh-1 text-ui-02 mb-1">
-                    <i className="ri-checkbox-circle-line"></i>
-                  </div>
-                  <h1 className="card-value mb-0 fs-32 ls--1">{statusCount?.["Terminée"] ?? "0"}</h1>
-                  <label className="d-block mb-1 fw-medium text-dark">Terminées</label>
-                  <small><span className="d-inline-flex text-success">0.6% <i className="ri-arrow-up-line"></i></span> depuis la semaine dernière</small>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col sm>
-              <Card className="card-one">
-                <Card.Body className="p-3">
-                  <div className="d-block fs-40 lh-1 text-ui-02 mb-1">
-                    <i className="ri-close-circle-line"></i>
-                  </div>
-                  <h1 className="card-value mb-0 fs-32 ls--1">{statusCount?.["Fermée"] ?? "0"}</h1>
-                  <label className="d-block mb-1 fw-medium text-dark">Fermées</label>
-                  <small><span className="d-inline-flex text-success">0.6% <i className="ri-arrow-up-line"></i></span> depuis la semaine dernière</small>
-                </Card.Body>
-              </Card>
-            </Col>
-
-          </Row>
-
+          <DemandesStats />
 
 
           <Table className="table table-files" responsive>
@@ -151,7 +95,7 @@ export default function DemandesList() {
                   </td>
                   <td>
                     <h6 className="file-name">
-                    <Link to={`/apps/demandes/${file.id}`}> {file.reference}</Link>
+                      <Link to={`/apps/demandes/${file.id}`}> {file.reference}</Link>
                     </h6>
                   </td>
                   <td><div>{file.created}</div></td>
@@ -167,13 +111,13 @@ export default function DemandesList() {
                         <Dropdown.Item className="details">
                           <Link to={`/apps/demandes/${file.id}`}> <i className="ri-information-line"></i> Ouvrir</Link>
                         </Dropdown.Item>
-                        <Dropdown.Item href="#" className="move" onClick={onChangeStatus(file,"En attente")}>
+                        <Dropdown.Item href="#" className="move" onClick={onChangeStatus(file, "En attente")}>
                           <i className="ri-time-line"></i> En attente
                         </Dropdown.Item>
-                        <Dropdown.Item href="#" className="rename" onClick={onChangeStatus(file,"Terminée")}>
+                        <Dropdown.Item href="#" className="rename" onClick={onChangeStatus(file, "Terminée")}>
                           <i className="ri-checkbox-circle-line"></i> Terminer
                         </Dropdown.Item>
-                        <Dropdown.Item href="#" className="delete" onClick={onChangeStatus(file,"Fermée")}>
+                        <Dropdown.Item href="#" className="delete" onClick={onChangeStatus(file, "Fermée")}>
                           <i className="ri-close-circle-line"></i> Fermer
                         </Dropdown.Item>
                       </Dropdown.Menu>

@@ -10,33 +10,34 @@ import Img4 from "../assets/img/img15.jpg";
 export default Notification = [
   {
     "avatar": (<img src={Img1} alt=""/>),
-    "text": (<React.Fragment><strong>Dominador Manuel</strong> and <strong>100 other people</strong> reacted to your comment "Tell your partner that...</React.Fragment>),
-    "date": "Aug 20 08:55am",
+    "text": (<React.Fragment><strong>Dominador Manuel</strong> et <strong>100 autres personnes</strong> ont réagi à votre commentaire "Dites à votre partenaire que...</React.Fragment>),
+    "date": "20 août 08h55",
     "status": "online"
   },
   {
     "avatar": (<img src={Img2} alt="" />),
-    "text": (<React.Fragment><strong>Angela Ighot</strong> tagged you and <strong>9 others</strong> in a post.</React.Fragment>),
-    "date": "Aug 18 10:30am",
+    "text": (<React.Fragment><strong>Angela Ighot</strong> vous a identifié ainsi que <strong>9 autres</strong> dans une publication.</React.Fragment>),
+    "date": "18 août 10h30",
     "status": "online"
   },
   {
     "avatar": (<span className="avatar-initial bg-primary">a</span>),
-    "text": (<React.Fragment>New listings were added that match your search alert <strong>house for rent</strong></React.Fragment>),
-    "date": "Aug 15 08:10pm",
+    "text": (<React.Fragment>De nouvelles annonces ont été ajoutées qui correspondent à votre alerte de recherche <strong>maison à louer</strong></React.Fragment>),
+    "date": "15 août 20h10",
     "status": ""
   },
   {
     "avatar": (<img src={Img3} alt="" />),
-    "text": (<React.Fragment>Reminder: <strong>Jerry Cuares</strong> invited you to like <strong>Cuares Surveying Services</strong>. <br /><Link to="/">Accept</Link> or <Link to="/">Decline</Link></React.Fragment>),
-    "date": "Aug 14 11:50pm",
+    "text": (<React.Fragment>Rappel : <strong>Jerry Cuares</strong> vous a invité à aimer <strong>Cuares Surveying Services</strong>. <br /><Link to="/">Accepter</Link> ou <Link to="/">Refuser</Link></React.Fragment>),
+    "date": "14 août 23h50",
     "status": "online"
   },
   {
     "avatar": (<img src={Img4} alt="" />),
-    "text": (<React.Fragment><strong>Dyanne Aceron</strong> reacted to your post <strong>King of the Bed</strong></React.Fragment>),
-    "date": "Aug 10 05:30am",
+    "text": (<React.Fragment><strong>Dyanne Aceron</strong> a réagi à votre publication <strong>Roi du Lit</strong></React.Fragment>),
+    "date": "10 août 05h30",
     "status": "online"
   }
 ];
+
 

@@ -5,6 +5,7 @@ import { Button, Card, Col, Row, Table, Nav, ProgressBar } from "react-bootstrap
 import ReactApexChart from "react-apexcharts";
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { Link } from "react-router-dom";
+import DemandesStats from "../apps/Demandes/DemandesStats";
 
 export default function EventManagement() {
   const d1 = [[0, 38], [1, 32], [2, 31], [3, 33], [4, 34], [5, 35], [6, 38], [7, 37], [8, 39], [9, 34], [10, 33], [11, 32], [12, 34], [13, 38], [14, 42], [15, 43], [16, 45], [17, 43], [18, 45], [19, 48], [20, 45], [21, 46], [22, 44], [23, 42], [24, 46], [25, 48], [26, 55], [27, 54], [28, 58], [29, 69]];
@@ -305,8 +306,8 @@ export default function EventManagement() {
       animateRotate: true
     }
   };
-  
-  
+
+
   // Changing necessary options between dark and light skin
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
@@ -366,21 +367,21 @@ export default function EventManagement() {
       <div className="main main-app p-3 p-lg-4">
         <div className="d-md-flex align-items-center justify-content-between mb-4">
           <div>
-            <ol className="breadcrumb fs-sm mb-1">
+            {/* <ol className="breadcrumb fs-sm mb-1">
               <li className="breadcrumb-item"><Link href="#">Dashboard</Link></li>
               <li className="breadcrumb-item active" aria-current="page">Events Management</li>
-            </ol>
-            <h4 className="main-title mb-0">Welcome to Dashboard</h4>
+            </ol> */}
+            <h1 className="main-title mb-0">Mon espace</h1>
           </div>
-          <div className="d-flex align-items-center gap-2 mt-3 mt-md-0">
+          {/* <div className="d-flex align-items-center gap-2 mt-3 mt-md-0">
             <Button variant="white" className="btn-icon"><i className="ri-share-line fs-18 lh-1"></i></Button>
             <Button variant="white" className="btn-icon"><i className="ri-printer-line fs-18 lh-1"></i></Button>
             <Button variant="primary" className="btn-icon"><i className="ri-bar-chart-2-line fs-18 lh-1"></i></Button>
-          </div>
+          </div> */}
         </div>
 
         <Row className="g-3">
-          <Col xl="6">
+          {/* <Col xl="6">
             <Card className="card-one card-ticket-earnings">
               <Card.Body className="d-flex flex-column p-4">
                 <h1 className="card-value mb-3 fs-40 ls--2"><span>$</span>14,869.95</h1>
@@ -439,9 +440,9 @@ export default function EventManagement() {
                 </Card>
               </Col>
             </Row>
-          </Col>
+          </Col> */}
           <Col xl="8">
-            <Row className="g-3">
+            {/* <Row className="g-3">
               <Col xs="6" sm>
                 <Card className="card-one">
                   <Card.Body className="p-3">
@@ -483,7 +484,7 @@ export default function EventManagement() {
               <Col xs="12">
                 <Card className="card-one">
                   <Card.Header>
-                    <Card.Title as="h6">Performance Reached</Card.Title>
+                    <Card.Title as="h6">Dossiers</Card.Title>
                     <Nav className="nav-icon nav-icon-sm ms-auto">
                       <Nav.Link href=""><i className="ri-refresh-line"></i></Nav.Link>
                       <Nav.Link href=""><i className="ri-more-2-fill"></i></Nav.Link>
@@ -607,12 +608,140 @@ export default function EventManagement() {
                   </Card.Body>
                 </Card>
               </Col>
-            </Row>
+            </Row> */}
+            <DemandesStats />
+            <Col xs="12">
+              <Card className="card-one">
+                <Card.Header>
+                  <Card.Title as="h6">Dossiers</Card.Title>
+                  <Nav className="nav-icon nav-icon-sm ms-auto">
+                    <Nav.Link href=""><i className="ri-refresh-line"></i></Nav.Link>
+                    <Nav.Link href=""><i className="ri-more-2-fill"></i></Nav.Link>
+                  </Nav>
+                </Card.Header>
+                <Card.Body className="px-3 pt-2">
+                  <ReactApexChart series={seriesFive} options={optionFive} type="area" height={200} className="apex-chart-three" />
+
+                  <Table className="table-agent mb-0" responsive>
+                    <thead>
+                      <tr>
+                        <th>PerID</th>
+                        <th>Name of Performer</th>
+                        <th>Status</th>
+                        <th>Quota</th>
+                        <th>Reached</th>
+                        <th>Rating</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        {
+                          "id": "00035",
+                          "avatar": {
+                            "initial": "A"
+                          },
+                          "name": "Allan R. Palban",
+                          "email": "allan@themepixels.me",
+                          "status": {
+                            "variant": "primary",
+                            "label": "Active"
+                          },
+                          "quota": "120",
+                          "reached": "64",
+                          "star": ["fill", "fill", "fill", "half-fill", "line"]
+                        }, {
+                          "id": "00028",
+                          "avatar": {
+                            "initial": "C"
+                          },
+                          "name": "Charlene S. Plateros",
+                          "email": "charlene@themepixels.me",
+                          "status": {
+                            "variant": "ui-02",
+                            "label": "Away"
+                          },
+                          "quota": "100",
+                          "reached": "79",
+                          "star": ["fill", "fill", "fill", "fill", "line"]
+                        }, {
+                          "id": "00025",
+                          "avatar": {
+                            "initial": "A",
+                            "bg": "bg-gray-700"
+                          },
+                          "name": "Adrian M. Moniño",
+                          "email": "adrian@themepixels.me",
+                          "status": {
+                            "variant": "primary",
+                            "label": "Active"
+                          },
+                          "quota": "130",
+                          "reached": "108",
+                          "star": ["fill", "fill", "fill", "line", "line"]
+                        }, {
+                          "id": "00024",
+                          "avatar": {
+                            "initial": "M"
+                          },
+                          "name": "Marianne B. Audrey",
+                          "email": "marianne@themepixels.me",
+                          "status": {
+                            "variant": "primary",
+                            "label": "Active"
+                          },
+                          "quota": "110",
+                          "reached": "45",
+                          "star": ["fill", "fill", "fill", "fill", "line"]
+                        }, {
+                          "id": "00023",
+                          "avatar": {
+                            "initial": "C",
+                            "bg": "bg-gray-700"
+                          },
+                          "name": "Carlyn Y. Salomon",
+                          "email": "carlyn@themepixels.me",
+                          "status": {
+                            "variant": "secondary",
+                            "label": "Inactive"
+                          },
+                          "quota": "120",
+                          "reached": "32",
+                          "star": ["fill", "fill", "fill", "half-fill", "line"]
+                        }
+                      ].map((item, index) => (
+                        <tr key={index}>
+                          <td><span className="ff-numerals">{item.id}</span></td>
+                          <td>
+                            <div className="d-flex align-items-center gap-2">
+                              <div className="avatar"><span className={"avatar-initial" + (item.avatar.bg ? " " + item.avatar.bg : "")}>{item.avatar.initial}</span></div>
+                              <div>
+                                <h6 className="mb-0">{item.name}</h6>
+                                <span className="fs-xs text-secondary">{item.email}</span>
+                              </div>
+                            </div>
+                          </td>
+                          <td><span className={"badge bg-" + item.status.variant}>{item.status.label}</span></td>
+                          <td><span className="ff-numerals">{item.quota}</span></td>
+                          <td><span className="ff-numerals">{item.reached}</span></td>
+                          <td>
+                            <div className="d-flex gap-1 text-primary fs-16">
+                              {item.star.map((star, ind) => (
+                                <i key={ind} className={"ri-star-" + star}></i>
+                              ))}
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </Card.Body>
+              </Card>
+            </Col>
           </Col>
           <Col xl="4">
             <Row className="g-3">
               <Col md="6" xl="12">
-                <Card className="card-one">
+                {/* <Card className="card-one">
                   <Card.Header>
                     <Card.Title as="h6">Performance Rating</Card.Title>
                     <Nav className="nav-icon nav-icon-sm ms-auto">
@@ -679,10 +808,103 @@ export default function EventManagement() {
                       </tbody>
                     </Table>
                   </Card.Body>
+                </Card> */}
+
+
+
+                <Card className="card-one">
+                  <Card.Header>
+                    <Card.Title as="h6">Planification</Card.Title>
+                    <Nav className="nav-icon nav-icon-sm ms-auto">
+                      <Nav.Link href=""><i className="ri-refresh-line"></i></Nav.Link>
+                      <Nav.Link href=""><i className="ri-more-2-fill"></i></Nav.Link>
+                    </Nav>
+                  </Card.Header>
+                  <Card.Body className="p-3">
+                    <ul className="events-list">
+                      {[
+                        {
+                          "active": true,
+                          "date": {
+                            "day": "Sam",
+                            "num": "03"
+                          },
+                          "events": [
+                            {
+                              "time": "08:00am - 10:30am",
+                              "title": "Atelier sur la Visite Supervisée",
+                              "text": "Apprenez les meilleures pratiques et les réglementations concernant les visites supervisées pour garantir la sécurité et le bien-être des enfants."
+                            }
+                          ]
+                        },
+                        {
+                          "date": {
+                            "day": "Mer",
+                            "num": "07"
+                          },
+                          "events": [
+                            {
+                              "time": "08:00am - 11:30am",
+                              "title": "Organisation d'Échanges de Garde",
+                              "text": "Partagez des expériences et découvrez des outils pour faciliter les échanges de garde entre parents séparés tout en priorisant le bien-être de l'enfant."
+                            },
+                            {
+                              "time": "1:30pm - 5:30pm",
+                              "title": "L'importance des Appels Supervisés",
+                              "text": "Découvrez pourquoi et comment mettre en place des appels supervisés pour maintenir des relations saines et sécuritaires entre un parent et son enfant."
+                            }
+                          ]
+                        },
+                        {
+                          "date": {
+                            "day": "Jeu",
+                            "num": "08"
+                          },
+                          "events": [
+                            {
+                              "time": "08:30am - 03:30pm",
+                              "title": "Règles Juridiques des Visites Supervisées",
+                              "text": "Explorez le cadre juridique des visites supervisées et comment s'assurer de leur conformité pour protéger les droits de l'enfant et des parents."
+                            }
+                          ]
+                        },
+                        {
+                          "date": {
+                            "day": "Lun",
+                            "num": "23"
+                          },
+                          "events": [
+                            {
+                              "time": "09:00am - 05:30pm",
+                              "title": "Formation pour Superviseurs de Visites",
+                              "text": "Une formation dédiée aux professionnels souhaitant devenir superviseurs de visites pour accompagner les familles en situation complexe."
+                            }
+                          ]
+                        }
+                      ]
+                        .map((item, index) => (
+                          <li key={index} className={item.active ? "active" : ""}>
+                            <div className="event-date">
+                              <small>{item.date.day}</small>
+                              <h5>{item.date.num}</h5>
+                            </div>
+                            <div className="events-body">
+                              {item.events.map((event, ind) => (
+                                <div key={ind} className="ev-item">
+                                  <small>{event.time}</small>
+                                  <h6>{event.title}</h6>
+                                  {event.text && <p>{event.text}</p>}
+                                </div>
+                              ))}
+                            </div>
+                          </li>
+                        ))}
+                    </ul>
+                  </Card.Body>
                 </Card>
               </Col>
               <Col md="6" xl="12">
-                <Card className="card-one">
+                {/* <Card className="card-one">
                   <Card.Header>
                     <Card.Title as="h6">Events Categories</Card.Title>
                     <Nav className="nav-icon nav-icon-sm ms-auto">
@@ -695,14 +917,68 @@ export default function EventManagement() {
                       <Bar data={dataBar} options={optionBar} />
                     </div>
                   </Card.Body>
+                </Card> */}
+                <Card className="card-one">
+                  <Card.Header>
+                    <Card.Title as="h6">Services</Card.Title>
+                    <Nav className="nav-icon nav-icon-sm ms-auto">
+                      <Nav.Link href=""><i className="ri-refresh-line"></i></Nav.Link>
+                      <Nav.Link href=""><i className="ri-more-2-fill"></i></Nav.Link>
+                    </Nav>
+                  </Card.Header>
+                  <Card.Body className="p-3">
+                    <div className="chart-donut-two mb-4">
+                      <Doughnut data={dataPie} options={optionPie} />
+                    </div>
+
+                    <Row className="g-4 mb-2">
+                      {[
+                        {
+                          "name": "Visites supervisées",
+                          "value": "6,000",
+                          "percent": "40%",
+                          "progress": 60
+                        }, {
+                          "name": "Appels supervisés",
+                          "value": "3,750",
+                          "percent": "25%",
+                          "progress": 75,
+                          "variant": "ui-02"
+                        }, {
+                          "name": "Échange de garde",
+                          "value": "3,000",
+                          "percent": "20%",
+                          "progress": 80,
+                          "variant": "gray-700"
+                        }, {
+                          "name": "Autre",
+                          "value": "2,250",
+                          "percent": "15%",
+                          "progress": 85,
+                          "variant": "gray-500"
+                        }
+                      ].map((item, index) => (
+                        <Col xs="6" key={index}>
+                          <label className="fs-sm fw-medium mb-1">{item.name}</label>
+                          <h3 className="card-value mb-2">{item.value} <small>{item.percent}</small></h3>
+                          <ProgressBar now={item.progress} className="ht-5 mb-0" variant={item.variant} />
+                        </Col>
+                      ))}
+                    </Row>
+                  </Card.Body>
                 </Card>
+
+
+
+
+
               </Col>
             </Row>
           </Col>
-          <Col md="6" xl="4">
+          {/* <Col md="6" xl="4">
             <Card className="card-one">
               <Card.Header>
-                <Card.Title as="h6">Events By Category</Card.Title>
+                <Card.Title as="h6">Services</Card.Title>
                 <Nav className="nav-icon nav-icon-sm ms-auto">
                   <Nav.Link href=""><i className="ri-refresh-line"></i></Nav.Link>
                   <Nav.Link href=""><i className="ri-more-2-fill"></i></Nav.Link>
@@ -716,24 +992,24 @@ export default function EventManagement() {
                 <Row className="g-4 mb-2">
                   {[
                     {
-                      "name": "Festivals",
+                      "name": "Visites supervisées",
                       "value": "6,000",
                       "percent": "40%",
                       "progress": 60
                     }, {
-                      "name": "Sports",
+                      "name": "Appels supervisés",
                       "value": "3,750",
                       "percent": "25%",
                       "progress": 75,
                       "variant": "ui-02"
                     }, {
-                      "name": "Concerts",
+                      "name": "Échange de garde",
                       "value": "3,000",
                       "percent": "20%",
                       "progress": 80,
                       "variant": "gray-700"
                     }, {
-                      "name": "Entertainment",
+                      "name": "Autre",
                       "value": "2,250",
                       "percent": "15%",
                       "progress": 85,
@@ -829,7 +1105,7 @@ export default function EventManagement() {
           <Col xl="4">
             <Card className="card-one">
               <Card.Header>
-                <Card.Title as="h6">Events This Month</Card.Title>
+                <Card.Title as="h6">Planification</Card.Title>
                 <Nav className="nav-icon nav-icon-sm ms-auto">
                   <Nav.Link href=""><i className="ri-refresh-line"></i></Nav.Link>
                   <Nav.Link href=""><i className="ri-more-2-fill"></i></Nav.Link>
@@ -911,7 +1187,7 @@ export default function EventManagement() {
                 </ul>
               </Card.Body>
             </Card>
-          </Col>
+          </Col> */}
         </Row>
 
         <Footer />
