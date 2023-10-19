@@ -8,6 +8,7 @@ import ListSideBar from '../../components/atoms/ListComponent';
 import { useNotes } from './useNotes';
 import { Editor } from 'react-draft-wysiwyg';
 
+
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 export default function NotesList() {
@@ -73,7 +74,7 @@ export default function NotesList() {
                 }}
               />
 
-              <div>{activeNote.content}</div>
+              <p>{activeNote.content}</p>
             </div>
           )}
 

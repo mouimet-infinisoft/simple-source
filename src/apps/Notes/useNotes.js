@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { EditorState } from 'draft-js';
+import { EditorState,convertFromHTML } from 'draft-js';
 
 
 export function useNotes({ notes, create, update, trash, logger }) {

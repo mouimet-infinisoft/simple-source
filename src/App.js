@@ -14,6 +14,7 @@ import { demandesList } from "./apps/Demandes/datamock";
 import { usersList } from './apps/UsersManagement/datamock'
 import { notesList } from "./apps/Notes/datamock";
 import { contactList } from "./apps/Contacts/contactList";
+import EventManagement from "./dashboard/EventManagement";
 
 // Create BrainStack instance with options
 const options = {
@@ -50,6 +51,7 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Main />}>
+            <Route index element={<EventManagement />} />
               {protectedRoutes.map((route, index) => {
                 return (
                   <Route
