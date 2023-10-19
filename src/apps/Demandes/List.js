@@ -46,12 +46,7 @@ export default function DemandesList() {
   const isActive = (_value) => getValue('search') === _value ? "active" : ""
   const onClickFilter = (_value) => () => { createEventHandlerMutatorShallow('search')(_value) }
   const onChangeStatus = (_value, status) => () => { update({ ..._value, status }) }
-  
-  const ai = () => {
-    fetch('/api/smartnotes')
-      .then(bstack.log.info)
-      .catch(bstack.log.error)
-  }
+
   return (
     <React.Fragment>
       <Header />
@@ -59,7 +54,6 @@ export default function DemandesList() {
         <PerfectScrollbar className="file-sidebar">
           <div className="d-grid mb-4">
             <Button variant="primary" href="">Nouvelle</Button>
-            <Button variant="primary" onClick={ai}>AI</Button>
           </div>
 
           <label className="sidebar-label mb-2">Filtres</label>
