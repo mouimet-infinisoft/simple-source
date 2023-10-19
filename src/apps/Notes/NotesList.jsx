@@ -49,7 +49,7 @@ export default function NotesList() {
             totalAmount={notesCount}
             onRightIconClick={onDeleteItem}
             onSelectItem={onSelectItem}
-            onClickCreate={() => {}}
+            onClickCreate={() => { }}
           />
           {activeNote && (
             <div className="contact-body p-3">
@@ -68,6 +68,9 @@ export default function NotesList() {
               <Editor
                 editorState={editorState}
                 onEditorStateChange={setEditorState}
+                localization={{
+                  locale: 'fr',
+                }}
               />
 
               <div>{activeNote.content}</div>
