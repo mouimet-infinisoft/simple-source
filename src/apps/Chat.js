@@ -4,7 +4,7 @@ import Footer from "../layouts/Footer";
 import { Link } from "react-router-dom";
 import { Dropdown, Row, Col, Nav, Form } from "react-bootstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import Avatar from "../components/Avatar";
+import Avatar from "../components/atoms/Avatar";
 import DOMPurify from 'dompurify';
 
 import img6 from "../assets/img/img6.jpg";

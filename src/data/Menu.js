@@ -63,15 +63,15 @@ const applicationsMenu = [
     "label": "Demandes",
     "link": "/apps/demandes",
     "icon": "ri-question-answer-line"
-  }, 
-   {
+  },
+  {
     "label": "Dossiers",
     "link": "/apps/chat",
     "icon": "ri-folder-line"
   },
-     {
+  {
     "label": "Notes",
-    "link": "/apps/chat",
+    "link": "/apps/notes",
     "icon": "ri-sticky-note-line"
   },
   {
@@ -88,6 +88,11 @@ const applicationsMenu = [
     "label": "Tâches",
     "link": "/apps/tasks",
     "icon": "ri-checkbox-multiple-line"
+  },
+  {
+    "label": "Employées",
+    "link": "/apps/staff",
+    "icon": "ri-team-fill"
   },
   // {
   //   "label": "Documents",

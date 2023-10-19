@@ -43,10 +43,10 @@
     .header-main,
     .main { transform: translateX($sidebar-width); }
 
-    .main-backdrop {
-      opacity: 1;
-      visibility: visible;
-    }
+    // .main-backdrop {
+    //   opacity: 1;
+    //   visibility: visible;
+    // }
   }
 }
 

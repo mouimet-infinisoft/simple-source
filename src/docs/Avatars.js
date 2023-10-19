@@ -3,7 +3,7 @@ import Prism from "prismjs";
 import { Card, Container, Nav } from "react-bootstrap";
 import Footer from "../layouts/Footer";
 import HeaderMobile from "../layouts/HeaderMobile";
-import Avatar from "../components/Avatar";
+import Avatar from "../components/atoms/Avatar";
 
 import img1 from "../assets/img/img1.jpg";
 

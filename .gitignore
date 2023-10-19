@@ -10,3 +10,6 @@
 
 *.Identifier
 /build
+.vercel
+.npmrc
+tools/fix_npm_path.sh

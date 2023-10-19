@@ -3,7 +3,7 @@ import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
 import { Badge, Card, Col, Nav, ProgressBar, Row } from "react-bootstrap";
 import ReactDatePicker from "react-datepicker";
-import Avatar from "../components/Avatar";
+import Avatar from "../components/atoms/Avatar";
 import { Link } from "react-router-dom";
 
 import img8 from "../assets/img/img8.jpg";

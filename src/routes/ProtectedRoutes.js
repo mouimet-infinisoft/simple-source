@@ -81,6 +81,8 @@ import MapVector from "../docs/MapVector";
 import IconRemix from "../docs/IconRemix";
 import IconFeather from "../docs/IconFeather";
 import DemandesList from "../apps/Demandes/List";
+import UsersList from "../apps/UsersManagement/List";
+import NotesList from "../apps/Notes/NotesList";
 
 const protectedRoutes = [
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
@@ -96,10 +98,12 @@ const protectedRoutes = [
   { path: "apps/tasks", element: <Tasks /> },
   { path: "apps/contacts", element: <Contacts /> },
   { path: "apps/chat", element: <Chat /> },
+  { path: "apps/notes", element: <NotesList /> },
   { path: "apps/calendar", element: <AppCalendar /> },
   { path: "apps/email", element: <Email /> },
   { path: "apps/file-manager", element: <FileManager /> },
   { path: "apps/demandes", element: <DemandesList /> },
+  { path: "apps/staff", element: <UsersList /> },
   { path: "pages/pricing", element: <Pricing /> },
   { path: "pages/faq", element: <Faq /> },
   { path: "pages/profile", element: <Profile /> },
