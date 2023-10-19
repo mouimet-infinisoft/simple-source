@@ -17,7 +17,7 @@
 // };
 
 
-const Tesseract = require('tesseract.js');
+import {recognize} from 'tesseract.js';
 
 module.exports = async (req, res) => {
     try {
@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
         // The image can be sent as a base64 string or a URL
         const image = req.body.image;
 
-        const result = await Tesseract.recognize(image, 'eng');
+        const result = await recognize(image, 'eng');
         res.status(200).send({ text: result.data.text.trim() });
     } catch (error) {
         console.error(error);
