@@ -625,18 +625,18 @@ export default function EventManagement() {
                   <Table className="table-agent mb-0" responsive>
                     <thead>
                       <tr>
-                        <th>PerID</th>
-                        <th>Name of Performer</th>
+                        <th>No Dossier</th>
+                        <th>Contacts</th>
                         <th>Status</th>
-                        <th>Quota</th>
-                        <th>Reached</th>
-                        <th>Rating</th>
+                        <th>Visites</th>
+                        <th>Notes</th>
+                        <th>Avancement</th>
                       </tr>
                     </thead>
                     <tbody>
                       {[
                         {
-                          "id": "00035",
+                          "id": "D00035",
                           "avatar": {
                             "initial": "A"
                           },
@@ -646,11 +646,11 @@ export default function EventManagement() {
                             "variant": "primary",
                             "label": "Active"
                           },
-                          "quota": "120",
-                          "reached": "64",
+                          "quota": "12",
+                          "reached": "6",
                           "star": ["fill", "fill", "fill", "half-fill", "line"]
                         }, {
-                          "id": "00028",
+                          "id": "D00028",
                           "avatar": {
                             "initial": "C"
                           },
@@ -660,11 +660,11 @@ export default function EventManagement() {
                             "variant": "ui-02",
                             "label": "Away"
                           },
-                          "quota": "100",
-                          "reached": "79",
+                          "quota": "10",
+                          "reached": "7",
                           "star": ["fill", "fill", "fill", "fill", "line"]
                         }, {
-                          "id": "00025",
+                          "id": "D00025",
                           "avatar": {
                             "initial": "A",
                             "bg": "bg-gray-700"
@@ -675,11 +675,11 @@ export default function EventManagement() {
                             "variant": "primary",
                             "label": "Active"
                           },
-                          "quota": "130",
-                          "reached": "108",
+                          "quota": "13",
+                          "reached": "10",
                           "star": ["fill", "fill", "fill", "line", "line"]
                         }, {
-                          "id": "00024",
+                          "id": "D00024",
                           "avatar": {
                             "initial": "M"
                           },
@@ -689,11 +689,11 @@ export default function EventManagement() {
                             "variant": "primary",
                             "label": "Active"
                           },
-                          "quota": "110",
-                          "reached": "45",
+                          "quota": "11",
+                          "reached": "4",
                           "star": ["fill", "fill", "fill", "fill", "line"]
                         }, {
-                          "id": "00023",
+                          "id": "D00023",
                           "avatar": {
                             "initial": "C",
                             "bg": "bg-gray-700"
@@ -704,8 +704,8 @@ export default function EventManagement() {
                             "variant": "secondary",
                             "label": "Inactive"
                           },
-                          "quota": "120",
-                          "reached": "32",
+                          "quota": "12",
+                          "reached": "3",
                           "star": ["fill", "fill", "fill", "half-fill", "line"]
                         }
                       ].map((item, index) => (
@@ -935,24 +935,24 @@ export default function EventManagement() {
                       {[
                         {
                           "name": "Visites supervisées",
-                          "value": "6,000",
+                          "value": "60",
                           "percent": "40%",
                           "progress": 60
                         }, {
                           "name": "Appels supervisés",
-                          "value": "3,750",
+                          "value": "37",
                           "percent": "25%",
                           "progress": 75,
                           "variant": "ui-02"
                         }, {
                           "name": "Échange de garde",
-                          "value": "3,000",
+                          "value": "30",
                           "percent": "20%",
                           "progress": 80,
                           "variant": "gray-700"
                         }, {
                           "name": "Autre",
-                          "value": "2,250",
+                          "value": "22",
                           "percent": "15%",
                           "progress": 85,
                           "variant": "gray-500"

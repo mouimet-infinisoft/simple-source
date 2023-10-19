@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Button } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getValue, useBrainStack } from '../../App';
 import Header from "../../layouts/Header";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import ContactForm from '../Contacts/ContactForm';
+import DemandesDetailsHeader from './DemandesDetailsHeader';
 
 function StepFormWizard() {
   const { id } = useParams()
@@ -28,6 +29,8 @@ function StepFormWizard() {
     <React.Fragment>
       <Header />
       <div className={"main main-file-manager p-3 p-lg-4"}>
+      <h1><Link to='/apps/demandes'><i class="ri-arrow-left-line"></i></Link> Demande</h1>
+        <DemandesDetailsHeader />
         <div>
           <Tabs
             id="step-form-wizard"
@@ -35,10 +38,6 @@ function StepFormWizard() {
             onSelect={(k) => setKey(k)}
           >
             <Tab eventKey="step1" title="Contacts">
-              {/* Your Step 1 form content goes here */}
-              <p>Content for Step 1</p>
-              {getValue(`demandes.${id}.status`)}
-
               <ContactForm selectedId={selectedId} handleShowDeleteContact={()=>{setShowDeleteConfirm(true)}} handleUpdate={()=>{}}/>
             </Tab>
             <Tab eventKey="step2" title="Services">

@@ -16,6 +16,7 @@ function countStatus(demandes) {
 export default function DemandesList() {
   const bstack = useBrainStack();
   const { list, search, update } = bstack.store.createCRUDObject('demandes')
+  const { read: readContact, list: listContact } = bstack.store.createCRUDObject('contacts')
   const statusCount = useMemo(() => countStatus(list()), [list()]);
 
   useEffect(() => {
@@ -46,34 +47,6 @@ export default function DemandesList() {
   const onClickFilter = (_value) => () => { createEventHandlerMutatorShallow('search')(_value) }
   const onChangeStatus = (_value, status) => () => { update({ ..._value, status }) }
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = async () => {
-      try {
-        const base64Image = reader.result;
-        const response = await fetch('/api/smartnotes', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ image: base64Image }),
-        });
-
-        const data = await response.json();
-        bstack.log.info(data);
-      } catch (error) {
-        bstack.log.error(error);
-      }
-    };
-    reader.onerror = (error) => {
-      bstack.log.error(error);
-    };
-    reader.readAsDataURL(file);
-  };
-
   return (
     <React.Fragment>
       <Header />
@@ -81,17 +54,6 @@ export default function DemandesList() {
         <PerfectScrollbar className="file-sidebar">
           <div className="d-grid mb-4">
             <Button variant="primary" href="">Nouvelle</Button>
-            <input
-              type="file"
-              id="imagePicker"
-              accept="image/*"
-              style={{ display: 'none' }}
-              onChange={handleFileChange}
-            />
-            <Button variant="primary" onClick={() => document.getElementById('imagePicker').click()}>
-              Upload Image for OCR
-            </Button>
-
           </div>
 
           <label className="sidebar-label mb-2">Filtres</label>
@@ -139,7 +101,7 @@ export default function DemandesList() {
                   </td>
                   <td><div>{file.created}</div></td>
                   <td><div>{file.status}</div></td>
-                  <td><div>{file.contacts.join(', ')}</div></td>
+                  <td><div>{file.contacts.map(({ id }) => getValue(`contacts.${id}.name`)).join(', ')}</div></td>
                   <td><div>{file.service}</div></td>
                   <td>
                     <Dropdown align="end" className="dropdown-file">
