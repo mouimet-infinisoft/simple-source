@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { EditorState } from 'draft-js';
-
+import { EditorState, ContentState } from 'draft-js';
 
 export function useNotes({ notes, create, update, trash, logger }) {
   useEffect(() => {
@@ -10,31 +9,61 @@ export function useNotes({ notes, create, update, trash, logger }) {
     };
   }, []);
 
-  const [editorState, setEditorState] = useState(
-    () => EditorState.createEmpty(),
-  );
-
   const entries = () => Object.entries({ ...notes });
 
   const getActiveNote = () =>
-    entries()?.filter(([idx, payload]) => payload.isActive)[0];
+    entries()?.filter(([_idx, payload]) => payload.isActive)[0];
+
+  const [showTitle, setShowTitle] = useState(true);
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createWithContent(
+      ContentState.createFromText(getActiveNote()[1].content)
+    )
+  );
 
   const onSelectItem = (id) => {
-    Object.entries({ ...notes }).forEach(([idx, payload]) => {
+    let active = undefined;
+
+    entries().forEach(([idx, payload]) => {
       payload.isActive = idx === id;
+      if (payload.isActive) {
+        active = payload;
+      }
       update(payload);
     });
+
+    setEditorState(
+      EditorState.createWithContent(ContentState.createFromText(active.content))
+    );
   };
 
-  const onDeleteItem = (id) => {
-    console.log('trash', id);
+  const onEditorChange = (e) => {
+    setEditorState(e);
+    const active = getActiveNote()[1]
+    active.content = e.getCurrentContent().getPlainText()
+    update(active)
+    console.log(e.getCurrentContent().getPlainText());
+  };
+
+  const onClickTitle = () => setShowTitle(false);
+
+  const onBlurTitle = () => setShowTitle(true);
+
+  const onChangeTitle = (e) => {
+    const active = getActiveNote()[1];
+    active.name = e.currentTarget.value;
+    update(active);
   };
 
   return {
+    showTitle,
     editorState,
     setEditorState,
     getActiveNote,
-    onDeleteItem,
     onSelectItem,
+    onEditorChange,
+    onClickTitle,
+    onChangeTitle,
+    onBlurTitle,
   };
 }

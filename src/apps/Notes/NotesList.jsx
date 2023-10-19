@@ -1,12 +1,10 @@
 import React from 'react';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import { Editor } from 'react-draft-wysiwyg';
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
 import { useBrainStack } from '../../App';
-import { Button, Nav } from 'react-bootstrap';
 import ListSideBar from '../../components/atoms/ListComponent';
 import { useNotes } from './useNotes';
-import { Editor } from 'react-draft-wysiwyg';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -21,7 +19,16 @@ export default function NotesList() {
 
   const notes = list();
 
-  const { editorState, setEditorState, getActiveNote, onDeleteItem, onSelectItem } = useNotes({
+  const {
+    showTitle,
+    editorState,
+    onEditorChange,
+    getActiveNote,
+    onSelectItem,
+    onClickTitle,
+    onChangeTitle,
+    onBlurTitle,
+  } = useNotes({
     notes,
     create,
     update,
@@ -47,37 +54,47 @@ export default function NotesList() {
             iconTotal="ri-sticky-note-fill"
             entries={entries}
             totalAmount={notesCount}
-            onRightIconClick={onDeleteItem}
             onSelectItem={onSelectItem}
-            onClickCreate={() => { }}
+            onClickCreate={() => {}}
           />
           {activeNote && (
             <div className="contact-body p-3">
               <div>
-                <h1
-                  contentEditable="true"
-                  plaintext-only="true"
-                  onInput={(e) => console.log(e.target.innerText)}
-                >
-                  {activeNote.name}
-                </h1>
+                {showTitle && (
+                  <h3>
+                    <span
+                      className="label label-default"
+                      onClick={onClickTitle}
+                      htmlFor="textBoxName"
+                    >
+                      {activeNote.name}
+                    </span>
+                  </h3>
+                )}
+                {!showTitle && (
+                  <input
+                    value={activeNote.name}
+                    className="form-control"
+                    type="text"
+                    id="textBoxName"
+                    name="textBoxName"
+                    onChange={onChangeTitle}
+                    onBlur={onBlurTitle}
+                  />
+                )}
               </div>
 
               <hr />
 
               <Editor
                 editorState={editorState}
-                onEditorStateChange={setEditorState}
+                onEditorStateChange={onEditorChange}
                 localization={{
                   locale: 'fr',
                 }}
               />
-
-              <div>{activeNote.content}</div>
             </div>
           )}
-
-          {/* {JSON.stringify(activeNote, null, 2)} */}
         </div>
         <Footer />
       </div>
