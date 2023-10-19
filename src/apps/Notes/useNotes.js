@@ -34,6 +34,12 @@ export function useNotes({ notes, create, update, trash, logger }) {
     create(newModel);
   };
 
+  const onDelete = () => {
+    // console.log(getActiveNote()[1]);
+    const toDelete = getActiveNote()[1];
+    trash(toDelete);
+  };
+
   const onSelectItem = (id) => {
     let active = undefined;
 
@@ -78,5 +84,6 @@ export function useNotes({ notes, create, update, trash, logger }) {
     onChangeTitle,
     onBlurTitle,
     onCreate,
+    onDelete,
   };
 }

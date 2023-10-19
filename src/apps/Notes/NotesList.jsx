@@ -29,6 +29,7 @@ export default function NotesList() {
     onChangeTitle,
     onBlurTitle,
     onCreate,
+    onDelete
   } = useNotes({
     notes,
     create,
@@ -60,7 +61,13 @@ export default function NotesList() {
           />
           {activeNote && (
             <div className="contact-body p-3">
-              <div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
                 {showTitle && (
                   <h3>
                     <span
@@ -83,6 +90,7 @@ export default function NotesList() {
                     onBlur={onBlurTitle}
                   />
                 )}
+                <button className="btn btn-danger" onClick={onDelete}>Delete</button>
               </div>
 
               <hr />
