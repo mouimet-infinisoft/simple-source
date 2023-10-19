@@ -42,7 +42,7 @@ function ChipArray({ initialItems = [], placeholder = "Enter value and press spa
                 style={{ marginBottom: '0.5rem', flex: '1 0 100%' }}
             />
 
-            {items.map((item, index) => (
+            {items && items?.map((item, index) => (
                 <Badge pill bg="primary" key={index} className="me-2">
                     {item}
 

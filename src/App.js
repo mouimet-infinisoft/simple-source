@@ -13,13 +13,14 @@ import { events } from "./apps/AppCalendar/datamock";
 import { demandesList } from "./apps/Demandes/datamock";
 import { usersList } from './apps/UsersManagement/datamock'
 import { notesList } from "./apps/Notes/datamock";
+import { contactList } from "./apps/Contacts/contactList";
 
 // Create BrainStack instance with options
 const options = {
   eventHubOptions: [],
   stateOptions: {
     search:"",
-    contacts: [],
+    contacts: contactList,
     calendarEvents: events,
     demandes: demandesList,
     users: usersList,

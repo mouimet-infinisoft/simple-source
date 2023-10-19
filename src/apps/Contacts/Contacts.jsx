@@ -1,47 +1,58 @@
-import React, { useMemo } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Col, Nav, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { useBrainStack } from '../../App';
-import { crudSDK } from '../../modules/crudSDK';
-import { useContacts, defaultModel } from './useContacts';
-
-import { contactList } from './contactList';
-
+import { createEventHandlerMutator, getValue, useBrainStack } from '../../App';
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
 import ChipArray from '../../components/atoms/ChipArray';
 import ConfirmModal from '../../components/atoms/ConfirmModal';
 import Avatar from '../../components/atoms/Avatar';
 import ListSideBar from '../../components/atoms/ListComponent';
+import img11 from '../../assets/img/img11.jpg'
+
+const defaultModel = {
+  status: '',
+  thumb: img11,
+  name: '',
+  contact: '',
+  phones: [],
+  address: '',
+  jobtitle: '',
+  emails: [],
+};
 
 const Contacts = () => {
   const bstack = useBrainStack();
-  const { list, create, update, trash } = useMemo(
-    () => crudSDK('contacts', { ...defaultModel })(contactList),
-    []
-  );
+  const { list, search, create, update, delete: trash } = bstack.store.createCRUDObject('contacts')
+  const [selectedId, setSelectedId] = useState(null)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [isSidebarShow, setSidebarShow] = useState(false);
+  function toggleSidebarShow() {
+    setSidebarShow(!isSidebarShow);
+  }
 
-  const contacts = list;
+  function handleUpdate(val, field) {
+    const _contact = getValue(`contacts.${selectedId}`)
+    _contact[field] = val
+    _contact.contact = [..._contact.phones, ..._contact.emails][0];
+    update(_contact);
+    bstack.log.info('Updated: ', _contact);
+  };
 
-  const {
-    isSidebarShow,
-    activeContact,
-    showDeleteConfirm,
-    handleClickContact,
-    handleClickCreate,
-    handleDeleteContact,
-    handleHideDeleteContact,
-    handleShowDeleteContact,
-    handleUpdate,
-    toggleSidebarShow,
-  } = useContacts({
-    create,
-    update,
-    trash,
-    contacts: contacts(),
-    logger: bstack.log,
-  });
+  function handleHideDeleteContact() {
+    setShowDeleteConfirm(false);
+  }
+
+  function handleDeleteContact() {
+    trash(getValue(`contacts.${selectedId}`));
+    setSelectedId(null)
+    handleHideDeleteContact();
+  }
+
+  function handleShowDeleteContact() {
+    setShowDeleteConfirm(true);
+  }
 
   return (
     <React.Fragment>
@@ -49,7 +60,7 @@ const Contacts = () => {
       <ConfirmModal
         show={showDeleteConfirm}
         onHide={handleHideDeleteContact}
-        title={activeContact?.name}
+        title={getValue(`contacts.${selectedId}.name`)}
         onCancel={handleHideDeleteContact}
         onConfirm={handleDeleteContact}
       />
@@ -62,9 +73,11 @@ const Contacts = () => {
             buttonAddLabel="Ajouter"
             basketLabel="Corbeille"
             totalLabel="Tous les contacts"
-            totalAmount={contacts()?.length ?? ''}
+            totalAmount={Object.values(list())?.length ?? ''}
             iconTotal="ri-contacts-fill"
-            onClickCreate={handleClickCreate}
+            onClickCreate={() => {
+              setSelectedId(create(defaultModel)?.id)
+            }}
           />
 
           <div className="contact-body">
@@ -82,16 +95,16 @@ const Contacts = () => {
 
               <PerfectScrollbar className="contact-list-body">
                 <div className="contact-group mb-3">
-                  {contacts()?.map((item) => (
+                  {Object.values(search(getValue('search')))?.map((item) => (
                     <div
                       key={item.id}
                       className={
-                        item?.id === activeContact?.id && item?.id
+                        item?.id === selectedId && item?.id
                           ? 'contact-item selected'
                           : 'contact-item'
                       }
                       onClickCapture={() => {
-                        handleClickContact(item);
+                        setSelectedId(item?.id)
                       }}
                     >
                       <div className={'avatar ' + item.status}>
@@ -115,32 +128,27 @@ const Contacts = () => {
               </Link>
               <div className="d-sm-flex p-2 p-sm-4 p-md-2 p-xl-4">
                 <div className="me-4 mb-3 mb-sm-0">
-                  <Avatar img={activeContact.thumb} />
+                  <Avatar img={getValue(`contacts.${selectedId}.thumb`)} />
                 </div>
                 <div className="flex-fill">
                   <input
                     type="text"
-                    value={activeContact.name}
-                    onChange={(e) => {
-                      handleUpdate(e.currentTarget.value, 'name');
-                    }}
+                    value={getValue(`contacts.${selectedId}.name`)}
+                    onChange={createEventHandlerMutator(`contacts.${selectedId}.name`)}
                     placeholder="Nom"
                     className="form-control mb-1"
                   />
                   <input
                     type="text"
-                    value={activeContact.jobtitle}
+                    value={getValue(`contacts.${selectedId}.jobtitle`)}
+                    onChange={createEventHandlerMutator(`contacts.${selectedId}.jobtitle`)}
                     className="form-control mb-2"
-                    onChange={(e) => {
-                      handleUpdate(e.currentTarget.value, 'jobtitle');
-                    }}
                     placeholder="Titre"
                   />
                   <div className="d-flex">
                     <Button variant="primary" className="px-5">
                       Message
                     </Button>
-                    {/* <Button variant="" className="btn-icon btn-gray ms-1"><i className="ri-star-line"></i></Button> */}
                     <Button
                       variant="danger"
                       className="btn-icon ms-1"
@@ -160,8 +168,8 @@ const Contacts = () => {
                 </Col>
                 <Col>
                   <ChipArray
-                    key={'active-emails-' + activeContact?.id}
-                    initialItems={activeContact.emails}
+                    key={'active-emails-' + selectedId}
+                    initialItems={getValue(`contacts.${selectedId}.emails`)}
                     onItemsChange={(e) => {
                       handleUpdate(e, 'emails');
                     }}
@@ -176,8 +184,8 @@ const Contacts = () => {
                 </Col>
                 <Col>
                   <ChipArray
-                    key={'active-phones-' + activeContact?.id}
-                    initialItems={activeContact.phones}
+                    key={'active-phones-' + selectedId}
+                    initialItems={getValue(`contacts.${selectedId}.phones`)}
                     onItemsChange={(e) => {
                       handleUpdate(e, 'phones');
                     }}
@@ -193,11 +201,9 @@ const Contacts = () => {
                 <Col>
                   <input
                     type="text"
-                    value={activeContact?.address ?? ''}
                     className="form-control"
-                    onChange={(e) => {
-                      handleUpdate(e.currentTarget.value, 'address');
-                    }}
+                    value={getValue(`contacts.${selectedId}.address`)}
+                    onChange={createEventHandlerMutator(`contacts.${selectedId}.address`)}
                     placeholder="Adresse"
                   />
                 </Col>
