@@ -21,7 +21,7 @@ export default class Sidebar extends Component {
         return (
             <div className="sidebar">
                 <div className="sidebar-header">
-                    <Link to="/" className="sidebar-logo">dashbyte</Link>
+                    <Link to="/" className="sidebar-logo">si simple</Link>
                 </div>
                 <PerfectScrollbar className="sidebar-body" ref={ref => this._scrollBarRef = ref}>
                     <SidebarMenu onUpdateSize={() => this._scrollBarRef.updateScroll()} />
@@ -32,21 +32,18 @@ export default class Sidebar extends Component {
                             <img src={userAvatar} alt="" />
                         </div>
                         <div className="sidebar-footer-body">
-                            <h6><Link to="../pages/profile.html">Shaira Diaz</Link></h6>
-                            <p>Membre Premium</p>
+                            <h6><Link to="/pages/profile">Sarah Diaz</Link></h6>
+                            <p>Intervenante</p>
                         </div>
                         <Link onClick={this.toggleFooterMenu} to="" className="dropdown-link"><i className="ri-arrow-down-s-line"></i></Link>
                     </div>
                     <div className="sidebar-footer-menu">
                         <nav className="nav">
-                            <Link to=""><i className="ri-edit-2-line"></i> Modifier le profil</Link>
-                            <Link to=""><i className="ri-profile-line"></i> Voir le profil</Link>
+                            <Link to="/pages/profile"><i className="ri-profile-line"></i> Mon profil</Link>
                         </nav>
                         <hr />
                         <nav className="nav">
                             <Link to=""><i className="ri-question-line"></i> Centre d'aide</Link>
-                            <Link to=""><i className="ri-lock-line"></i> Paramètres de confidentialité</Link>
-                            <Link to=""><i className="ri-user-settings-line"></i> Paramètres du compte</Link>
                             <Link to=""><i className="ri-logout-box-r-line"></i> Se déconnecter</Link>
                         </nav>
                     </div>
@@ -126,10 +123,10 @@ class SidebarMenu extends Component {
                     <div className="nav-label" onClick={this.toggleMenu}>Applications</div>
                     {this.populateMenu(applicationsMenu)}
                 </div>
-                <div className="nav-group show">
+                {/* <div className="nav-group show">
                     <div className="nav-label" onClick={this.toggleMenu}>Pages</div>
                     {this.populateMenu(pagesMenu)}
-                </div>
+                </div> */}
                 {/* <div className="nav-group show">
                     <div className="nav-label" onClick={this.toggleMenu}>Éléments UI</div>
                     {this.populateMenu(uiElementsMenu)}
