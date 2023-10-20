@@ -36,8 +36,8 @@ export function useNotes({ notes, create, update, trash, logger }) {
 
   const onDelete = () => {
     // console.log(getActiveNote()[1]);
-    const toDelete = getActiveNote()[1];
-    trash(toDelete);
+    // const toDelete = getActiveNote()[1];
+    // trash(toDelete);
   };
 
   const onSelectItem = (id) => {

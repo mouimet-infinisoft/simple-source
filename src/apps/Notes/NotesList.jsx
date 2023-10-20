@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
-import { useBrainStack } from '../../App';
+import { useBrainStack, getValue, createEventHandlerMutator } from '../../App';
 import ListSideBar from '../../components/atoms/ListComponent';
-import { useNotes } from './useNotes';
-
+import { v4 as uuidv4 } from 'uuid';
+import { EditorState, ContentState } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+const defaultModel = () => ({
+  id: uuidv4(),
+  name: '',
+  content: '',
+});
+
 
 export default function NotesList() {
   const bstack = useBrainStack();
@@ -15,33 +22,37 @@ export default function NotesList() {
     create,
     update,
     delete: trash,
+    search
   } = bstack.store.createCRUDObject('notes');
+  const [selectedId, setSelectedId] = useState(null)
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createWithContent(
+      ContentState.createFromText(getValue(`notes.${selectedId}.content`))
+    )
+  );
 
-  const notes = list();
-
-  const {
-    showTitle,
-    editorState,
-    onEditorChange,
-    getActiveNote,
-    onSelectItem,
-    onClickTitle,
-    onChangeTitle,
-    onBlurTitle,
-    onCreate,
-    onDelete
-  } = useNotes({
-    notes,
-    create,
-    update,
-    trash,
-  });
-
+  const notes = search(getValue('search'));
   const entries = Object.entries(notes);
-
   const notesCount = entries?.length || '';
 
-  const activeNote = getActiveNote()[1];
+  const onEditorChange = (e) => {
+    setEditorState(e);
+    update({
+      id: selectedId,
+      content: e.getCurrentContent().getPlainText()
+    });
+  };
+
+  const onSelectItem = (id) => {
+    setSelectedId(id)
+    setEditorState(
+      EditorState.createWithContent(ContentState.createFromText(getValue(`notes.${id}.content`)))
+    );
+  };
+
+  const onCreate = () => {
+    onSelectItem(create(defaultModel).id)
+  }
 
   return (
     <React.Fragment>
@@ -59,7 +70,7 @@ export default function NotesList() {
             onSelectItem={onSelectItem}
             onClickCreate={onCreate}
           />
-          {activeNote && (
+          {selectedId && (
             <div className="contact-body p-3">
               <div
                 style={{
@@ -68,29 +79,19 @@ export default function NotesList() {
                   justifyContent: 'space-between',
                 }}
               >
-                {showTitle && (
-                  <h3>
-                    <span
-                      className="label label-default"
-                      onClick={onClickTitle}
-                      htmlFor="textBoxName"
-                    >
-                      {activeNote.name}
-                    </span>
-                  </h3>
-                )}
-                {!showTitle && (
-                  <input
-                    value={activeNote.name}
-                    className="form-control"
-                    type="text"
-                    id="textBoxName"
-                    name="textBoxName"
-                    onChange={onChangeTitle}
-                    onBlur={onBlurTitle}
-                  />
-                )}
-                <button className="btn btn-danger" onClick={onDelete}>Delete</button>
+                <input
+                  value={getValue(`notes.${selectedId}.title`)}
+                  className="form-control"
+                  placeholder='Inscrivez le titre'
+                  type="text"
+                  id="textBoxName"
+                  name="textBoxName"
+                  onChange={createEventHandlerMutator(`notes.${selectedId}.title`)}
+                />
+                <button className="btn btn-danger" onClick={() => {
+                  trash(getValue(`notes.${selectedId}`))
+                  setSelectedId(null)
+                }}>Delete</button>
               </div>
 
               <hr />
