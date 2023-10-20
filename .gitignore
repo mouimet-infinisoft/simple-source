@@ -13,3 +13,7 @@
 .vercel
 .npmrc
 tools/fix_npm_path.sh
+api/test.png
+api/test.wav
+api/wav2lip.js
+api/test.js

@@ -41,7 +41,7 @@ export default function NotesList() {
       <Header />
 
       <div className="main main-app p-3 p-lg-4">
-        <div className="contact-panel sidebar-show">
+        <div className="sidebar-show">
           <ListSideBar
             buttonAddLabel="Ajouter"
             basketLabel="Corbeille"
