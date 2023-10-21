@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Col, Nav, Row } from "react-bootstrap";
+import { Card, Col, Nav, Row, Form } from "react-bootstrap";
 import Footer from "../layouts/Footer";
 import HeaderMobile from "../layouts/HeaderMobile";
 import Avatar from "../components/atoms/Avatar";
@@ -14,8 +14,11 @@ import img9 from "../assets/img/img9.jpg";
 import img10 from "../assets/img/img10.jpg";
 import img11 from "../assets/img/img11.jpg";
 import img12 from "../assets/img/img12.jpg";
+import { createEventHandlerMutator, getValue, useBrainStack } from "../App";
 
 export default function Profile() {
+  const bstack = useBrainStack()
+
   return (
     <React.Fragment>
       <HeaderMobile />
@@ -27,8 +30,8 @@ export default function Profile() {
                 <img src={img1} className="img-fluid" alt="..." />
               </div>
               <div className="media-body">
-                <h5 className="media-name">Shaira Diaz</h5>
-                <p className="d-flex gap-2 mb-4"><i className="ri-map-pin-line"></i> San Francisco, California</p>
+                <h5 className="media-name">{getValue(`me.name`)}</h5>
+                <p className="d-flex gap-2 mb-4"><i className="ri-map-pin-line"></i>   <Form.Control type="text" placeholder="Mon adresse" value={getValue(`me.address`)} onChange={createEventHandlerMutator('me.address')} /></p>
                 <p className="mb-0">Redhead, Innovator, Saviour of Mankind, Hopeless Romantic, Attractive 20-something Yogurt Enthusiast. You can replace this with any content and adjust it as needed... <Link to="">Read more</Link></p>
               </div>
             </div>
@@ -188,7 +191,7 @@ export default function Profile() {
               </Card.Footer>
             </Card>
           </Col>
-          <Col xl="4" xxl="3" className="d-none d-xl-block">
+          {/* <Col xl="4" xxl="3" className="d-none d-xl-block">
             <h5 className="section-title mb-4">Mutual Connections</h5>
             <div className="profile-mutual">
               <ul className="mutual-group mb-3">
@@ -294,7 +297,7 @@ export default function Profile() {
               <li><i className="ri-instagram-fill"></i><span>@username</span></li>
               <li><i className="ri-messenger-fill"></i><span>@username</span></li>
             </ul>
-          </Col>
+          </Col> */}
         </Row>
         <Footer />
       </div>
