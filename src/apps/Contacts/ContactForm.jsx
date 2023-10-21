@@ -79,6 +79,7 @@ const ContactForm = ({
         </Col>
     </Row>
     </>
+    const email = getValue(`contacts.${selectedId}.emails`)?.[0]
 
     return (
         <PerfectScrollbar className="contact-conten">
@@ -105,9 +106,9 @@ const ContactForm = ({
                         placeholder="Titre"
                     />
                     <div className="d-flex">
-                        <Button variant="primary" className="px-5">
+                        {email && <Button variant="primary" className="px-5" href={`mailto://${email}`}>
                             Message
-                        </Button>
+                        </Button>}
                         <Button
                             variant="danger"
                             className="btn-icon ms-1"
@@ -121,7 +122,7 @@ const ContactForm = ({
 
             {/* <hr /> */}
 
-            <Row className="mt-2" style={{marginLeft:'2.5rem'}}>
+            <Row className="mt-2" style={{ marginLeft: '2.5rem' }}>
                 <Tabs
                     id="contact-tab"
                     activeKey={key}

@@ -99,7 +99,7 @@ export default function DemandesList() {
                   </td>
                   <td><div>{file.created}</div></td>
                   <td><div>{file.status}</div></td>
-                  <td><div>{file.contacts.map(({ id }) => getValue(`contacts.${id}.name`)).join(', ')}</div></td>
+                  <td><div>{file?.contacts?.map(({ id }) => getValue(`contacts.${id}.name`))?.join(', ') ?? ""}</div></td>
                   <td><div>{file.service}</div></td>
                   <td>
                     <Dropdown align="end" className="dropdown-file">
