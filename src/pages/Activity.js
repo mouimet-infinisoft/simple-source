@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Col, Row, Form } from "react-bootstrap";
 import Footer from "../layouts/Footer";
-import HeaderMobile from "../layouts/HeaderMobile";
+// import HeaderMobile from "../layouts/HeaderMobile";
 
 import img1 from "../assets/img/img1.jpg";
 import img2 from "../assets/img/img2.jpg";
@@ -10,34 +10,89 @@ import img3 from "../assets/img/img3.jpg";
 import img6 from "../assets/img/img6.jpg";
 import img16 from "../assets/img/img16.jpg";
 import img17 from "../assets/img/img17.jpg";
+import { ActivityList } from "./ActivityList";
+
+
+const activities = [
+  {
+    "date": "Aujourd'hui, 13 Sep 2023",
+    "items": [
+      {
+        "type": "demande",
+        "avatar": "ri-question-answer-line",
+        "author": "Vous",
+        "action": "avez effectué une opération sur la référence D-000006.",
+        "time": "18h55",
+        "content": "Une opération a été effectuée sur la demande D-000006. Créée le 30 Août, 2023, cette demande concerne le service de Visite supervisée et est actuellement Terminée."
+      },
+      {
+        "type": "demande",
+        "avatar": "ri-question-answer-line",
+        "author": "Collègue",
+        "action": "a mis à jour la demande D-000002.",
+        "time": "11h20",
+        "content": "La demande D-000002, créée le 19 Août, 2023, pour le service d'Appel supervisée est actuellement En cours."
+      }
+    ]
+  },
+  {
+    "date": "Hier, 12 Sep 2023",
+    "items": [
+      {
+        "type": "demande",
+        "avatar": "ri-question-answer-line",
+        "author": "Collaborateur",
+        "action": "a créé la demande D-000005.",
+        "time": "10h15",
+        "content": "Une nouvelle demande D-000005 a été créée le 22 Août, 2023. Elle concerne le service d'Appel supervisée et est actuellement En cours."
+      },
+      {
+        "type": "demande",
+        "avatar": "ri-question-answer-line",
+        "author": "Vous",
+        "action": "avez effectué une opération sur la demande D-000003.",
+        "time": "09h19",
+        "content": "La demande D-000003, créée le 20 Août, 2023, pour le service d'Échange de garde est actuellement Terminée."
+      },
+      {
+        "type": "demande",
+        "avatar": "ri-question-answer-line",
+        "author": "Collègue",
+        "action": "a mis à jour la demande D-000004.",
+        "time": "09h08",
+        "content": "La demande D-000004, créée le 21 Août, 2023, pour le service d'Échange de garde est actuellement En attente."
+      }
+    ]
+  }
+]
 
 export default function Activity() {
   return (
     <React.Fragment>
-      <HeaderMobile />
+      {/* <HeaderMobile /> */}
       <div className="main p-4 p-lg-5">
         <Row className="g-5">
           <Col xl="9">
-            <ol className="breadcrumb fs-sm mb-2">
+            {/* <ol className="breadcrumb fs-sm mb-2">
               <li className="breadcrumb-item"><Link to="#">Pages</Link></li>
               <li className="breadcrumb-item"><Link to="#">User Pages</Link></li>
               <li className="breadcrumb-item active" aria-current="page">Activity Log</li>
-            </ol>
-            <h2 className="main-title mb-3">Activity Log</h2>
+            </ol> */}
+            {/* <h2 className="main-title mb-3">Registre</h2>
 
-            <p className="text-secondary mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p className="text-secondary mb-5">Voici la liste des activités.</p> */}
 
-            <div className="form-search py-2 mb-4">
+            {/* <div className="form-search py-2 mb-4">
               <i className="ri-search-line"></i>
-              <Form.Control type="text" placeholder="Search activity" />
-            </div>
+              <Form.Control type="text" placeholder="Recherche" />
+            </div> */}
 
-            <div className="d-flex align-items-center justify-content-between mb-4">
-              <h5 className="section-title mb-0">Post And Comments</h5>
-              <Form.Check type="switch" label="Show all activity" className="fs-sm" />
-            </div>
-
-            <ul className="activity-group mb-5">
+            {/* <div className="d-flex align-items-center justify-content-between mb-4">
+              <h5 className="section-title mb-0">Modifications</h5>
+              <Form.Check type="switch" label="Tout afficher" className="fs-sm" />
+            </div> */}
+            <ActivityList activities={activities} />
+            {/* <ul className="activity-group mb-5">
               <li className="activity-date">Today, Sep 13, 2023</li>
               <li className="activity-item comment">
                 <p className="d-sm-flex align-items-center mb-2">
@@ -94,11 +149,11 @@ export default function Activity() {
                   </Card.Body>
                 </Card>
               </li>
-            </ul>
-
+            </ul> */}
+            {/* 
             <div className="d-flex align-items-center justify-content-between mb-4">
-              <h5 className="section-title mb-0">Search History</h5>
-              <Link to="">Clear Searches</Link>
+              <h5 className="section-title mb-0">Recherche historique</h5>
+              <Link to="">Recommencer</Link>
             </div>
 
             <ul className="activity-group mb-5">
@@ -125,7 +180,7 @@ export default function Activity() {
                   <span className="fs-xs text-secondary ms-auto">02:15pm</span>
                 </p>
               </li>
-            </ul>
+            </ul> */}
 
           </Col>
         </Row>

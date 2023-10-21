@@ -1,23 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
-import Header from "../../layouts/Header";
+import React, { useEffect, useState } from "react";
+import Header from "../../../layouts/Header";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { Button, Card, Col, Dropdown, Nav, Row, Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { createEventHandlerMutatorShallow, getValue, useBrainStack } from "../../App";
-import DemandesStats from "./DemandesStats";
-
-function countStatus(demandes) {
-  return Object.values(demandes).reduce((acc, demande) => {
-    acc[demande.status] = (acc[demande.status] || 0) + 1;
-    return acc;
-  }, {});
-}
+import { Button, Dropdown, Nav,  Table } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { createEventHandlerMutatorShallow, getValue, useBrainStack } from "../../../App";
+import DemandesStats from "../components/DemandesStats";
+import { defaultModel } from "../assets/datamock";
 
 export default function DemandesList() {
   const bstack = useBrainStack();
-  const { list, search, update } = bstack.store.createCRUDObject('demandes')
-  const { read: readContact, list: listContact } = bstack.store.createCRUDObject('contacts')
-  const statusCount = useMemo(() => countStatus(list()), [list()]);
+  const navigate = useNavigate()
+  const { search, update, create } = bstack.store.createCRUDObject('demandes')
 
   useEffect(() => {
     document.body.classList.add('page-app');
@@ -47,13 +40,18 @@ export default function DemandesList() {
   const onClickFilter = (_value) => () => { createEventHandlerMutatorShallow('search')(_value) }
   const onChangeStatus = (_value, status) => () => { update({ ..._value, status }) }
 
+  const onCreate = () => {
+    const c = create(defaultModel())
+    navigate(`/apps/demandes/${c.id}`)
+  }
+
   return (
     <React.Fragment>
       <Header />
       <div className={"main main-file-manager" + (isSidebarShow ? " show" : "")}>
         <PerfectScrollbar className="file-sidebar">
           <div className="d-grid mb-4">
-            <Button variant="primary" href="">Nouvelle</Button>
+            <Button variant="primary" onClick={onCreate}>Nouvelle</Button>
           </div>
 
           <label className="sidebar-label mb-2">Filtres</label>
@@ -101,7 +99,7 @@ export default function DemandesList() {
                   </td>
                   <td><div>{file.created}</div></td>
                   <td><div>{file.status}</div></td>
-                  <td><div>{file.contacts.map(({ id }) => getValue(`contacts.${id}.name`)).join(', ')}</div></td>
+                  <td><div>{file?.contacts?.map(({ id }) => getValue(`contacts.${id}.name`))?.join(', ') ?? ""}</div></td>
                   <td><div>{file.service}</div></td>
                   <td>
                     <Dropdown align="end" className="dropdown-file">

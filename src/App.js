@@ -10,7 +10,7 @@ import "./assets/css/remixicon.css";
 // import scss
 import "./scss/style.scss";
 import { events } from "./apps/AppCalendar/datamock";
-import { demandesList } from "./apps/Demandes/datamock";
+import { demandesList } from "./apps/Demandes/assets/datamock";
 import { usersList } from './apps/UsersManagement/datamock'
 import { notesList } from "./apps/Notes/datamock";
 import { contactList } from "./apps/Contacts/contactList";
