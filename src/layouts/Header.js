@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import userAvatar from "../assets/img/img1.jpg";
 import notification from "../data/Notification";
+import { createEventHandlerMutator, getValue } from "../App";
 
 export default function Header({ onSkin }) {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -111,7 +112,7 @@ export default function Header({ onSkin }) {
       <Link onClick={toggleSidebar} className="menu-link me-3 me-lg-4"><i className="ri-menu-2-fill"></i></Link>
 
       <div className="form-search me-auto">
-        <input type="text" className="form-control" placeholder="Search" />
+        <input type="text" value={getValue('search')} onChange={createEventHandlerMutator('search')} className="form-control" placeholder="Recherche" />
         <i className="ri-search-line"></i>
       </div>
 
@@ -144,7 +145,7 @@ export default function Header({ onSkin }) {
             <h6 className="dropdown-menu-title">Notifications</h6>
           </div>
           {NotificationList()}
-          <div className="dropdown-menu-footer"><Link to="#">Show all Notifications</Link></div>
+          {/* <div className="dropdown-menu-footer"><Link to="#">Show all Notifications</Link></div> */}
         </Dropdown.Menu>
       </Dropdown>
 
@@ -157,18 +158,18 @@ export default function Header({ onSkin }) {
         <Dropdown.Menu className="mt-10-f">
           <div className="dropdown-menu-body">
             <div className="avatar avatar-xl online mb-3"><img src={userAvatar} alt="" /></div>
-            <h5 className="mb-1 text-dark fw-semibold">Shaira Diaz</h5>
-            <p className="fs-sm text-secondary">Membre Premium</p>
+            <h5 className="mb-1 text-dark fw-semibold">Sarah Diaz</h5>
+            <p className="fs-sm text-secondary">Intervenante</p>
 
             <nav className="nav">
-              <Link to=""><i className="ri-edit-2-line"></i> Modifier le profil</Link>
-              <Link to=""><i className="ri-profile-line"></i> Voir le profil</Link>
+              {/* <Link to=""><i className="ri-edit-2-line"></i> Modifier le profil</Link> */}
+              <Link to="/pages/profile"><i className="ri-profile-line"></i> Voir le profil</Link>
             </nav>
             <hr />
             <nav className="nav">
               <Link to=""><i className="ri-question-line"></i> Centre d'aide</Link>
-              <Link to=""><i className="ri-lock-line"></i> Paramètres de confidentialité</Link>
-              <Link to=""><i className="ri-user-settings-line"></i> Paramètres du compte</Link>
+              {/* <Link to=""><i className="ri-lock-line"></i> Paramètres de confidentialité</Link>
+              <Link to=""><i className="ri-user-settings-line"></i> Paramètres du compte</Link> */}
               <Link to="/pages/signin"><i className="ri-logout-box-r-line"></i> Se déconnecter</Link>
             </nav>
           </div>

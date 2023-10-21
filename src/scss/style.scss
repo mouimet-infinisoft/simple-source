@@ -99,3 +99,46 @@ Contact: themepixels@gmail.com
 
 // Skin
 @import "dark";
+
+.hover-pointer {
+    :hover {
+        cursor: pointer;
+    }
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: .15em solid orange;
+    /* Typewriter cursor */
+    white-space: pre;
+    word-break: break-word;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    max-height: 0;
+    /* Start with no content shown */
+    animation:
+        typing 15s steps(100, end) forwards,
+        /* Use 'forwards' to ensure the end state remains after animation completes */
+        blink-caret .75s step-end infinite;
+}
+
+/* Adjust the typing effect to reveal content vertically */
+@keyframes typing {
+    to {
+        max-height: 1000px;
+        /* This value should exceed the expected content height */
+    }
+}
+
+/* Typewriter cursor effect remains the same */
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: orange;
+    }
+}

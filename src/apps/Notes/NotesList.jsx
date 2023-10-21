@@ -6,6 +6,8 @@ import { useBrainStack, getValue, createEventHandlerMutator } from '../../App';
 import ListSideBar from '../../components/atoms/ListComponent';
 import { v4 as uuidv4 } from 'uuid';
 import { EditorState, ContentState } from 'draft-js';
+import Typewriter from 'typewriter-effect';
+
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const defaultModel = () => ({
@@ -59,7 +61,7 @@ export default function NotesList() {
       <Header />
 
       <div className="main main-app p-3 p-lg-4">
-        <div className="contact-panel sidebar-show">
+        <div className="sidebar-show">
           <ListSideBar
             buttonAddLabel="Ajouter"
             basketLabel="Corbeille"
@@ -103,6 +105,8 @@ export default function NotesList() {
                   locale: 'fr',
                 }}
               />
+
+           
             </div>
           )}
         </div>
