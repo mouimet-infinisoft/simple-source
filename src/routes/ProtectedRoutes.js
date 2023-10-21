@@ -83,8 +83,6 @@ import IconFeather from "../docs/IconFeather";
 import UsersList from "../apps/UsersManagement/List";
 import NotesList from "../apps/Notes/NotesList";
 import Demandes from "../apps/Demandes";
-import DemandesList from "../apps/Demandes/pages/List";
-import DemandesDetails from "../apps/Demandes/pages/Details";
 
 const protectedRoutes = [
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
@@ -105,8 +103,6 @@ const protectedRoutes = [
   { path: "apps/email", element: <Email /> },
   { path: "apps/file-manager", element: <FileManager /> },
   { path: "apps/demandes/*", element: <Demandes /> },  
-  // { path: "apps/demandes", element: <DemandesList /> },  
-  // { path: "apps/demandes/:id", element: <DemandesDetails /> },
   { path: "apps/staff", element: <UsersList /> },
   { path: "pages/pricing", element: <Pricing /> },
   { path: "pages/faq", element: <Faq /> },
