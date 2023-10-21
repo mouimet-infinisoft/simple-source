@@ -80,10 +80,11 @@ import MapLeaflet from "../docs/MapLeaflet";
 import MapVector from "../docs/MapVector";
 import IconRemix from "../docs/IconRemix";
 import IconFeather from "../docs/IconFeather";
-import DemandesList from "../apps/Demandes/List";
 import UsersList from "../apps/UsersManagement/List";
 import NotesList from "../apps/Notes/NotesList";
-import StepFormWizard from "../apps/Demandes/StepFormWizard";
+import Demandes from "../apps/Demandes";
+import DemandesList from "../apps/Demandes/pages/List";
+import DemandesDetails from "../apps/Demandes/pages/Details";
 
 const protectedRoutes = [
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
@@ -103,8 +104,9 @@ const protectedRoutes = [
   { path: "apps/calendar", element: <AppCalendar /> },
   { path: "apps/email", element: <Email /> },
   { path: "apps/file-manager", element: <FileManager /> },
-  { path: "apps/demandes", element: <DemandesList /> },  
-  { path: "apps/demandes/:id", element: <StepFormWizard /> },
+  { path: "apps/demandes/*", element: <Demandes /> },  
+  // { path: "apps/demandes", element: <DemandesList /> },  
+  // { path: "apps/demandes/:id", element: <DemandesDetails /> },
   { path: "apps/staff", element: <UsersList /> },
   { path: "pages/pricing", element: <Pricing /> },
   { path: "pages/faq", element: <Faq /> },

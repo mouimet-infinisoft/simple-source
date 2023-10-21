@@ -90,8 +90,10 @@
 }
 
 .avatar-xl {
-  width: $height-base + 25px;
-  height: $height-base + 25px;
+  width: 128px;
+  height: 128px;
+  // width: $height-base + 25px;
+  // height: $height-base + 25px;
 
   .avatar-initial { font-size: 32px; }
 

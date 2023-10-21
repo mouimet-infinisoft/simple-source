@@ -1,3 +1,5 @@
+import { getValue } from "../../../App";
+
 export const demandesList = {
     1: {
       "id": 1,
@@ -36,7 +38,7 @@ export const demandesList = {
       "reference": "D-000004",
       "created": "21 Août, 2023",
       "status": "En attente",
-      "contacts": [{ "id": "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9g" }, { "id": "b8c9d0e1-f2a3-4b5c-6d7e-8f9g0h1i2j3k" }],
+      "contacts": [{ "id": "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9g" }, { "id": "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9g0h1i" }],
       "service": "Échange de garde"
     },
     5: {
@@ -46,7 +48,7 @@ export const demandesList = {
       "reference": "D-000005",
       "created": "22 Août, 2023",
       "status": "En cours",
-      "contacts": [{ "id": "c9d0e1f2-a3b4-5c6d-7e8f-9g0h1i2j3k4l" }, { "id": "d0e1f2a3-b4c5-6d7e-8f9g-0h1i2j3k4l5m" }],
+      "contacts": [{id:"a7b8c9d0-e1f2-3a4b-5c6d-7e8f9g0h1i2j"}, {id:"f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9g0h1i"}],
       "service": "Appel supervisée"
     },
     6: {
@@ -56,7 +58,17 @@ export const demandesList = {
       "reference": "D-000006",
       "created": "30 Août, 2023",
       "status": "Terminée",
-      "contacts": [{ "id": "e1f2a3b4-c5d6-7e8f-9g0h-1i2j3k4l5m6n" }, { "id": "f2a3b4c5-d6e7-8f9g-0h1i-2j3k4l5m6n7o" }],
+      "contacts": [{id:"a7b8c9d0-e1f2-3a4b-5c6d-7e8f9g0h1i2j"}, {id:"f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9g0h1i"}],
       "service": "Visite supervisée"
     },
   };
+
+  export const defaultModel = () =>({
+    "color": "primary",
+    "icon": "ri-question-answer-line",
+    "reference": "D-00000" + (Object.keys(getValue('demandes')).length+1),
+    "created": new Date().toLocaleDateString(),
+    "status": "En cours",
+    "contacts": [],
+    "service": ""
+  })

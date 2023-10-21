@@ -1,18 +1,87 @@
-import React from 'react';
-import { Button, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Row, Col, Tabs, Tab, Form } from 'react-bootstrap';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Link } from 'react-router-dom';
 import Avatar from '../../components/atoms/Avatar';
 import ChipArray from '../../components/atoms/ChipArray';
 import { createEventHandlerMutator, getValue } from '../../App';
 
-const ContactForm = ({ 
-    selectedId, 
-    handleShowDeleteContact, 
-    handleUpdate 
+const ContactForm = ({
+    selectedId,
+    handleShowDeleteContact,
+    handleUpdate
 }) => {
+    const [key, setKey] = useState('step1')
+
+    const Coordinates = () => <><Row className="mt-2">
+
+        <Col xs="2" className="text-secondary">
+            Courriels
+        </Col>
+        <Col>
+            <ChipArray
+                key={'active-emails-' + selectedId}
+                initialItems={getValue(`contacts.${selectedId}.emails`)}
+                onItemsChange={(e) => {
+                    handleUpdate(e, 'emails');
+                }}
+                placeholder="Ajouter un courriel"
+            />
+        </Col>
+    </Row>
+
+        <Row className="mt-2">
+            <Col xs="2" className="text-secondary">
+                Téléphones
+            </Col>
+            <Col>
+                <ChipArray
+                    key={'active-phones-' + selectedId}
+                    initialItems={getValue(`contacts.${selectedId}.phones`)}
+                    onItemsChange={(e) => {
+                        handleUpdate(e, 'phones');
+                    }}
+                    placeholder="Ajouter un numéro"
+                />
+            </Col>
+        </Row>
+
+        <Row className="mt-2">
+            <Col xs="2" className="text-secondary">
+                Adresse
+            </Col>
+            <Col>
+                <input
+                    type="text"
+                    className="form-control"
+                    value={getValue(`contacts.${selectedId}.address`)}
+                    onChange={createEventHandlerMutator(`contacts.${selectedId}.address`)}
+                    placeholder="Adresse"
+                />
+            </Col>
+        </Row>
+    </>
+
+    const Relations = () => <><Row className="mt-2">
+
+        <Col xs="2" className="text-secondary">
+            Relations
+        </Col>
+        <Col>
+            <ChipArray
+                key={'relations-' + selectedId}
+                initialItems={getValue(`contacts.${selectedId}.relations`)}
+                onItemsChange={(e) => {
+                    handleUpdate(e, 'relations');
+                }}
+                placeholder="Ajouter une relation"
+            />
+        </Col>
+    </Row>
+    </>
+
     return (
-        <PerfectScrollbar className="contact-content">
+        <PerfectScrollbar className="contact-conten">
             <Link id="contactClose" to="#" className="contact-close">
                 <i className="ri-close-fill"></i>
             </Link>
@@ -50,54 +119,35 @@ const ContactForm = ({
                 </div>
             </div>
 
-            <hr />
+            {/* <hr /> */}
 
-            <Row className="mt-2">
-                <Col xs="4" className="text-end text-secondary">
-                    Courriels
-                </Col>
-                <Col>
-                    <ChipArray
-                        key={'active-emails-' + selectedId}
-                        initialItems={getValue(`contacts.${selectedId}.emails`)}
-                        onItemsChange={(e) => {
-                            handleUpdate(e, 'emails');
-                        }}
-                        placeholder="Ajouter un courriel"
-                    />
-                </Col>
+            <Row className="mt-2" style={{marginLeft:'2.5rem'}}>
+                <Tabs
+                    id="contact-tab"
+                    activeKey={key}
+                    onSelect={setKey}
+
+                >
+                    <Tab eventKey="step1" title="Coordonnées" className="p-3">
+                        <Coordinates />
+                    </Tab>
+                    <Tab eventKey="step2" title="Relations" className="p-3">
+                        <Relations />
+                    </Tab>
+                    <Tab eventKey="step3" title="Disponibilités" className="p-3">
+                        <Form.Group className="mt-3">
+                            <Form.Control as="textarea" rows={8} placeholder="Entrez les dispos ici..." value={getValue(`contacts.${selectedId}.disponibilites`)} onChange={createEventHandlerMutator(`contacts.${selectedId}.disponibilites`)} />
+                        </Form.Group>
+                    </Tab>
+                    <Tab eventKey="step4" title="Notes" className="p-3">
+                        <Form.Group className="mt-3">
+                            <Form.Control as="textarea" rows={8} placeholder="Entrez vos notes ici..." value={getValue(`contacts.${selectedId}.notes`)} onChange={createEventHandlerMutator(`contacts.${selectedId}.notes`)} />
+                        </Form.Group>
+                    </Tab>
+                </Tabs>
+
             </Row>
 
-            <Row className="mt-2">
-                <Col xs="4" className="text-end text-secondary">
-                    Téléphones
-                </Col>
-                <Col>
-                    <ChipArray
-                        key={'active-phones-' + selectedId}
-                        initialItems={getValue(`contacts.${selectedId}.phones`)}
-                        onItemsChange={(e) => {
-                            handleUpdate(e, 'phones');
-                        }}
-                        placeholder="Ajouter un numéro"
-                    />
-                </Col>
-            </Row>
-
-            <Row className="mt-2">
-                <Col xs="4" className="text-end text-secondary">
-                    Adresse
-                </Col>
-                <Col>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={getValue(`contacts.${selectedId}.address`)}
-                        onChange={createEventHandlerMutator(`contacts.${selectedId}.address`)}
-                        placeholder="Adresse"
-                    />
-                </Col>
-            </Row>
         </PerfectScrollbar>
     );
 };
