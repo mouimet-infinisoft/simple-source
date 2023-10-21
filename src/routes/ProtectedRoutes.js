@@ -81,7 +81,7 @@ import MapVector from "../docs/MapVector";
 import IconRemix from "../docs/IconRemix";
 import IconFeather from "../docs/IconFeather";
 import UsersList from "../apps/UsersManagement/List";
-import NotesList from "../apps/Notes/NotesList";
+import Notes from "../apps/Notes";
 import Demandes from "../apps/Demandes";
 
 const protectedRoutes = [
@@ -98,7 +98,7 @@ const protectedRoutes = [
   { path: "apps/tasks", element: <Tasks /> },
   { path: "apps/contacts", element: <Contacts /> },
   { path: "apps/chat", element: <Chat /> },
-  { path: "apps/notes", element: <NotesList /> },
+  { path: "apps/notes/*", element: <Notes /> },
   { path: "apps/calendar", element: <AppCalendar /> },
   { path: "apps/email", element: <Email /> },
   { path: "apps/file-manager", element: <FileManager /> },

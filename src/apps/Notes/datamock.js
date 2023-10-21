@@ -66,13 +66,13 @@ const d = `
 export const notesList = {
   1: {
     id: 1,
-    name: 'Note 1',
+    title: 'Note 1',
     content: d,
     isActive: true,
   },
   2: {
     id: 2,
-    name: 'Note 2',
+    title: 'Note 2',
     content: d,
   },
 };
