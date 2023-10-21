@@ -83,6 +83,7 @@ import IconFeather from "../docs/IconFeather";
 import UsersList from "../apps/UsersManagement/List";
 import Notes from "../apps/Notes";
 import Demandes from "../apps/Demandes";
+import Dossiers from "../apps/Dossiers";
 
 const protectedRoutes = [
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
@@ -103,6 +104,7 @@ const protectedRoutes = [
   { path: "apps/email", element: <Email /> },
   { path: "apps/file-manager", element: <FileManager /> },
   { path: "apps/demandes/*", element: <Demandes /> },  
+  { path: "apps/dossiers/*", element: <Dossiers /> },  
   { path: "apps/staff", element: <UsersList /> },
   { path: "pages/pricing", element: <Pricing /> },
   { path: "pages/faq", element: <Faq /> },

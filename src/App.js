@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from './layouts/Main';
 import NotFound from "./pages/NotFound";
@@ -15,17 +15,19 @@ import { usersList } from './apps/UsersManagement/datamock'
 import { notesList } from "./apps/Notes/datamock";
 import { contactList } from "./apps/Contacts/contactList";
 import EventManagement from "./dashboard/EventManagement";
+import { dossiersList } from "./apps/Dossiers/assets/datamock";
 
 // Create BrainStack instance with options
 const options = {
   eventHubOptions: [],
   stateOptions: {
-    search:"",
+    search: "",
     contacts: contactList,
     calendarEvents: events,
     demandes: demandesList,
     users: usersList,
-    notes: notesList
+    notes: notesList,
+    dossiers: dossiersList
   },
   loggerOptions: [
     5
@@ -45,13 +47,33 @@ window.addEventListener("load", function () {
 });
 
 export default function App() {
+  useEffect(() => {
+    const devTools = window.__REDUX_DEVTOOLS_EXTENSION__;
+    if (devTools) {
+      // Send initial state
+      devTools.connect().init(core.store.getState());
+      core.log.info(`Connected to Redux Devtools`)
+
+      // Subscribe to state changes
+      core.store.on(/.*/, ({ event, ...payload }) => {
+        core.log.info(event, payload)
+        devTools.send({ type: event, payload }, core.store.getState(), { trace: true, name: 'brainstack si-simple' });
+      });
+
+      return () => {
+        devTools.disconnect()
+        core.log.info(`Disconnected from Redux Devtools`)
+      }
+    }
+  }, []);
+
   return (
     <React.Fragment>
       <BrainStackProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Main />}>
-            <Route index element={<EventManagement />} />
+              <Route index element={<EventManagement />} />
               {protectedRoutes.map((route, index) => {
                 return (
                   <Route
