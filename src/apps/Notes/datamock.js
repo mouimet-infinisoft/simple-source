@@ -68,12 +68,37 @@ export const notesList = {
     id: 1,
     title: 'Note 1',
     content: d,
-    isActive: true,
+    status: 'Brouillon',
+    created: new Date().toLocaleDateString(),
+    dossierId: 'mockDossierId',
+    eventId: 'mockEventId'
   },
   2: {
     id: 2,
     title: 'Note 2',
     content: d,
+    status: 'Approbation requise',
+    created: new Date().toLocaleDateString(),
+    dossierId: 'mockDossierId',
+    eventId: 'mockEventId'
+  },
+  3: {
+    id: 3,
+    title: 'Note 3',
+    content: d,
+    status: 'Approuvée',
+    created: new Date().toLocaleDateString(),
+    dossierId: 'mockDossierId',
+    eventId: 'mockEventId'
+  },
+  4: {
+    id: 4,
+    title: 'Note 4',
+    content: d,
+    status: 'Rejetée',
+    created: new Date().toLocaleDateString(),
+    dossierId: 'mockDossierId',
+    eventId: 'mockEventId'
   },
 };
 

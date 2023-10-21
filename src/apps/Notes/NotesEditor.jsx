@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { createEventHandlerMutator, getValue, useBrainStack } from '../../App'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, ContentState } from 'draft-js';
 import Header from '../../layouts/Header';
@@ -30,7 +30,9 @@ const NotesEditor = () => {
         <Header />
 
         <div className="main main-app p-3 p-lg-4">
-            <h1>Notes editor</h1>
+            <div className="container-fluid">
+                <h1><Link to='/apps/notes'><i class="ri-arrow-left-line"></i></Link> Éditeur notes</h1>
+            </div>
             <div>
                 <input
                     value={getValue(`notes.${noteId}.title`)}

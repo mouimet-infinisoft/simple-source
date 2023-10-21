@@ -7,10 +7,10 @@ import { v4 as uuidv4 } from 'uuid';
 import {useNavigate, Link} from 'react-router-dom'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const defaultModel = () => ({
+const defaultModel = {
   title: '',
   content: '',
-});
+};
 
 
 export default function NotesList() {
