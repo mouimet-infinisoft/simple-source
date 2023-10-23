@@ -1,36 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Header from '../../../layouts/Header';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { Button, Dropdown, Nav, Table } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import {
-  createEventHandlerMutatorShallow,
-  getValue,
-  useBrainStack,
-} from '../../../App';
-import DemandesStats from '../components/DemandesStats';
-import { defaultModel } from '../assets/datamock';
+import { Dropdown, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { getValue } from '../../../App';
 import FileSidebar from '../../../components/atoms/FileSidebar';
-
-const sidebar = [
-  { icon: 'ri-asterisk', id: '', label: 'Tous' },
-  { icon: 'ri-time-line', id: 'En attente', label: 'En attente' },
-  { icon: 'ri-loader-2-line', id: 'En cours', label: 'En cours' },
-  { icon: 'ri-checkbox-circle-line', id: 'Terminée', label: 'Terminée' },
-  { icon: 'ri-close-circle-line', id: 'Fermée', label: 'Fermée' },
-];
+import { useDemandsList, sidebar, header } from './useDemandsList';
+import Stats from '../../../components/atoms/Stats';
 
 export default function DemandesList() {
-  const bstack = useBrainStack();
-  const navigate = useNavigate();
-  const { search, update, create, list } = bstack.store.createCRUDObject('demandes');
+  const {
+    search,
+    isSidebarShow,
+    statusCount,
+    onClickFilter,
+    onCreate,
+    onChangeStatus,
+    isActive,
+  } = useDemandsList();
 
-  useEffect(() => {
-    document.body.classList.add('page-app');
-    return () => {
-      document.body.classList.remove('page-app');
-    };
-  }, []);
+  const cards = header.map((x) => ({ ...x, count: statusCount?.[x.id] || 0 }));
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <Link
@@ -45,22 +34,6 @@ export default function DemandesList() {
       {children}
     </Link>
   ));
-
-  // toggle sidebar in mobile
-  const [isSidebarShow, setSidebarShow] = useState(false);
-
-  const isActive = (_value) => (getValue('search') === _value ? 'active' : '');
-  const onClickFilter = (_value) => () => {
-    createEventHandlerMutatorShallow('search')(_value);
-  };
-  const onChangeStatus = (_value, status) => () => {
-    update({ ..._value, status });
-  };
-
-  const onCreate = () => {
-    const c = create(defaultModel());
-    navigate(`/apps/demandes/${c.id}`);
-  };
 
   return (
     <React.Fragment>
@@ -78,11 +51,11 @@ export default function DemandesList() {
             buttonCreateLabel="Nouvelle"
           />
         </div>
-     
+
         <PerfectScrollbar className="file-content p-3 p-lg-4">
           <h1>Demandes</h1>
-          
-          <DemandesStats list={list} />
+
+          <Stats cards={cards} />
 
           <Table className="table table-files" responsive>
             <thead>

@@ -5,7 +5,7 @@ import { Button, Card, Col, Row, Table, Nav, ProgressBar } from "react-bootstrap
 import ReactApexChart from "react-apexcharts";
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { Link } from "react-router-dom";
-import DemandesStats from "../apps/Demandes/components/DemandesStats";
+import DemandesStats from "../apps/Demandes/components/DemandesStats_delete";
 
 export default function EventManagement() {
   const d1 = [[0, 38], [1, 32], [2, 31], [3, 33], [4, 34], [5, 35], [6, 38], [7, 37], [8, 39], [9, 34], [10, 33], [11, 32], [12, 34], [13, 38], [14, 42], [15, 43], [16, 45], [17, 43], [18, 45], [19, 48], [20, 45], [21, 46], [22, 44], [23, 42], [24, 46], [25, 48], [26, 55], [27, 54], [28, 58], [29, 69]];
