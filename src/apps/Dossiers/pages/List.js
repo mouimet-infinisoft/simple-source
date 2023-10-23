@@ -6,6 +6,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { createEventHandlerMutatorShallow, getValue, useBrainStack } from "../../../App";
 import DemandesStats from "../components/DemandesStats";
 import { defaultModel } from "../assets/datamock";
+import FileSidebar from "../../../components/atoms/FileSidebar";
+
+const sidebar = [
+  { icon: 'ri-asterisk', id: '', label: 'Tous' },
+  { icon: 'ri-time-line', id: 'En attente', label: 'En attente' },
+  { icon: 'ri-loader-2-line', id: 'En cours', label: 'En cours' },
+  { icon: 'ri-checkbox-circle-line', id: 'Terminée', label: 'Terminée' },
+  { icon: 'ri-close-circle-line', id: 'Fermée', label: 'Fermée' },
+];
 
 export default function DemandesList() {
   const bstack = useBrainStack();
@@ -49,20 +58,16 @@ export default function DemandesList() {
     <React.Fragment>
       <Header />
       <div className={"main main-file-manager"}>
-        <PerfectScrollbar className="file-sidebar">
-          <div className="d-grid mb-4">
-            <Button variant="primary" onClick={onCreate}>Nouvelle</Button>
-          </div>
-
-          <label className="sidebar-label mb-2">Filtres</label>
-          <Nav className="nav-sidebar mb-4">
-            <Nav.Link href="" className={isActive('')} onClick={onClickFilter('')}><i className="ri-asterisk"></i> Tous</Nav.Link>
-            <Nav.Link href="" className={isActive("En attente")} onClick={onClickFilter('En attente')}><i className="ri-time-line"></i> En attentes</Nav.Link>
-            <Nav.Link href="" className={isActive("En cours")} onClick={onClickFilter('En cours')}><i className="ri-loader-2-line"></i> En cours</Nav.Link>
-            <Nav.Link href="" className={isActive("Terminée")} onClick={onClickFilter('Terminée')}><i className="ri-checkbox-circle-line"></i> Terminées</Nav.Link>
-            <Nav.Link href="" className={isActive("Fermée")} onClick={onClickFilter('Fermée')}><i className="ri-close-circle-line"></i> Fermées</Nav.Link>
-          </Nav>
-        </PerfectScrollbar>
+      <div className="file-sidebar">
+        <FileSidebar
+          isActive={isActive}
+          onCreate={onCreate}
+          onClickFilter={onClickFilter}
+          links={sidebar}
+          filterLabel="Filtres"
+          buttonCreateLabel="Nouvelle"
+        />
+      </div>
 
         <PerfectScrollbar className="file-content p-3 p-lg-4">
           <h1>Dossiers</h1>
