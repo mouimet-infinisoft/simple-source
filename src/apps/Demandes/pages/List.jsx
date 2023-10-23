@@ -23,7 +23,7 @@ const sidebar = [
 export default function DemandesList() {
   const bstack = useBrainStack();
   const navigate = useNavigate();
-  const { search, update, create } = bstack.store.createCRUDObject('demandes');
+  const { search, update, create, list } = bstack.store.createCRUDObject('demandes');
 
   useEffect(() => {
     document.body.classList.add('page-app');
@@ -81,7 +81,8 @@ export default function DemandesList() {
      
         <PerfectScrollbar className="file-content p-3 p-lg-4">
           <h1>Demandes</h1>
-          <DemandesStats />
+          
+          <DemandesStats list={list} />
 
           <Table className="table table-files" responsive>
             <thead>
