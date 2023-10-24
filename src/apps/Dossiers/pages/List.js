@@ -42,7 +42,7 @@ export default function DemandesList() {
 
   const onCreate = () => {
     const c = create(defaultModel())
-    navigate(`/apps/demandes/${c.id}`)
+    navigate(`/apps/dossiers/${c.id}`)
   }
 
   return (
@@ -94,7 +94,7 @@ export default function DemandesList() {
                   </td>
                   <td>
                     <h6 className="file-name">
-                      <Link to={`/apps/demandes/${file.id}`}> {file.reference}</Link>
+                      <Link to={`/apps/dossiers/${file.id}`}> {file.reference}</Link>
                     </h6>
                   </td>
                   <td><div>{file.created}</div></td>

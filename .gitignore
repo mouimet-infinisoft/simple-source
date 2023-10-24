@@ -17,3 +17,4 @@ api/test.js
 api/test.png
 api/test.wav
 api/wav2lip.js
+.env
