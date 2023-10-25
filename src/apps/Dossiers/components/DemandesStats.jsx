@@ -12,6 +12,9 @@ function countStatus(demandes) {
 const DemandesStats = () => {
     const bstack = useBrainStack();
     const { list } = bstack.store.createCRUDObject('demandes')
+
+    console.log(111, bstack.store.createCRUDObject('demandes'))
+    
     const statusCount = useMemo(() => countStatus(list()), [list()]);
 
     return (

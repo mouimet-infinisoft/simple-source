@@ -71,7 +71,7 @@ export default function DemandesList() {
 
         <PerfectScrollbar className="file-content p-3 p-lg-4">
           <h1>Dossiers</h1>
-          <DemandesStats />
+          <DemandesStats list={bstack.list}/>
 
 
           <Table className="table table-files" responsive>
