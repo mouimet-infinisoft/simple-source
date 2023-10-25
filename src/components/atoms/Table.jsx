@@ -1,9 +1,8 @@
 import React from 'react';
 import { Dropdown } from 'bootstrap';
-import { Link } from 'react-router-dom';
 import { Table as BootstrapTable } from 'react-bootstrap';
 
-const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+const CustomToggle = (Link) => React.forwardRef(({ children, onClick }, ref) => (
   <Link
     to=""
     ref={ref}
@@ -18,7 +17,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 ));
 
 const Head = ({ items }) => (
-  <head>
+  <thead>
     <tr>
       <th>&nbsp;</th>
       {items?.map((item, idx) => (
@@ -26,18 +25,17 @@ const Head = ({ items }) => (
       ))}
       <th>&nbsp;</th>
     </tr>
-  </head>
+  </thead>
 );
 
-const More = ({ file, items, onChangeStatus }) => {
+const More = ({ file, items, Link, onChangeStatus }) => {
   <Dropdown align="end" className="dropdown-file">
-    <Dropdown.Toggle as={CustomToggle}>
+    <Dropdown.Toggle as={CustomToggle(Link)}>
       <i className="ri-more-2-fill"></i>
     </Dropdown.Toggle>
     <Dropdown.Menu>
       <Dropdown.Item className="details">
         <Link to={`/apps/demandes/${file.id}`}>
-          {' '}
           <i className="ri-information-line"></i> Ouvrir
         </Link>
       </Dropdown.Item>
@@ -55,18 +53,17 @@ const More = ({ file, items, onChangeStatus }) => {
   </Dropdown>;
 };
 
-const Table = ({ header, items, route, moreContext, onChangeStatus }) => {
-  console.log(11, header)
+const Table = ({ header, items, route, Link, moreContext, onChangeStatus }) => {
   return (
     <BootstrapTable className="table table-files" responsive>
       <Head items={header} />
-
-      {/* <tbody>
+      <tbody>
         {items.map((file) => {
           const { id, color, icon, columns } = file;
           const link = columns[0];
           const otherColumns = columns.slice(1);
 
+          console.log(11, route, link);
           return (
             <tr key={id}>
               <td>
@@ -92,12 +89,13 @@ const Table = ({ header, items, route, moreContext, onChangeStatus }) => {
                   file={file}
                   items={moreContext}
                   onChangeStatus={onChangeStatus}
+                  Link={Link}
                 />
               </td>
             </tr>
           );
         })}
-      </tbody> */}
+      </tbody>
     </BootstrapTable>
   );
 };
