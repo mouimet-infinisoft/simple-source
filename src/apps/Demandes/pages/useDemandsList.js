@@ -15,6 +15,29 @@ export const sidebar = [
   { icon: 'ri-close-circle-line', id: 'Fermée', label: 'Fermée' },
 ];
 
+export const headValues = ['Numéro', 'Créé', 'Statut', 'Contacts', 'Service'];
+
+export const more = [
+  {
+    id: 'En attente',
+    label: 'En attente',
+    className: 'move',
+    icon: 'ri-time-line',
+  },
+  {
+    id: 'Terminée',
+    label: 'Terminée',
+    className: 'rename',
+    icon: 'ri-checkbox-circle-line',
+  },
+  {
+    id: 'Fermée',
+    label: 'Fermée',
+    className: 'delete',
+    icon: 'ri-close-circle-line',
+  },
+];
+
 export const header = [
   {
     id: 'En attente',
@@ -82,6 +105,7 @@ export function useDemandsList() {
   const onClickFilter = (_value) => () => {
     createEventHandlerMutatorShallow('search')(_value);
   };
+
   const onChangeStatus = (_value, status) => () => {
     update({ ..._value, status });
   };
@@ -93,7 +117,22 @@ export function useDemandsList() {
     navigate(`/apps/demandes/${c.id}`);
   };
 
+  const items = Object.values(search(getValue('search'))).map((x) => {
+    let contactsString = '';
+    if (Array.isArray(x?.contacts)) {
+      contactsString = x.contacts
+        ?.map(({ id }) => getValue(`contacts.${id}.name`))
+        ?.join(', ');
+    }
+
+    return {
+      ...x,
+      columns: [x.reference, x.created, x.status, contactsString, x.service],
+    };
+  });
+
   return {
+    items,
     statusCount,
     isSidebarShow,
     search,

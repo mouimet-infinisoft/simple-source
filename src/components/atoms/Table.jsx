@@ -1,20 +1,21 @@
 import React from 'react';
-import { Dropdown } from 'bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { Table as BootstrapTable } from 'react-bootstrap';
 
-const CustomToggle = (Link) => React.forwardRef(({ children, onClick }, ref) => (
-  <Link
-    to=""
-    ref={ref}
-    onClick={(e) => {
-      e.preventDefault();
-      onClick(e);
-    }}
-    className="dropdown-link"
-  >
-    {children}
-  </Link>
-));
+const CustomToggle = (Link) =>
+  React.forwardRef(({ children, onClick }, ref) => (
+    <Link
+      to=""
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+      className="dropdown-link"
+    >
+      {children}
+    </Link>
+  ));
 
 const Head = ({ items }) => (
   <thead>
@@ -28,7 +29,7 @@ const Head = ({ items }) => (
   </thead>
 );
 
-const More = ({ file, items, Link, onChangeStatus }) => {
+const More = ({ file, items, Link, onChangeStatus }) => (
   <Dropdown align="end" className="dropdown-file">
     <Dropdown.Toggle as={CustomToggle(Link)}>
       <i className="ri-more-2-fill"></i>
@@ -50,8 +51,8 @@ const More = ({ file, items, Link, onChangeStatus }) => {
         </Dropdown.Item>
       ))}
     </Dropdown.Menu>
-  </Dropdown>;
-};
+  </Dropdown>
+);
 
 const Table = ({ header, items, route, Link, moreContext, onChangeStatus }) => {
   return (
@@ -63,7 +64,6 @@ const Table = ({ header, items, route, Link, moreContext, onChangeStatus }) => {
           const link = columns[0];
           const otherColumns = columns.slice(1);
 
-          console.log(11, route, link);
           return (
             <tr key={id}>
               <td>

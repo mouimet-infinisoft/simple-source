@@ -4,11 +4,31 @@ import { MockLink } from '../../StorybookComponents';
 
 const headValues = ['Numéro', 'Créé', 'Statut', 'Contacts', 'Service'];
 
-const mock = Object.values(demandesList).map((x) => ({
+const items = Object.values(demandesList).map((x) => ({
   ...x,
-  contacts: 'AAA, BBB',
   columns: [x.reference, x.created, x.status, 'AAA, BBB', x.service],
 }));
+
+const more = [
+  {
+    id: 'En attente',
+    label: 'En attente',
+    className: 'move',
+    icon: 'ri-time-line',
+  },
+  {
+    id: 'Terminée',
+    label: 'Terminée',
+    className: 'rename',
+    icon: 'ri-checkbox-circle-line',
+  },
+  {
+    id: 'Fermée',
+    label: 'Fermée',
+    className: 'delete',
+    icon: 'ri-close-circle-line',
+  },
+];
 
 export default {
   title: 'Atoms/Table',
@@ -21,12 +41,15 @@ export default {
     header: Array,
     route: String,
     items: Array,
+    onChangeStatus: Function,
   },
   args: {
     header: headValues,
     route: '/app/demandes/',
     Link: MockLink,
-    items: mock,
+    items: items,
+    moreContext: more,
+    onChangeStatus: () => {},
   },
 };
 
