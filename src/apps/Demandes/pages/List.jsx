@@ -15,14 +15,13 @@ import Table from '../../../components/atoms/Table';
 
 export default function DemandesList() {
   const {
-    search,
     items,
     isSidebarShow,
     statusCount,
+    isActive,
     onClickFilter,
     onCreate,
     onChangeStatus,
-    isActive,
   } = useDemandsList();
 
   const cards = header.map((x) => ({ ...x, count: statusCount?.[x.id] || 0 }));
@@ -53,7 +52,7 @@ export default function DemandesList() {
           <Table
             items={items}
             header={headValues}
-            route="/app/demandes"
+            route="/apps/demandes"
             Link={Link}
             moreContext={more}
             onChangeStatus={onChangeStatus}
