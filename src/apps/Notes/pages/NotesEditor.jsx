@@ -53,15 +53,6 @@ const NotesEditor = () => {
             name="textBoxName"
             onChange={createEventHandlerMutator(`notes.${noteId}.title`)}
           />
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              trash(getValue(`notes.${noteId}`));
-              navigate(`/apps/notes`);
-            }}
-          >
-            Delete
-          </button>
         </div>
 
         <hr />

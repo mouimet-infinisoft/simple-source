@@ -22,8 +22,6 @@ export default function NotesList() {
 
   const cards = header.map((x) => ({ ...x, count: statusCount?.[x.id] || 0 }));
 
-  console.log(items)
-
   return (
     <React.Fragment>
       <Header />

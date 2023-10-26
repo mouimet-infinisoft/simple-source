@@ -7,7 +7,7 @@ function NotesRoutes() {
   return (
     <Routes>
       <Route path="/" element={<NotesList />} />
-      <Route path=":noteId/edit" element={<NotesEditor />} />
+      <Route path=":noteId" element={<NotesEditor />} />
     </Routes>
   );
 }
