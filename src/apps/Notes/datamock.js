@@ -1,5 +1,5 @@
-import { convertFromHTML, EditorState } from 'draft-js';
-import {stateFromHTML} from 'draft-js-import-html';
+import { EditorState } from 'draft-js';
+import { stateFromHTML } from 'draft-js-import-html';
 
 
 const d = EditorState.createWithContent(stateFromHTML(`
@@ -68,39 +68,50 @@ const d = EditorState.createWithContent(stateFromHTML(`
 export const notesList = {
   1: {
     id: 1,
+    reference: 'N00001',
     title: 'Note 1',
     content: d,
     status: 'Brouillon',
     created: new Date().toLocaleDateString(),
-    dossierId: 'mockDossierId',
-    eventId: 'mockEventId'
+    dossierId: 'F00001',
+    eventId: 'Visite supervisée avec Lucas',
+    author: "Jean Dupuis"
+
   },
   2: {
     id: 2,
+    reference: 'N00002',
     title: 'Note 2',
     content: EditorState.createEmpty(),
     status: 'Approbation requise',
     created: new Date().toLocaleDateString(),
-    dossierId: 'mockDossierId',
-    eventId: 'mockEventId'
+    dossierId: 'F00002',
+    eventId: 'Visite supervisée avec Lucas',
+    author: "Jean Dupuis"
+
   },
   3: {
     id: 3,
+    reference: 'N00003',
     title: 'Note 3',
     content: EditorState.createEmpty(),
     status: 'Approuvée',
     created: new Date().toLocaleDateString(),
-    dossierId: 'mockDossierId',
-    eventId: 'mockEventId'
+    dossierId: 'F00003',
+    eventId: 'Visite supervisée avec Lucas',
+    author: "Jean Dupuis"
+
   },
   4: {
     id: 4,
+    reference: 'N00004',
     title: 'Note 4',
     content: EditorState.createEmpty(),
     status: 'Rejetée',
     created: new Date().toLocaleDateString(),
-    dossierId: 'mockDossierId',
-    eventId: 'mockEventId'
+    dossierId: 'F00004',
+    eventId: 'Visite supervisée avec Lucas',
+    author: "Jean Dupuis"
   },
 };
 

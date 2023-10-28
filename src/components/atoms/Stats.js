@@ -18,12 +18,12 @@ const Stats = ({ cards }) => {
                 <label className="d-block mb-1 fw-medium text-dark">
                   {label}
                 </label>
-                <small>
+                {(value && arrow && info) && <small>
                   <span className={`d-inline-flex ${classDown}`}>
                     {value} <i className={arrow}></i>
                   </span>{' '}
                   {info}
-                </small>
+                </small>}
               </Card.Body>
             </Card>
           </Col>

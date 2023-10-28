@@ -10,41 +10,43 @@ import { EditorState } from 'draft-js';
 
 const defaultModel = () => ({
   id: uuidv4(),
+  reference: "N0000" + ((Object.keys(getValue('notes'))?.length + 1) ?? 1),
   name: 'Note',
   content: EditorState.createEmpty(),
-  status: '',
+  status: 'Brouillon',
   created: new Date().toLocaleDateString(),
   dossierId: '',
   eventId: '',
+  author: getValue('me.name')
 });
 
 export const header = [
   {
     id: 'Brouillon',
     label: 'Brouillon',
-    icon: 'ri-time-line',
+    icon: 'ri-edit-circle-line',
     isDown: true,
     value: '0.7%',
     count: 3,
-    info: 'lorem ipsum dolor sit amet, consectetur',
+    info: 'depuis la semaine dernière',
   },
   {
     id: 'Approbation requise',
     label: 'Approbation requise',
-    icon: 'ri-loader-2-line',
+    icon: 'ri-folder-unknow-line',
     isDown: true,
     value: '0.7%',
     count: 3,
-    info: 'lorem ipsum dolor sit amet, consectetur',
+    info: 'depuis la semaine dernière',
   },
   {
-    id: 'Approuvées',
-    label: 'Approuvées',
+    id: 'Approuvée',
+    label: 'Approuvée',
     icon: 'ri-checkbox-circle-line',
     isDown: true,
     value: '0.7%',
     count: 3,
-    info: 'lorem ipsum dolor sit amet, consectetur',
+    info: 'depuis la semaine dernière',
   },
   {
     id: 'Rejetée',
@@ -53,17 +55,18 @@ export const header = [
     isDown: false,
     value: '0.6%',
     count: 4,
-    info: 'lorem ipsum dolor sit amet, consectetur',
+    info: 'depuis la semaine dernière',
   },
 ];
 
 export const headValues = [
   'Numéro',
-  'Title',
+  'Titre',
   'Status',
   'Date',
-  'Dossier ID',
-  'Event ID',
+  'Dossier',
+  'Evenement',
+  'Auteur'
 ];
 
 export const more = [
@@ -89,13 +92,13 @@ export const more = [
 
 export const sidebar = [
   { icon: 'ri-asterisk', id: '', label: 'Tous' },
-  { icon: 'ri-time-line', id: 'Brouillon', label: 'Brouillon' },
+  { icon: 'ri-edit-circle-line', id: 'Brouillon', label: 'Brouillon' },
   {
-    icon: 'ri-loader-2-line',
+    icon: 'ri-folder-unknow-line',
     id: 'Approbation requise',
     label: 'Approbation requise',
   },
-  { icon: 'ri-checkbox-circle-line', id: 'Approuvées', label: 'Approuvées' },
+  { icon: 'ri-checkbox-circle-line', id: 'Approuvée', label: 'Approuvée' },
   { icon: 'ri-close-circle-line', id: 'Rejetée', label: 'Rejetée' },
 ];
 
@@ -105,6 +108,39 @@ function countStatus(x) {
     return acc;
   }, {});
 }
+
+export const editorHeader = (noteId) => [
+  {
+    id: 'numero',
+    label: 'Numéro',
+    icon: 'ri-sticky-note-line',
+    count: getValue(`notes.${noteId}.reference`),
+  },
+  {
+    id: 'status',
+    label: 'Status',
+    icon: 'ri-loader-2-line',
+    count: getValue(`notes.${noteId}.status`),
+  },
+  {
+    id: 'Dossier',
+    label: 'Dossier',
+    icon: 'ri-folder-line',
+    count: getValue(`notes.${noteId}.dossierId`),
+  },
+  {
+    id: 'Date',
+    label: 'Date',
+    icon: 'ri-calendar-line',
+    count: getValue(`notes.${noteId}.created`),
+  },
+  {
+    id: 'Auteur',
+    label: 'Auteur',
+    icon: 'ri-team-fill',
+    count: getValue(`notes.${noteId}.author`),
+  },
+];
 
 export function useNotes() {
   const bstack = useBrainStack();
@@ -141,7 +177,7 @@ export function useNotes() {
     return {
       ...x,
       icon: 'ri-sticky-note-line',
-      columns: [x.id, x.title, x.status, x.created, x.dossierId, x.eventId],
+      columns: [x.reference, x.title, x.status, x.created, x.dossierId, x.eventId, x.author],
     };
   });
 
