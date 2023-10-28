@@ -10,6 +10,7 @@ import frLocale from '@fullcalendar/core/locales/fr';
 import interactionPlugin from '@fullcalendar/interaction'
 import { useBrainStack } from '../../App';
 import EventModal from './EventModal';
+import { fr } from 'date-fns/locale';
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function AppCalendar() {
@@ -56,6 +57,7 @@ export default function AppCalendar() {
             <ReactDatePicker
               selected={activeDate}
               onChange={setActiveDate}
+              locale={fr} 
               inline
             />
             <div className='mb-5'></div>

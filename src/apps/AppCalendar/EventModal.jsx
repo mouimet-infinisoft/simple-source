@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Form, Row, Col, Button } from 'react-bootstrap';
 import ReactDatePicker from 'react-datepicker';
+import { fr } from 'date-fns/locale';
 import { getValue, createEventHandlerMutator, createEventHandlerMutatorShallow } from '../../App';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -76,6 +77,7 @@ function EventModal(props) {
                             selected={new Date(getValue(`calendarEvents.${selectedItemId}.start`))}
                             onChange={createEventHandlerMutatorShallow(`calendarEvents.${selectedItemId}.start`)}
                             dateFormat="Pp"
+                            locale={fr} 
                         />
                     </Col>
 
@@ -86,6 +88,7 @@ function EventModal(props) {
                             selected={new Date(getValue(`calendarEvents.${selectedItemId}.end`))}
                             onChange={createEventHandlerMutatorShallow(`calendarEvents.${selectedItemId}.end`)}
                             dateFormat="Pp"
+                            locale={fr} 
                         />
                     </Col>
                 </Row>
