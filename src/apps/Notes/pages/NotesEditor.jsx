@@ -61,7 +61,7 @@ const NotesEditor = () => {
             onChange={createEventHandlerMutator(`notes.${noteId}.title`)}
           />
           <div className="d-flex align-items-center gap-1">
-            {(isBrouillon || isRefused) && <Button variant="primary" className="mr-2" onClick={()=>{createEventHandlerMutatorShallow(`notes.${noteId}.status`)('Approbation requise')}}>Demande approbation</Button>}
+            {(isBrouillon || isRefused) && <Button variant="primary" className="mr-2" onClick={()=>{createEventHandlerMutatorShallow(`notes.${noteId}.status`)('Approbation requise')}}>Approbation</Button>}
             {isApprovalRequired && (<>
               <Button variant="success" className="mr-2" onClick={()=>{createEventHandlerMutatorShallow(`notes.${noteId}.status`)('Approuvée')}}>Approuvé</Button>
               <Button variant="danger" onClick={()=>{createEventHandlerMutatorShallow(`notes.${noteId}.status`)('Rejetée')}}>Refusé</Button>
