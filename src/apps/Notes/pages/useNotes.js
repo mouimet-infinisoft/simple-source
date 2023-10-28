@@ -6,11 +6,12 @@ import {
   getValue,
   useBrainStack,
 } from '../../../App';
+import { EditorState } from 'draft-js';
 
 const defaultModel = () => ({
   id: uuidv4(),
   name: 'Note',
-  content: '',
+  content: EditorState.createEmpty(),
   status: '',
   created: new Date().toLocaleDateString(),
   dossierId: '',

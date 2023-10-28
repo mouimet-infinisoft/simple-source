@@ -62,6 +62,9 @@ dependencies:
   draft-js:
     specifier: ^0.11.7
     version: 0.11.7(react-dom@18.2.0)(react@18.2.0)
+  draft-js-import-html:
+    specifier: ^1.4.1
+    version: 1.4.1(draft-js@0.11.7)(immutable@3.7.6)
   feather-icons:
     specifier: ^4.29.1
     version: 4.29.1
@@ -87,8 +90,8 @@ dependencies:
     specifier: ^9.0.0
     version: 9.0.0
   openai:
-    specifier: ^4.12.4
-    version: 4.12.4
+    specifier: ^4.14.0
+    version: 4.14.1
   perfect-scrollbar:
     specifier: ^1.5.5
     version: 1.5.5
@@ -118,7 +121,7 @@ dependencies:
     version: 18.2.0(react@18.2.0)
   react-draft-wysiwyg:
     specifier: ^1.15.0
-    version: 1.15.0(draft-js@0.11.7)(immutable@4.3.4)(react-dom@18.2.0)(react@18.2.0)
+    version: 1.15.0(draft-js@0.11.7)(immutable@3.7.6)(react-dom@18.2.0)(react@18.2.0)
   react-leaflet:
     specifier: ^4.2.1
     version: 4.2.1(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0)
@@ -133,7 +136,7 @@ dependencies:
     version: 6.17.0(react-dom@18.2.0)(react@18.2.0)
   react-scripts:
     specifier: ^5.0.1
-    version: 5.0.1(@babel/plugin-syntax-flow@7.22.5)(@babel/plugin-transform-react-jsx@7.22.15)(@swc/core@1.3.94)(esbuild@0.18.20)(eslint@8.51.0)(node-sass@9.0.0)(react@18.2.0)(sass@1.69.4)(typescript@5.2.2)
+    version: 5.0.1(@babel/plugin-syntax-flow@7.22.5)(@babel/plugin-transform-react-jsx@7.22.15)(@swc/core@1.3.94)(esbuild@0.18.20)(eslint@8.51.0)(node-sass@9.0.0)(react@18.2.0)(sass@1.69.5)(typescript@5.2.2)
   react-select:
     specifier: ^5.7.7
     version: 5.7.7(react-dom@18.2.0)(react@18.2.0)
@@ -203,8 +206,8 @@ devDependencies:
     specifier: ^15.8.1
     version: 15.8.1
   sass:
-    specifier: ^1.69.4
-    version: 1.69.4
+    specifier: ^1.69.5
+    version: 1.69.5
   storybook:
     specifier: ^7.5.1
     version: 7.5.1
@@ -4127,7 +4130,7 @@ packages:
       '@types/babel__core': 7.20.2
       babel-plugin-react-docgen: 4.2.1
       pnp-webpack-plugin: 1.7.0(typescript@5.2.2)
-      react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.22.5)(@babel/plugin-transform-react-jsx@7.22.15)(@swc/core@1.3.94)(esbuild@0.18.20)(eslint@8.51.0)(node-sass@9.0.0)(react@18.2.0)(sass@1.69.4)(typescript@5.2.2)
+      react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.22.5)(@babel/plugin-transform-react-jsx@7.22.15)(@swc/core@1.3.94)(esbuild@0.18.20)(eslint@8.51.0)(node-sass@9.0.0)(react@18.2.0)(sass@1.69.5)(typescript@5.2.2)
       semver: 7.5.4
     transitivePeerDependencies:
       - '@types/webpack'
@@ -7146,6 +7149,39 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
+  /draft-js-import-element@1.4.0(draft-js@0.11.7)(immutable@3.7.6):
+    resolution: {integrity: sha512-WmYT5PrCm47lGL5FkH6sRO3TTAcn7qNHsD3igiPqLG/RXrqyKrqN4+wBgbcT2lhna/yfWTRtgzAbQsSJoS1Meg==}
+    peerDependencies:
+      draft-js: '>=0.10.0'
+      immutable: 3.x.x
+    dependencies:
+      draft-js: 0.11.7(react-dom@18.2.0)(react@18.2.0)
+      draft-js-utils: 1.4.1(draft-js@0.11.7)(immutable@3.7.6)
+      immutable: 3.7.6
+      synthetic-dom: 1.4.0
+    dev: false
+
+  /draft-js-import-html@1.4.1(draft-js@0.11.7)(immutable@3.7.6):
+    resolution: {integrity: sha512-KOZmtgxZriCDgg5Smr3Y09TjubvXe7rHPy/2fuLSsL+aSzwUDwH/aHDA/k47U+WfpmL4qgyg4oZhqx9TYJV0tg==}
+    peerDependencies:
+      draft-js: '>=0.10.0'
+      immutable: 3.x.x
+    dependencies:
+      draft-js: 0.11.7(react-dom@18.2.0)(react@18.2.0)
+      draft-js-import-element: 1.4.0(draft-js@0.11.7)(immutable@3.7.6)
+      immutable: 3.7.6
+    dev: false
+
+  /draft-js-utils@1.4.1(draft-js@0.11.7)(immutable@3.7.6):
+    resolution: {integrity: sha512-xE81Y+z/muC5D5z9qWmKfxEW1XyXfsBzSbSBk2JRsoD0yzMGGHQm/0MtuqHl/EUDkaBJJLjJ2EACycoDMY/OOg==}
+    peerDependencies:
+      draft-js: '>=0.10.0'
+      immutable: 3.x.x
+    dependencies:
+      draft-js: 0.11.7(react-dom@18.2.0)(react@18.2.0)
+      immutable: 3.7.6
+    dev: false
+
   /draft-js@0.11.7(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-ne7yFfN4sEL82QPQEn80xnADR8/Q6ALVworbC5UOSzOvjffmYfFsr3xSZtxbIirti14R7Y33EZC5rivpLgIbsg==}
     peerDependencies:
@@ -7161,14 +7197,14 @@ packages:
       - encoding
     dev: false
 
-  /draftjs-utils@0.10.2(draft-js@0.11.7)(immutable@4.3.4):
+  /draftjs-utils@0.10.2(draft-js@0.11.7)(immutable@3.7.6):
     resolution: {integrity: sha512-EstHqr3R3JVcilJrBaO/A+01GvwwKmC7e4TCjC7S94ZeMh4IVmf60OuQXtHHpwItK8C2JCi3iljgN5KHkJboUg==}
     peerDependencies:
       draft-js: ^0.11.x
       immutable: 3.x.x || 4.x.x
     dependencies:
       draft-js: 0.11.7(react-dom@18.2.0)(react@18.2.0)
-      immutable: 4.3.4
+      immutable: 3.7.6
     dev: false
 
   /duplexer@0.1.2:
@@ -8733,14 +8769,14 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /html-to-draftjs@1.5.0(draft-js@0.11.7)(immutable@4.3.4):
+  /html-to-draftjs@1.5.0(draft-js@0.11.7)(immutable@3.7.6):
     resolution: {integrity: sha512-kggLXBNciKDwKf+KYsuE+V5gw4dZ7nHyGMX9m0wy7urzWjKGWyNFetmArRLvRV0VrxKN70WylFsJvMTJx02OBQ==}
     peerDependencies:
       draft-js: ^0.10.x || ^0.11.x
       immutable: 3.x.x || 4.x.x
     dependencies:
       draft-js: 0.11.7(react-dom@18.2.0)(react@18.2.0)
-      immutable: 4.3.4
+      immutable: 3.7.6
     dev: false
 
   /html-webpack-plugin@5.5.3(webpack@5.89.0):
@@ -10902,8 +10938,8 @@ packages:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  /openai@4.12.4:
-    resolution: {integrity: sha512-oPNVJkpgxDUKF6WGGdHEZh5m/kjmYxS2Y1q7YVFCkvKUGthb8OGYRGCFBRPq5CQJezifzABTZRlVYnXLd6L4vQ==}
+  /openai@4.14.1:
+    resolution: {integrity: sha512-aBb7DVdzSnEUBFHTbnVoitauefvjRuUHS5pa7lm1m5JmHifD+1Hff1RzxYC12ogugVcCmWT99NZNfzyD6n/0IQ==}
     hasBin: true
     dependencies:
       '@types/node': 18.18.6
@@ -12363,7 +12399,7 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
-  /react-draft-wysiwyg@1.15.0(draft-js@0.11.7)(immutable@4.3.4)(react-dom@18.2.0)(react@18.2.0):
+  /react-draft-wysiwyg@1.15.0(draft-js@0.11.7)(immutable@3.7.6)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-p1cYZcWc6/ALFBVksbFoCM3b29fGQDlZLIMrXng0TU/UElxIOF2/AWWo4L5auIYVhmqKTZ0NkNjnXOzGGuxyeA==}
     peerDependencies:
       draft-js: ^0.10.x || ^0.11.x
@@ -12373,9 +12409,9 @@ packages:
     dependencies:
       classnames: 2.3.2
       draft-js: 0.11.7(react-dom@18.2.0)(react@18.2.0)
-      draftjs-utils: 0.10.2(draft-js@0.11.7)(immutable@4.3.4)
-      html-to-draftjs: 1.5.0(draft-js@0.11.7)(immutable@4.3.4)
-      immutable: 4.3.4
+      draftjs-utils: 0.10.2(draft-js@0.11.7)(immutable@3.7.6)
+      html-to-draftjs: 1.5.0(draft-js@0.11.7)(immutable@3.7.6)
+      immutable: 3.7.6
       linkify-it: 2.2.0
       prop-types: 15.8.1
       react: 18.2.0
@@ -12549,7 +12585,7 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-scripts@5.0.1(@babel/plugin-syntax-flow@7.22.5)(@babel/plugin-transform-react-jsx@7.22.15)(@swc/core@1.3.94)(esbuild@0.18.20)(eslint@8.51.0)(node-sass@9.0.0)(react@18.2.0)(sass@1.69.4)(typescript@5.2.2):
+  /react-scripts@5.0.1(@babel/plugin-syntax-flow@7.22.5)(@babel/plugin-transform-react-jsx@7.22.15)(@swc/core@1.3.94)(esbuild@0.18.20)(eslint@8.51.0)(node-sass@9.0.0)(react@18.2.0)(sass@1.69.5)(typescript@5.2.2):
     resolution: {integrity: sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -12599,7 +12635,7 @@ packages:
       react-refresh: 0.11.0
       resolve: 1.22.8
       resolve-url-loader: 4.0.0
-      sass-loader: 12.6.0(node-sass@9.0.0)(sass@1.69.4)(webpack@5.89.0)
+      sass-loader: 12.6.0(node-sass@9.0.0)(sass@1.69.5)(webpack@5.89.0)
       semver: 7.5.4
       source-map-loader: 3.0.2(webpack@5.89.0)
       style-loader: 3.3.3(webpack@5.89.0)
@@ -13052,7 +13088,7 @@ packages:
       scss-tokenizer: 0.4.3
       yargs: 17.7.2
 
-  /sass-loader@12.6.0(node-sass@9.0.0)(sass@1.69.4)(webpack@5.89.0):
+  /sass-loader@12.6.0(node-sass@9.0.0)(sass@1.69.5)(webpack@5.89.0):
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -13074,11 +13110,11 @@ packages:
       klona: 2.0.6
       neo-async: 2.6.2
       node-sass: 9.0.0
-      sass: 1.69.4
+      sass: 1.69.5
       webpack: 5.89.0(@swc/core@1.3.94)(esbuild@0.18.20)
 
-  /sass@1.69.4:
-    resolution: {integrity: sha512-+qEreVhqAy8o++aQfCJwp0sklr2xyEzkm9Pp/Igu9wNPoe7EZEQ8X/MBvvXggI2ql607cxKg/RKOwDj6pp2XDA==}
+  /sass@1.69.5:
+    resolution: {integrity: sha512-qg2+UCJibLr2LCVOt3OlPhr/dqVHWOa9XtZf2OjbLs/T4VPSJ00udtgJxH3neXZm+QqX8B+3cU7RaLqp1iVfcQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -13802,6 +13838,10 @@ packages:
   /synchronous-promise@2.0.17:
     resolution: {integrity: sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==}
     dev: true
+
+  /synthetic-dom@1.4.0:
+    resolution: {integrity: sha512-mHv51ZsmZ+ShT/4s5kg+MGUIhY7Ltq4v03xpN1c8T1Krb5pScsh/lzEjyhrVD0soVDbThbd2e+4dD9vnDG4rhg==}
+    dev: false
 
   /tailwindcss@3.3.3:
     resolution: {integrity: sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==}

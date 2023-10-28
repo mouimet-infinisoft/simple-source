@@ -23,6 +23,7 @@
     "cryptofont": "^0.1.1",
     "dompurify": "^3.0.6",
     "draft-js": "^0.11.7",
+    "draft-js-import-html": "^1.4.1",
     "feather-icons": "^4.29.1",
     "form-data": "^4.0.0",
     "gridjs": "^6.0.6",

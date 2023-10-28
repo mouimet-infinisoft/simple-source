@@ -1,8 +1,8 @@
-import { convertFromHTML } from 'draft-js';
+import { convertFromHTML, EditorState } from 'draft-js';
+import {stateFromHTML} from 'draft-js-import-html';
 
 
-
-const d = `
+const d = EditorState.createWithContent(stateFromHTML(`
 
 <h1>Rapport d'Observation: Visite Supervisée</h1>
 <strong>Date:</strong> 19 octobre 2023<br />
@@ -60,7 +60,9 @@ const d = `
 
 
 
-`
+`))
+
+
 
 
 export const notesList = {
@@ -76,7 +78,7 @@ export const notesList = {
   2: {
     id: 2,
     title: 'Note 2',
-    content: d,
+    content: EditorState.createEmpty(),
     status: 'Approbation requise',
     created: new Date().toLocaleDateString(),
     dossierId: 'mockDossierId',
@@ -85,7 +87,7 @@ export const notesList = {
   3: {
     id: 3,
     title: 'Note 3',
-    content: d,
+    content: EditorState.createEmpty(),
     status: 'Approuvée',
     created: new Date().toLocaleDateString(),
     dossierId: 'mockDossierId',
@@ -94,7 +96,7 @@ export const notesList = {
   4: {
     id: 4,
     title: 'Note 4',
-    content: d,
+    content: EditorState.createEmpty(),
     status: 'Rejetée',
     created: new Date().toLocaleDateString(),
     dossierId: 'mockDossierId',

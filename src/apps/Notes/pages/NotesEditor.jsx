@@ -1,34 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import {
   createEventHandlerMutator,
+  createEventHandlerMutatorShallow,
   getValue,
   useBrainStack,
 } from '../../../App';
-import { useNavigate, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import { Editor } from 'react-draft-wysiwyg';
-import { EditorState, ContentState } from 'draft-js';
 import Header from '../../../layouts/Header';
 
 const NotesEditor = () => {
-  const bstack = useBrainStack();
-  const { delete: trash, update } = bstack.store.createCRUDObject('notes');
+  useBrainStack();
   const { noteId } = useParams();
-  const navigate = useNavigate();
-
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createWithContent(
-      ContentState.createFromText(getValue(`notes.${noteId}.content`))
-    )
-  );
-
-  const onEditorChange = (e) => {
-    setEditorState(e);
-    update({
-      id: noteId,
-      content: e.getCurrentContent().getPlainText(),
-    });
-  };
 
   return (
     <>
@@ -39,7 +23,7 @@ const NotesEditor = () => {
           <h1>
             <Link to="/apps/notes">
               <i class="ri-arrow-left-line"></i>
-            </Link>{' '}
+            </Link>
             Éditeur notes
           </h1>
         </div>
@@ -58,8 +42,8 @@ const NotesEditor = () => {
         <hr />
 
         <Editor
-          editorState={editorState}
-          onEditorStateChange={onEditorChange}
+          editorState={getValue(`notes.${noteId}.content`)}
+          onEditorStateChange={createEventHandlerMutatorShallow(`notes.${noteId}.content`)}
           localization={{
             locale: 'fr',
           }}
