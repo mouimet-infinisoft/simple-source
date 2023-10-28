@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Col, Row } from 'react-bootstrap';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { createEventHandlerMutator, getValue, useBrainStack } from '../../App';
+import {  getValue, useBrainStack } from '../../App';
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
-import ChipArray from '../../components/atoms/ChipArray';
 import ConfirmModal from '../../components/atoms/ConfirmModal';
-import Avatar from '../../components/atoms/Avatar';
 import ListSideBar from '../../components/atoms/ListComponent';
 import img11 from '../../assets/img/img11.jpg'
 import ContactForm from './ContactForm';
 
-const defaultModel = {
+export const defaultModelContact = {
   status: '',
   thumb: img11,
   name: '',
@@ -77,7 +74,7 @@ const Contacts = () => {
             totalAmount={Object.values(list())?.length ?? ''}
             iconTotal="ri-contacts-fill"
             onClickCreate={() => {
-              setSelectedId(create(defaultModel)?.id)
+              setSelectedId(create(defaultModelContact)?.id)
             }}
           />
 
@@ -123,7 +120,9 @@ const Contacts = () => {
               </PerfectScrollbar>
             </div>
 
-            <ContactForm selectedId={selectedId} handleUpdate={handleUpdate} handleShowDeleteContact={handleShowDeleteContact} />
+            <div className='contact-content'>
+              <ContactForm selectedId={selectedId} handleUpdate={handleUpdate} handleShowDeleteContact={handleShowDeleteContact} />
+            </div>
 
           </div>
         </div>

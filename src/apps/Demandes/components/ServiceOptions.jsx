@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Card, CardGroup } from 'react-bootstrap';
+import { useParams } from 'react-router-dom'
+import { createEventHandlerMutatorShallow, getValue } from '../../../App';
 
 function ServiceOptions() {
-    const [selected, setSelected] = useState(null);
-
-    const handleSelect = (option) => {
-        setSelected(option);
-    };
+    const { demandeId } = useParams()
 
     const cardOptions = [
         { id: 1, icon: 'ri-team-line', name: 'Visite supervisée' },
@@ -16,13 +14,13 @@ function ServiceOptions() {
     ];
 
     return (
-        <CardGroup style={{gap:"1rem"}}>
+        <CardGroup style={{ gap: "1rem" }}>
             {cardOptions.map(option => (
                 <Card
                     key={option.id}
-                    onClick={() => handleSelect(option.id)}
-                    border={selected === option.id ? 'primary' : ''}
-                    className={selected === option.id ? 'shadow-lg hover-pointer' : 'hover-pointer'}
+                    onClick={() => { createEventHandlerMutatorShallow(`demandes.${demandeId}.service`)(option.name) }}
+                    border={getValue(`demandes.${demandeId}.service`) === option.name ? 'primary' : ''}
+                    className={getValue(`demandes.${demandeId}.service`) === option.name ? 'shadow-lg hover-pointer' : 'hover-pointer'}
                 >
                     <Card.Body className="text-center">
                         <i className={option.icon + " ri-3x"}></i>

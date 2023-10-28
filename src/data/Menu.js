@@ -66,7 +66,7 @@ const applicationsMenu = [
   },
   {
     "label": "Dossiers",
-    "link": "/apps/chat",
+    "link": "/apps/dossiers",
     "icon": "ri-folder-line"
   },
   {
