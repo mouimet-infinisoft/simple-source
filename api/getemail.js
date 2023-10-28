@@ -8,7 +8,7 @@ const openai = new OpenAI({ apiKey: "" })
 const config = {
     imap: {
         user: "mouimet@infinisoft.world",
-        password: "S3l3c3A3!!!!",
+        password: "-",
         host: "mail.privateemail.com",
         port: 993,
         tls: true,

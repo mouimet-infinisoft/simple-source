@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -7,6 +7,9 @@ import {
   useBrainStack,
 } from '../../../App';
 import { EditorState } from 'draft-js';
+import { stateFromHTML } from 'draft-js-import-html';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const defaultModel = () => ({
   id: uuidv4(),
@@ -145,6 +148,27 @@ export const editorHeader = (noteId) => [
 export function useNotes() {
   const bstack = useBrainStack();
   const navigate = useNavigate();
+  const {noteId} = useParams()
+
+  const onFileChange = useCallback(async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+  
+    const formData = new FormData();
+    formData.append('image', file);
+  
+    try {
+      bstack.store.emit(`notes.ai.transcription.processing`)
+      // const response = await axios.post('http://localhost:5000/smart', formData);
+      const response = await axios.post('https://smartnotes-qbits-projects.vercel.app/smart', formData);      
+      // createEventHandlerMutatorShallow(`notes.${noteId}.content`)(EditorState.createWithContent(stateFromHTML(response.data.report)))
+      bstack.store.emit(`notes.ai.transcription.incoming`,{note:response.data.report})
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    } finally {
+      bstack.store.emit(`notes.ai.transcription.complete`)
+    }
+  }, []);
 
   useEffect(() => {
     document.body.classList.add('page-app');
@@ -186,7 +210,10 @@ export function useNotes() {
     statusCount,
     isActive,
     onChangeStatus,
+    onFileChange,
     onCreate,
     onClickFilter,
   };
 }
+
+
