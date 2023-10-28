@@ -18,7 +18,7 @@ function DemandesDetails() {
       <div className={"main main-file-manager p-3 p-lg-4"}>
         <div className="py-4 mb-2 bg-body-tertiary rounded-3">
           <div className="container-fluid">
-            <h1><Link to='/apps/demandes'><i class="ri-arrow-left-line"></i></Link> Demande</h1>
+            <h1><Link to='/apps/dossiers'><i class="ri-arrow-left-line"></i></Link> Dossier</h1>
           </div>
         </div>
         <DemandesDetailsHeader />
@@ -42,6 +42,21 @@ function DemandesDetails() {
             </Tab>
             <Tab eventKey="step4" title="Historique" className="p-3">
               <Activity />
+            </Tab>
+            <Tab eventKey="step5" title="Rendez-vous" className="p-3">
+              Rendez-vous
+            </Tab>
+            <Tab eventKey="step6" title="Taches" className="p-3">
+              Taches
+            </Tab>
+            <Tab eventKey="step7" title="Documents" className="p-3">
+              Documents
+            </Tab>
+            <Tab eventKey="step8" title="Notes & Rapports" className="p-3">
+              Notes et Rapports
+            </Tab>
+            <Tab eventKey="step9" title="Communications" className="p-3">
+              Communications
             </Tab>
           </Tabs>
         </div>
