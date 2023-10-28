@@ -6,18 +6,27 @@ import { Link, useNavigate } from "react-router-dom";
 import { createEventHandlerMutatorShallow, getValue, useBrainStack } from "../../../App";
 import DemandesStats from "../components/DemandesStats";
 import { defaultModel } from "../assets/datamock";
+import FileSidebar from "../../../components/atoms/FileSidebar";
+
+const sidebar = [
+  { icon: 'ri-asterisk', id: '', label: 'Tous' },
+  { icon: 'ri-time-line', id: 'En attente', label: 'En attente' },
+  { icon: 'ri-loader-2-line', id: 'En cours', label: 'En cours' },
+  { icon: 'ri-checkbox-circle-line', id: 'Terminée', label: 'Terminée' },
+  { icon: 'ri-close-circle-line', id: 'Fermée', label: 'Fermée' },
+];
 
 export default function DemandesList() {
   const bstack = useBrainStack();
   const navigate = useNavigate()
-  const { search, update, create } = bstack.store.createCRUDObject('demandes')
+  const { search, update, create } = bstack.store.createCRUDObject('dossiers')
 
-  useEffect(() => {
-    document.body.classList.add('page-app');
-    return () => {
-      document.body.classList.remove('page-app');
-    }
-  }, []);
+  // useEffect(() => {
+  //   document.body.classList.add('page-app');
+  //   return () => {
+  //     document.body.classList.remove('page-app');
+  //   }
+  // }, []);
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <Link
@@ -34,7 +43,7 @@ export default function DemandesList() {
   ));
 
   // toggle sidebar in mobile
-  const [isSidebarShow, setSidebarShow] = useState(false);
+  // const [isSidebarShow, setSidebarShow] = useState(false);
 
   const isActive = (_value) => getValue('search') === _value ? "active" : ""
   const onClickFilter = (_value) => () => { createEventHandlerMutatorShallow('search')(_value) }
@@ -48,25 +57,21 @@ export default function DemandesList() {
   return (
     <React.Fragment>
       <Header />
-      <div className={"main main-file-manager" + (isSidebarShow ? " show" : "")}>
-        <PerfectScrollbar className="file-sidebar">
-          <div className="d-grid mb-4">
-            <Button variant="primary" onClick={onCreate}>Nouvelle</Button>
-          </div>
-
-          <label className="sidebar-label mb-2">Filtres</label>
-          <Nav className="nav-sidebar mb-4">
-            <Nav.Link href="" className={isActive('')} onClick={onClickFilter('')}><i className="ri-asterisk"></i> Tous</Nav.Link>
-            <Nav.Link href="" className={isActive("En attente")} onClick={onClickFilter('En attente')}><i className="ri-time-line"></i> En attentes</Nav.Link>
-            <Nav.Link href="" className={isActive("En cours")} onClick={onClickFilter('En cours')}><i className="ri-loader-2-line"></i> En cours</Nav.Link>
-            <Nav.Link href="" className={isActive("Terminée")} onClick={onClickFilter('Terminée')}><i className="ri-checkbox-circle-line"></i> Terminées</Nav.Link>
-            <Nav.Link href="" className={isActive("Fermée")} onClick={onClickFilter('Fermée')}><i className="ri-close-circle-line"></i> Fermées</Nav.Link>
-          </Nav>
-        </PerfectScrollbar>
+      <div className={"main main-file-manager"}>
+      <div className="file-sidebar">
+        <FileSidebar
+          isActive={isActive}
+          onCreate={onCreate}
+          onClickFilter={onClickFilter}
+          links={sidebar}
+          filterLabel="Filtres"
+          buttonCreateLabel="Nouvelle"
+        />
+      </div>
 
         <PerfectScrollbar className="file-content p-3 p-lg-4">
-          <h1>Demandes</h1>
-          <DemandesStats />
+          <h1>Dossiers</h1>
+          <DemandesStats list={bstack.list}/>
 
 
           <Table className="table table-files" responsive>

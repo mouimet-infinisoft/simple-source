@@ -609,7 +609,7 @@ export default function EventManagement() {
                 </Card>
               </Col>
             </Row> */}
-            <DemandesStats />
+            {/* <DemandesStats list={bs}/> */}
             <Col xs="12">
               <Card className="card-one">
                 <Card.Header>
