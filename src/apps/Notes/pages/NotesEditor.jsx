@@ -58,7 +58,7 @@ const NotesEditor = () => {
             onChange={createEventHandlerMutator(`notes.${noteId}.title`)}
           />
           <label className="btn btn-secondary" htmlFor="fileInput">
-            Transcription
+            Transcription IA
           </label>
           <input
             id="fileInput"
