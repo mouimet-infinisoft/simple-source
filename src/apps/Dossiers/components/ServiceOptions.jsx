@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { createEventHandlerMutatorShallow, getValue } from '../../../App';
 
 function ServiceOptions() {
-    const { demandeId } = useParams()
+    const { dossierId } = useParams()
 
     const cardOptions = [
         { id: 1, icon: 'ri-team-line', name: 'Visite supervisée' },
@@ -18,9 +18,9 @@ function ServiceOptions() {
             {cardOptions.map(option => (
                 <Card
                     key={option.id}
-                    onClick={() => { createEventHandlerMutatorShallow(`demandes.${demandeId}.service`)(option.name) }}
-                    border={getValue(`demandes.${demandeId}.service`) === option.name ? 'primary' : ''}
-                    className={getValue(`demandes.${demandeId}.service`) === option.name ? 'shadow-lg hover-pointer' : 'hover-pointer'}
+                    onClick={() => { createEventHandlerMutatorShallow(`dossiers.${dossierId}.service`)(option.name) }}
+                    border={getValue(`dossiers.${dossierId}.service`) === option.name ? 'primary' : ''}
+                    className={getValue(`dossiers.${dossierId}.service`) === option.name ? 'shadow-lg hover-pointer' : 'hover-pointer'}
                 >
                     <Card.Body className="text-center">
                         <i className={option.icon + " ri-3x"}></i>

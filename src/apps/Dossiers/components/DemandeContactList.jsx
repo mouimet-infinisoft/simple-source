@@ -1,4 +1,4 @@
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import ContactCardList from '../../Contacts/ContactCardList';
 import { getValue } from '../../../App';
 
@@ -10,9 +10,9 @@ function generateContactList(demande) {
 }
 
 const DemandeContactList = () => {
-    const {demandeId} = useParams()
+    const { dossierId } = useParams()
 
-    return <ContactCardList contacts={generateContactList(getValue(`demandes.${demandeId}`))} />
+    return <ContactCardList contacts={generateContactList(getValue(`dossiers.${dossierId}`))} />
 }
 
 export default DemandeContactList

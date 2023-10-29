@@ -6,6 +6,8 @@ import Header from "../../../layouts/Header";
 import DemandesDetailsHeader from '../components/DemandesDetailsHeader';
 import ServiceOptions from '../components/ServiceOptions';
 import Activity from '../../../pages/Activity';
+import AppCalendar, { CalendarComponent } from '../../AppCalendar/AppCalendar';
+import NotesList, { NotesListComponent } from '../../Notes/pages/NotesList';
 
 function DemandesDetails() {
   const { demandeId } = useParams()
@@ -44,19 +46,20 @@ function DemandesDetails() {
               <Activity />
             </Tab>
             <Tab eventKey="step5" title="Rendez-vous" className="p-3">
-              Rendez-vous
+              <div style={{ position: 'relative', height: '500px' }}>
+                <CalendarComponent />
+              </div>
             </Tab>
             <Tab eventKey="step6" title="Taches" className="p-3">
               Taches
             </Tab>
-            <Tab eventKey="step7" title="Documents" className="p-3">
-              Documents
+            <Tab eventKey="step8" title="Notes observations" className="p-3" style={{ marginLeft: '0px' }}>
+              <div style={{ position: 'relative', height: '500px' }}>
+                <NotesListComponent />
+              </div>
             </Tab>
-            <Tab eventKey="step8" title="Notes & Rapports" className="p-3">
-              Notes et Rapports
-            </Tab>
-            <Tab eventKey="step9" title="Communications" className="p-3">
-              Communications
+            <Tab eventKey="step9" title="Rapports" className="p-3">
+              Rapports
             </Tab>
           </Tabs>
         </div>

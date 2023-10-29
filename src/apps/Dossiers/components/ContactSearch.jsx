@@ -7,7 +7,7 @@ import ContactSearchList from './ContactSearchList';
 
 const ContactSearch = () => {
     const bstack = useBrainStack()
-    const { demandeId } = useParams()
+    const {  dossierId } = useParams()
     const navigate = useNavigate()
     const [searchTerm, setSearchTerm] = useState('')
     const { search } = bstack.store.createCRUDObject('contacts')
@@ -25,7 +25,7 @@ const ContactSearch = () => {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-                <Button onClick={() => { navigate(`/apps/demandes/${demandeId}`) }}>Retour aux contacts</Button>
+                <Button onClick={() => { navigate(`/apps/dossiers/${dossierId}`) }}>Retour aux contacts</Button>
             </div>
         </div>
     )
