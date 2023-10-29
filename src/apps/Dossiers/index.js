@@ -13,7 +13,7 @@ function DossiersRoutes() {
         <Routes>
             <Route path="/" element={<DemandesLayout />}>
                 <Route index element={<DemandesList />} />
-                <Route path=":demandeId/*" element={<DemandesDetails />}>
+                <Route path=":dossierId/*" element={<DemandesDetails />}>
                     <Route index element={<DemandeContactList />} />
                     <Route path="contacts/new" element={<ContactNew />} />
                     <Route path="contacts/search" element={<ContactSearch />} />

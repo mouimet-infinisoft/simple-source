@@ -5,24 +5,24 @@ import { getValue, useBrainStack } from '../../../App';
 import { defaultModelContact } from '../../Contacts/Contacts';
 
 function ContactNew() {
-    const { demandeId } = useParams()
+    const { dossierId } = useParams()
     const navigate = useNavigate()
     const bstack = useBrainStack()
     const { create } = bstack.store.createCRUDObject(`contacts`)
-    const { update } = bstack.store.createCRUDObject(`demandes`)
+    const { update } = bstack.store.createCRUDObject(`dossiers`)
 
     function handleCreate() {
-        bstack.log.info('Demande id ', demandeId)
+        bstack.log.info('Dossier id ', dossierId)
         const _contact = create(defaultModelContact)
         bstack.log.info('Created contact ', _contact)
-        update({ id: demandeId, contacts: [...getValue(`demandes.${demandeId}.contacts`), { id: _contact.id }] })
-        bstack.log.info('Linked contact with demandes ', getValue(`demandes.${demandeId}`))
-        navigate(`/apps/demandes/${demandeId}/contacts/${_contact.id}/edit`)
+        update({ id: dossierId, contacts: [...getValue(`dossiers.${dossierId}.contacts`), { id: _contact.id }] })
+        bstack.log.info('Linked contact with dossiers ', getValue(`dossiers.${dossierId}`))
+        navigate(`/apps/dossiers/${dossierId}/contacts/${_contact.id}/edit`)
     }
 
     const cardOptions = [
         { id: 1, icon: 'ri-add-line', name: 'Nouveau', handleClick: handleCreate },
-        { id: 2, icon: 'ri-search-line', name: 'Existant', handleClick: () => { navigate(`/apps/demandes/${demandeId}/contacts/search`) } },
+        { id: 2, icon: 'ri-search-line', name: 'Existant', handleClick: () => { navigate(`/apps/dossiers/${dossierId}/contacts/search`) } },
     ];
 
     return (
@@ -43,7 +43,7 @@ function ContactNew() {
             </CardGroup>
 
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-                <Button onClick={() => { navigate(`/apps/demandes/${demandeId}`) }}>Retour aux contacts</Button>
+                <Button onClick={() => { navigate(`/apps/dossiers/${dossierId}`) }}>Retour aux contacts</Button>
             </div>
         </div>
     );

@@ -4,17 +4,17 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { getValue, useBrainStack } from '../../../App';
 
 const ContactSearchList = ({ contacts }) => {
-    const { demandeId } = useParams()
+    const { dossierId } = useParams()
     const navigate = useNavigate()
     const bstack = useBrainStack()
-    const { update } = bstack.store.createCRUDObject(`demandes`)
+    const { update } = bstack.store.createCRUDObject(`dossiers`)
 
     function handleAddContact(_contact) {
-        bstack.log.info('Demande id ', demandeId)
+        bstack.log.info('Dossier id ', dossierId)
         bstack.log.info('Linked existing contact ', _contact)
-        update({ id: demandeId, contacts: [...getValue(`demandes.${demandeId}.contacts`), { id: _contact.id }] })
-        bstack.log.info('Linked contact with demandes ', getValue(`demandes.${demandeId}`))
-        navigate(`/apps/demandes/${demandeId}`)
+        update({ id: dossierId, contacts: [...getValue(`dossiers.${dossierId}.contacts`), { id: _contact.id }] })
+        bstack.log.info('Linked contact with dossiers ', getValue(`dossiers.${dossierId}`))
+        navigate(`/apps/dossiers/${dossierId}`)
     }
     return (
         <Table className="table table-files" responsive hover>
