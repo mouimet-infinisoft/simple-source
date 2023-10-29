@@ -15,6 +15,7 @@ import { Button } from 'react-bootstrap';
 import Typewriter from 'typewriter-effect';
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import BrainPulse from '../../../components/atoms/BrainPulse';
 
 const NotesEditor = () => {
   const bstack = useBrainStack();
@@ -80,15 +81,8 @@ const NotesEditor = () => {
         <hr />
 
         {isProcessing && <>
-          <h2>Transcription Intelligence Artificielle</h2>
-          <Typewriter
-            options={{
-              strings: 'Analyse en cours, un instant.',
-              autoStart: true,
-              changeDelay: 0,
-              loop: true
-            }}
-          /></>}
+          <BrainPulse />
+        </>}
 
         {noteTyping && <>
           <h2>Transcription Intelligence Artificielle</h2>
