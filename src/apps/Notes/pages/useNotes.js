@@ -167,6 +167,7 @@ export function useNotes() {
       console.error('Error uploading image:', error);
     } finally {
       bstack.store.emit(`notes.ai.transcription.complete`)
+      event.target.value = null;
     }
   }, []);
 
