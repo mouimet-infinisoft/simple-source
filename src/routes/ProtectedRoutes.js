@@ -80,7 +80,7 @@ import MapLeaflet from "../docs/MapLeaflet";
 import MapVector from "../docs/MapVector";
 import IconRemix from "../docs/IconRemix";
 import IconFeather from "../docs/IconFeather";
-import UsersList from "../apps/UsersManagement/List";
+import UsersList from "../apps/UsersManagement/UsersList";
 import Notes from "../apps/Notes";
 import Demandes from "../apps/Demandes";
 import Dossiers from "../apps/Dossiers";

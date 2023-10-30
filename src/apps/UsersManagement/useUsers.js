@@ -1,0 +1,99 @@
+import { v4 as uuidv4 } from 'uuid';
+import { getValue } from '../../App';
+import { useCrud } from '../../modules/hooks';
+
+const defaultModel = () => ({
+  id: uuidv4(),
+  reference: 'E0000' + (Object.keys(getValue('notes'))?.length + 1 ?? 1),
+  name: 's',
+  department: '',
+  status: 'Active',
+  role: '',
+  email: '',
+  contactNumber: '',
+  hireDate: '2021-01-10',
+  address: '',
+  emergencyContact: {
+    name: '',
+    relation: '',
+    contactNumber: '',
+  },
+});
+
+export function useUsers() {
+  const crud = useCrud('/apps/users', 'users', defaultModel());
+
+  const items = crud.searchItems((x) => {
+    return {
+      ...x,
+      icon: 'ri-sticky-note-line',
+      columns: [
+      ],
+    };
+  });
+
+  console.log(111, items)
+
+  return {
+    ...crud,
+    items,
+  };
+}
+
+export const sidebar = [
+  { icon: 'ri-asterisk', id: '', label: 'Tous' },
+  { icon: 'ri-checkbox-circle-line', id: 'Active', label: 'Active' },
+  { icon: 'ri-close-circle-line', id: 'Rejetée', label: 'Rejetée' },
+];
+
+export const header = [
+  {
+    id: 'Active',
+    label: 'Active',
+    icon: 'ri-checkbox-circle-line',
+    isDown: true,
+    value: '0.7%',
+    count: 3,
+    info: 'depuis la semaine dernière',
+  },
+  {
+    id: 'Rejetée',
+    label: 'Rejetée',
+    icon: 'ri-close-circle-line',
+    isDown: false,
+    value: '0.6%',
+    count: 4,
+    info: 'depuis la semaine dernière',
+  },
+];
+
+export const headValues = [
+  'Numéro',
+  'Titre',
+  'Status',
+  'Date',
+  'Dossier',
+  'Evenement',
+  'Auteur',
+];
+
+export const more = [
+  {
+    id: 'Approbation requise',
+    label: 'Approbation requise',
+    className: 'move',
+    icon: 'ri-loader-2-line',
+  },
+  {
+    id: 'Approuvées',
+    label: 'Approuvées',
+    className: 'rename',
+    icon: 'ri-checkbox-circle-line',
+  },
+  {
+    id: 'Rejetée',
+    label: 'Rejetée',
+    className: 'delete',
+    icon: 'ri-close-circle-line',
+  },
+];
