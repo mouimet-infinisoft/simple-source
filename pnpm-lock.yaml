@@ -102,7 +102,7 @@ dependencies:
     specifier: ^9.0.0
     version: 9.0.0
   openai:
-    specifier: ^4.14.0
+    specifier: ^4.14.1
     version: 4.14.1
   perfect-scrollbar:
     specifier: ^1.5.5
@@ -156,8 +156,8 @@ dependencies:
     specifier: ^4.4.5
     version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
   tesseract.js:
-    specifier: ^5.0.2
-    version: 5.0.2
+    specifier: ^5.0.3
+    version: 5.0.3
   typewriter-effect:
     specifier: ^2.21.0
     version: 2.21.0(react-dom@18.2.0)(react@18.2.0)
@@ -14219,8 +14219,8 @@ packages:
     resolution: {integrity: sha512-lJur5LzjinW5VYMKlVNnBU2JPLpO+A9VqAYBeuV+ZgH0hKvsnm+536Yyp+/zRTBdLe7D6Kok0FN9g+TE4J8qGA==}
     dev: false
 
-  /tesseract.js@5.0.2:
-    resolution: {integrity: sha512-BbiaC3W7C23tjQfepPaXWiQFgEW9HFacpEFpZpuGsLfp1J7NPTLFj7II1Q2ukdPXNwh9z/KR0cikS2avpdEP0A==}
+  /tesseract.js@5.0.3:
+    resolution: {integrity: sha512-UcEaIRQ+KSjxl57SS2WQgnac8hON0uJgqR6418MYLBeFPGqrAooNwcKVIoSVCzflO3CxTKPg5Ic7z7JuW7wOGA==}
     requiresBuild: true
     dependencies:
       bmp-js: 0.1.0
