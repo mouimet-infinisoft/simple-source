@@ -1,6 +1,6 @@
-import Header from '../../layouts/Header';
+import Header from '../../../layouts/Header';
 
-export default function UsersList() {
+export default function UsersEditor() {
   return (
     <>
       <Header />

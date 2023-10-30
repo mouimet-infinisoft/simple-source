@@ -1,10 +1,10 @@
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Link } from 'react-router-dom';
 import { useUsers, sidebar, header, headValues, more } from './useUsers';
-import Header from '../../layouts/Header';
-import FileSidebar from '../../components/atoms/FileSidebar';
-import Stats from '../../components/atoms/Stats';
-import Table from '../../components/atoms/Table';
+import Header from '../../../layouts/Header';
+import FileSidebar from '../../../components/atoms/FileSidebar';
+import Stats from '../../../components/atoms/Stats';
+import Table from '../../../components/atoms/Table';
 
 export default function UsersList() {
   const {

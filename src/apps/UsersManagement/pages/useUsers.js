@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { getValue } from '../../App';
-import { useCrud } from '../../modules/hooks';
+import { getValue } from '../../../App';
+import { useCrud } from '../../../modules/hooks';
 
 const defaultModel = () => ({
   id: uuidv4(),
@@ -33,7 +33,7 @@ export function useUsers() {
         x.department,
         x.role,
         x.email,
-        x.contactNumber
+        x.contactNumber,
       ],
     };
   });
@@ -73,13 +73,7 @@ export const header = [
   },
 ];
 
-export const headValues = [
-  'Numéro',
-  'Nom',
-  'Rôle',
-  'E-mail',
-  'Contact Nr.',
-];
+export const headValues = ['Numéro', 'Nom', 'Rôle', 'E-mail', 'Contact Nr.'];
 
 export const more = [
   {
