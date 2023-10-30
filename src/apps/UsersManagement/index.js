@@ -7,8 +7,9 @@ function UsersManagementRoutes() {
   return (
     <Routes>
       <Route path="/" element={<UsersList />} />
-      <Route path=":id" element={<UsersEditor />} />
+      <Route path=":noteId" element={<UsersEditor />} />
     </Routes>
   );
 }
+
 export default UsersManagementRoutes;

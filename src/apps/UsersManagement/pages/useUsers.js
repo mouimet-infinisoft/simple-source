@@ -4,8 +4,8 @@ import { useCrud } from '../../../modules/hooks';
 
 const defaultModel = () => ({
   id: uuidv4(),
-  employeeID: 'E0000' + (Object.keys(getValue('notes'))?.length + 1 ?? 1),
-  name: 's',
+  employeeID: 'E00' + (Object.keys(getValue('users'))?.length + 1 ?? 1),
+  name: '',
   department: '',
   status: 'Active',
   role: '',
