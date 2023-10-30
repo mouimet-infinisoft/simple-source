@@ -4,7 +4,7 @@ export default function UsersList() {
   return (
     <>
       <Header />
-      Users Editor
+      <div className="main main-app p-3 p-lg-4">Users Editor</div>
     </>
   );
 }
