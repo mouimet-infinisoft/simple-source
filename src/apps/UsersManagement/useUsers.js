@@ -4,7 +4,7 @@ import { useCrud } from '../../modules/hooks';
 
 const defaultModel = () => ({
   id: uuidv4(),
-  reference: 'E0000' + (Object.keys(getValue('notes'))?.length + 1 ?? 1),
+  employeeID: 'E0000' + (Object.keys(getValue('notes'))?.length + 1 ?? 1),
   name: 's',
   department: '',
   status: 'Active',
@@ -26,13 +26,19 @@ export function useUsers() {
   const items = crud.searchItems((x) => {
     return {
       ...x,
-      icon: 'ri-sticky-note-line',
+      icon: 'ri-team-fill',
       columns: [
+        x.employeeID,
+        x.name,
+        x.department,
+        x.role,
+        x.email,
+        x.contactNumber
       ],
     };
   });
 
-  console.log(111, items)
+  console.log(111, items);
 
   return {
     ...crud,
@@ -69,24 +75,16 @@ export const header = [
 
 export const headValues = [
   'Numéro',
-  'Titre',
-  'Status',
-  'Date',
-  'Dossier',
-  'Evenement',
-  'Auteur',
+  'Nom',
+  'Rôle',
+  'E-mail',
+  'Contact Nr.',
 ];
 
 export const more = [
   {
-    id: 'Approbation requise',
-    label: 'Approbation requise',
-    className: 'move',
-    icon: 'ri-loader-2-line',
-  },
-  {
-    id: 'Approuvées',
-    label: 'Approuvées',
+    id: 'Active',
+    label: 'Active',
     className: 'rename',
     icon: 'ri-checkbox-circle-line',
   },

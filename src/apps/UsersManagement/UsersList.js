@@ -1,12 +1,20 @@
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { useUsers, sidebar, header } from './useUsers';
+import { Link } from 'react-router-dom';
+import { useUsers, sidebar, header, headValues, more } from './useUsers';
 import Header from '../../layouts/Header';
 import FileSidebar from '../../components/atoms/FileSidebar';
 import Stats from '../../components/atoms/Stats';
-
+import Table from '../../components/atoms/Table';
 
 export default function UsersList() {
-  const { items, isActive, onCreate, onClickFilter, statusCount } = useUsers();
+  const {
+    items,
+    statusCount,
+    isActive,
+    onCreate,
+    onClickFilter,
+    onChangeStatus,
+  } = useUsers();
 
   const cards = header.map((x) => ({ ...x, count: statusCount?.[x.id] || 0 }));
 
@@ -31,14 +39,14 @@ export default function UsersList() {
 
           <Stats cards={cards} />
 
-          {/* <Table
+          <Table
             items={items}
             header={headValues}
-            route="/apps/notes"
+            route="/apps/staff"
             Link={Link}
             moreContext={more}
             onChangeStatus={onChangeStatus}
-          /> */}
+          />
         </PerfectScrollbar>
       </div>
     </>
