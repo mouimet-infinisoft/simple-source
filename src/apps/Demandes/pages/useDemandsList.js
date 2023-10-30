@@ -8,9 +8,7 @@ export function useDemandsList() {
   const [isSidebarShow] = useState(false);
   const crud = useCrud('/apps/demandes', 'demandes', defaultModel());
 
-  const { search } = crud;
-
-  const items = Object.values(search(getValue('search'))).map((x) => {
+  const items = crud.searchItems((x) => {
     let contactsString = '';
     if (Array.isArray(x?.contacts)) {
       contactsString = x.contacts

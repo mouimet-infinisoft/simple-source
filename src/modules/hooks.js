@@ -42,7 +42,11 @@ export function useCrud(route, domain, defaultModel) {
     update({ ..._value, status });
   };
 
+  const searchItems = (callback) =>
+    Object.values(search(getValue('search'))).map(callback);
+
   return {
+    searchItems,
     search,
     isActive,
     statusCount,

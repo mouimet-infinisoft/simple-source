@@ -1,9 +1,8 @@
 import { useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { getValue, useBrainStack } from '../../../App';
 import { EditorState } from 'draft-js';
 import axios from 'axios';
-
+import { getValue, useBrainStack } from '../../../App';
 import { useCrud } from '../../../modules/hooks';
 
 const defaultModel = () => ({
@@ -21,8 +20,6 @@ const defaultModel = () => ({
 export function useNotes() {
   const bstack = useBrainStack();
   const crud = useCrud('/apps/notes', 'notes', defaultModel());
-
-  const { search } = crud;
 
   const onFileChange = useCallback(
     async (event) => {
@@ -53,7 +50,7 @@ export function useNotes() {
     [bstack.store]
   );
 
-  const items = Object.values(search(getValue('search'))).map((x) => {
+  const items = crud.searchItems((x) => {
     return {
       ...x,
       icon: 'ri-sticky-note-line',
