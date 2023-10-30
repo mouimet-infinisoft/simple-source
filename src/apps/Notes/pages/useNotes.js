@@ -1,14 +1,10 @@
-import { useEffect, useMemo, useCallback } from 'react';
+import { useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useNavigate } from 'react-router-dom';
-import {
-  createEventHandlerMutatorShallow,
-  getValue,
-  useBrainStack,
-} from '../../../App';
+import { getValue, useBrainStack } from '../../../App';
 import { EditorState } from 'draft-js';
 import axios from 'axios';
-import { countByPropMemo } from '../../../modules/indexedObjects';
+
+import { useCrud } from '../../../modules/hooks';
 
 const defaultModel = () => ({
   id: uuidv4(),
@@ -139,7 +135,9 @@ export const editorHeader = (noteId) => [
 
 export function useNotes() {
   const bstack = useBrainStack();
-  const navigate = useNavigate();
+  const crud = useCrud('/apps/notes', 'notes', defaultModel());
+
+  const { search } = crud;
 
   const onFileChange = useCallback(
     async (event) => {
@@ -170,33 +168,6 @@ export function useNotes() {
     [bstack.store]
   );
 
-  useEffect(() => {
-    document.body.classList.add('page-app');
-    return () => {
-      document.body.classList.remove('page-app');
-    };
-  }, []);
-
-  const { search, update, create, list } =
-    bstack.store.createCRUDObject('notes');
-
-  const isActive = (_value) => (getValue('search') === _value ? 'active' : '');
-
-  const statusCount = countByPropMemo('status')(list());
-
-  const onCreate = () => {
-    const c = create(defaultModel());
-    navigate(`/apps/notes/${c.id}`);
-  };
-
-  const onClickFilter = (_value) => () => {
-    createEventHandlerMutatorShallow('search')(_value);
-  };
-
-  const onChangeStatus = (_value, status) => () => {
-    update({ ..._value, status });
-  };
-
   const items = Object.values(search(getValue('search'))).map((x) => {
     return {
       ...x,
@@ -214,12 +185,8 @@ export function useNotes() {
   });
 
   return {
+    ...crud,
     items,
-    statusCount,
-    isActive,
-    onChangeStatus,
     onFileChange,
-    onCreate,
-    onClickFilter,
   };
 }

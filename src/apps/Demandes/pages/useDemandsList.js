@@ -1,12 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-  createEventHandlerMutatorShallow,
-  getValue,
-  useBrainStack,
-} from '../../../App';
+import { useState } from 'react';
+import { getValue } from '../../../App';
 import { defaultModel } from '../assets/datamock';
-import { countByPropMemo } from '../../../modules/indexedObjects';
+import { useCrud } from '../../../modules/hooks';
 
 export const sidebar = [
   { icon: 'ri-asterisk', id: '', label: 'Tous' },
@@ -79,37 +74,11 @@ export const header = [
 ];
 
 export function useDemandsList() {
-  const bstack = useBrainStack();
-  const navigate = useNavigate();
-  const { search, update, create, list } =
-    bstack.store.createCRUDObject('demandes');
-
-  useEffect(() => {
-    document.body.classList.add('page-app');
-    return () => {
-      document.body.classList.remove('page-app');
-    };
-  }, []);
-
   // toggle sidebar in mobile
-  const [isSidebarShow, setSidebarShow] = useState(false);
+  const [isSidebarShow] = useState(false);
+  const crud = useCrud('/apps/demandes', 'demandes', defaultModel());
 
-  const isActive = (_value) => (getValue('search') === _value ? 'active' : '');
-
-  const onClickFilter = (_value) => () => {
-    createEventHandlerMutatorShallow('search')(_value);
-  };
-
-  const onChangeStatus = (_value, status) => () => {
-    update({ ..._value, status });
-  };
-
-  const statusCount = countByPropMemo('status')(list());
-
-  const onCreate = () => {
-    const c = create(defaultModel());
-    navigate(`/apps/demandes/${c.id}`);
-  };
+  const { search } = crud;
 
   const items = Object.values(search(getValue('search'))).map((x) => {
     let contactsString = '';
@@ -126,13 +95,8 @@ export function useDemandsList() {
   });
 
   return {
+    ...crud,
     items,
-    statusCount,
     isSidebarShow,
-    search,
-    onClickFilter,
-    onCreate,
-    onChangeStatus,
-    isActive,
   };
 }
