@@ -7,21 +7,41 @@ import {
   useBrainStack,
 } from '../../../App';
 import { EditorState } from 'draft-js';
-import { stateFromHTML } from 'draft-js-import-html';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 
 const defaultModel = () => ({
   id: uuidv4(),
-  reference: "N0000" + ((Object.keys(getValue('notes'))?.length + 1) ?? 1),
+  reference: 'N0000' + (Object.keys(getValue('notes'))?.length + 1 ?? 1),
   name: 'Note',
   content: EditorState.createEmpty(),
   status: 'Brouillon',
   created: new Date().toLocaleDateString(),
   dossierId: '',
   eventId: '',
-  author: getValue('me.name')
+  author: getValue('me.name'),
 });
+
+export const sidebar = [
+  { icon: 'ri-asterisk', id: '', label: 'Tous' },
+  { icon: 'ri-edit-circle-line', id: 'Brouillon', label: 'Brouillon' },
+  {
+    icon: 'ri-folder-unknow-line',
+    id: 'Approbation requise',
+    label: 'Approbation requise',
+  },
+  { icon: 'ri-checkbox-circle-line', id: 'Approuvée', label: 'Approuvée' },
+  { icon: 'ri-close-circle-line', id: 'Rejetée', label: 'Rejetée' },
+];
+
+export const headValues = [
+  'Numéro',
+  'Titre',
+  'Status',
+  'Date',
+  'Dossier',
+  'Evenement',
+  'Auteur',
+];
 
 export const header = [
   {
@@ -62,16 +82,6 @@ export const header = [
   },
 ];
 
-export const headValues = [
-  'Numéro',
-  'Titre',
-  'Status',
-  'Date',
-  'Dossier',
-  'Evenement',
-  'Auteur'
-];
-
 export const more = [
   {
     id: 'Approbation requise',
@@ -91,18 +101,6 @@ export const more = [
     className: 'delete',
     icon: 'ri-close-circle-line',
   },
-];
-
-export const sidebar = [
-  { icon: 'ri-asterisk', id: '', label: 'Tous' },
-  { icon: 'ri-edit-circle-line', id: 'Brouillon', label: 'Brouillon' },
-  {
-    icon: 'ri-folder-unknow-line',
-    id: 'Approbation requise',
-    label: 'Approbation requise',
-  },
-  { icon: 'ri-checkbox-circle-line', id: 'Approuvée', label: 'Approuvée' },
-  { icon: 'ri-close-circle-line', id: 'Rejetée', label: 'Rejetée' },
 ];
 
 function countStatus(x) {
@@ -148,25 +146,29 @@ export const editorHeader = (noteId) => [
 export function useNotes() {
   const bstack = useBrainStack();
   const navigate = useNavigate();
-  const {noteId} = useParams()
 
   const onFileChange = useCallback(async (event) => {
     const file = event.target.files[0];
     if (!file) return;
-  
+
     const formData = new FormData();
     formData.append('image', file);
-  
+
     try {
-      bstack.store.emit(`notes.ai.transcription.processing`)
+      bstack.store.emit(`notes.ai.transcription.processing`);
       // const response = await axios.post('http://localhost:5000/smart', formData);
-      const response = await axios.post('https://smartnotes-qbits-projects.vercel.app/smart', formData);      
+      const response = await axios.post(
+        'https://smartnotes-qbits-projects.vercel.app/smart',
+        formData
+      );
       // createEventHandlerMutatorShallow(`notes.${noteId}.content`)(EditorState.createWithContent(stateFromHTML(response.data.report)))
-      bstack.store.emit(`notes.ai.transcription.incoming`,{note:response.data.report})
+      bstack.store.emit(`notes.ai.transcription.incoming`, {
+        note: response.data.report,
+      });
     } catch (error) {
       console.error('Error uploading image:', error);
     } finally {
-      bstack.store.emit(`notes.ai.transcription.complete`)
+      bstack.store.emit(`notes.ai.transcription.complete`);
       event.target.value = null;
     }
   }, []);
@@ -202,7 +204,15 @@ export function useNotes() {
     return {
       ...x,
       icon: 'ri-sticky-note-line',
-      columns: [x.reference, x.title, x.status, x.created, x.dossierId, x.eventId, x.author],
+      columns: [
+        x.reference,
+        x.title,
+        x.status,
+        x.created,
+        x.dossierId,
+        x.eventId,
+        x.author,
+      ],
     };
   });
 
@@ -216,5 +226,3 @@ export function useNotes() {
     onClickFilter,
   };
 }
-
-
