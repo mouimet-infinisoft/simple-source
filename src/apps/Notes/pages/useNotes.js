@@ -31,12 +31,10 @@ export function useNotes() {
 
       try {
         bstack.store.emit(`notes.ai.transcription.processing`);
-        // const response = await axios.post('http://localhost:5000/smart', formData);
         const response = await axios.post(
           'https://smartnotes-qbits-projects.vercel.app/smart',
           formData
         );
-        // createEventHandlerMutatorShallow(`notes.${noteId}.content`)(EditorState.createWithContent(stateFromHTML(response.data.report)))
         bstack.store.emit(`notes.ai.transcription.incoming`, {
           note: response.data.report,
         });
