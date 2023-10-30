@@ -7,7 +7,7 @@ import {
 } from '../App';
 import { countByProp } from '../functional/objectArray';
 
-/**String * String* Object -> Object */
+/**String * String * Object -> Object */
 export function useCrud(route, domain, defaultModel) {
   useEffect(() => {
     document.body.classList.add('page-app');

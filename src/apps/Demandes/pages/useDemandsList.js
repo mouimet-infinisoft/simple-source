@@ -3,6 +3,34 @@ import { getValue } from '../../../App';
 import { defaultModel } from '../assets/datamock';
 import { useCrud } from '../../../modules/hooks';
 
+export function useDemandsList() {
+  // toggle sidebar in mobile
+  const [isSidebarShow] = useState(false);
+  const crud = useCrud('/apps/demandes', 'demandes', defaultModel());
+
+  const { search } = crud;
+
+  const items = Object.values(search(getValue('search'))).map((x) => {
+    let contactsString = '';
+    if (Array.isArray(x?.contacts)) {
+      contactsString = x.contacts
+        ?.map(({ id }) => getValue(`contacts.${id}.name`))
+        ?.join(', ');
+    }
+
+    return {
+      ...x,
+      columns: [x.reference, x.created, x.status, contactsString, x.service],
+    };
+  });
+
+  return {
+    ...crud,
+    items,
+    isSidebarShow,
+  };
+}
+
 export const sidebar = [
   { icon: 'ri-asterisk', id: '', label: 'Tous' },
   { icon: 'ri-time-line', id: 'En attente', label: 'En attente' },
@@ -72,31 +100,3 @@ export const header = [
     info: 'depuis la semaine dernière',
   },
 ];
-
-export function useDemandsList() {
-  // toggle sidebar in mobile
-  const [isSidebarShow] = useState(false);
-  const crud = useCrud('/apps/demandes', 'demandes', defaultModel());
-
-  const { search } = crud;
-
-  const items = Object.values(search(getValue('search'))).map((x) => {
-    let contactsString = '';
-    if (Array.isArray(x?.contacts)) {
-      contactsString = x.contacts
-        ?.map(({ id }) => getValue(`contacts.${id}.name`))
-        ?.join(', ');
-    }
-
-    return {
-      ...x,
-      columns: [x.reference, x.created, x.status, contactsString, x.service],
-    };
-  });
-
-  return {
-    ...crud,
-    items,
-    isSidebarShow,
-  };
-}
