@@ -8,6 +8,7 @@ import {
 } from '../../../App';
 import { EditorState } from 'draft-js';
 import axios from 'axios';
+import { countByPropMemo } from '../../../modules/indexedObjects';
 
 const defaultModel = () => ({
   id: uuidv4(),
@@ -103,13 +104,6 @@ export const more = [
   },
 ];
 
-function countStatus(x) {
-  return Object.values(x).reduce((acc, x) => {
-    acc[x.status] = (acc[x.status] || 0) + 1;
-    return acc;
-  }, {});
-}
-
 export const editorHeader = (noteId) => [
   {
     id: 'numero',
@@ -147,31 +141,34 @@ export function useNotes() {
   const bstack = useBrainStack();
   const navigate = useNavigate();
 
-  const onFileChange = useCallback(async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+  const onFileChange = useCallback(
+    async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
 
-    const formData = new FormData();
-    formData.append('image', file);
+      const formData = new FormData();
+      formData.append('image', file);
 
-    try {
-      bstack.store.emit(`notes.ai.transcription.processing`);
-      // const response = await axios.post('http://localhost:5000/smart', formData);
-      const response = await axios.post(
-        'https://smartnotes-qbits-projects.vercel.app/smart',
-        formData
-      );
-      // createEventHandlerMutatorShallow(`notes.${noteId}.content`)(EditorState.createWithContent(stateFromHTML(response.data.report)))
-      bstack.store.emit(`notes.ai.transcription.incoming`, {
-        note: response.data.report,
-      });
-    } catch (error) {
-      console.error('Error uploading image:', error);
-    } finally {
-      bstack.store.emit(`notes.ai.transcription.complete`);
-      event.target.value = null;
-    }
-  }, []);
+      try {
+        bstack.store.emit(`notes.ai.transcription.processing`);
+        // const response = await axios.post('http://localhost:5000/smart', formData);
+        const response = await axios.post(
+          'https://smartnotes-qbits-projects.vercel.app/smart',
+          formData
+        );
+        // createEventHandlerMutatorShallow(`notes.${noteId}.content`)(EditorState.createWithContent(stateFromHTML(response.data.report)))
+        bstack.store.emit(`notes.ai.transcription.incoming`, {
+          note: response.data.report,
+        });
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      } finally {
+        bstack.store.emit(`notes.ai.transcription.complete`);
+        event.target.value = null;
+      }
+    },
+    [bstack.store]
+  );
 
   useEffect(() => {
     document.body.classList.add('page-app');
@@ -185,7 +182,7 @@ export function useNotes() {
 
   const isActive = (_value) => (getValue('search') === _value ? 'active' : '');
 
-  const statusCount = useMemo(() => countStatus(list()), [list]);
+  const statusCount = countByPropMemo('status')(list());
 
   const onCreate = () => {
     const c = create(defaultModel());

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   createEventHandlerMutatorShallow,
@@ -6,6 +6,7 @@ import {
   useBrainStack,
 } from '../../../App';
 import { defaultModel } from '../assets/datamock';
+import { countByPropMemo } from '../../../modules/indexedObjects';
 
 export const sidebar = [
   { icon: 'ri-asterisk', id: '', label: 'Tous' },
@@ -77,13 +78,6 @@ export const header = [
   },
 ];
 
-function countStatus(demandes) {
-  return Object.values(demandes).reduce((acc, demande) => {
-    acc[demande.status] = (acc[demande.status] || 0) + 1;
-    return acc;
-  }, {});
-}
-
 export function useDemandsList() {
   const bstack = useBrainStack();
   const navigate = useNavigate();
@@ -110,7 +104,7 @@ export function useDemandsList() {
     update({ ..._value, status });
   };
 
-  const statusCount = useMemo(() => countStatus(list()), [list]);
+  const statusCount = countByPropMemo('status')(list());
 
   const onCreate = () => {
     const c = create(defaultModel());
