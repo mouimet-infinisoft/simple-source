@@ -38,8 +38,6 @@ export function useUsers() {
     };
   });
 
-  console.log(111, items);
-
   return {
     ...crud,
     items,

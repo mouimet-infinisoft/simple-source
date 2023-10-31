@@ -3,13 +3,13 @@ import { Route, Routes } from 'react-router-dom';
 import UsersList from './pages/UsersList';
 import UsersEditor from './pages/UsersEditor';
 
-function UsersManagementRoutes() {
+function UsersManagement() {
   return (
     <Routes>
       <Route path="/" element={<UsersList />} />
-      <Route path=":noteId" element={<UsersEditor />} />
+      <Route path=":id" element={<UsersEditor />} />
     </Routes>
   );
 }
 
-export default UsersManagementRoutes;
+export default UsersManagement;

@@ -105,7 +105,7 @@ const protectedRoutes = [
   { path: "apps/file-manager", element: <FileManager /> },
   { path: "apps/demandes/*", element: <Demandes /> },  
   { path: "apps/dossiers/*", element: <Dossiers /> },  
-  { path: "apps/staff", element: <UserManagement /> },
+  { path: "apps/staff/*", element: <UserManagement /> },
   { path: "pages/pricing", element: <Pricing /> },
   { path: "pages/faq", element: <Faq /> },
   { path: "pages/profile", element: <Profile /> },
