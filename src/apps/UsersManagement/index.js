@@ -7,7 +7,7 @@ function UsersManagement() {
   return (
     <Routes>
       <Route path="/" element={<UsersList />} />
-      <Route path=":id" element={<UsersEditor />} />
+      <Route path=":userId" element={<UsersEditor />} />
     </Routes>
   );
 }

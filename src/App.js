@@ -28,10 +28,7 @@ const options = {
     users: usersList,
     notes: notesList,
     dossiers: dossiersList,
-    me: {
-      name: 'Sarah Diaz',
-      address: ' Montreal, Quebec',
-    },
+    me: usersList[2],
   },
   loggerOptions: [5],
 };

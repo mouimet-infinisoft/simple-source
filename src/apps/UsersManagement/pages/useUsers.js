@@ -7,7 +7,7 @@ const defaultModel = () => ({
   employeeID: 'E00' + (Object.keys(getValue('users'))?.length + 1 ?? 1),
   name: '',
   department: '',
-  status: 'Active',
+  status: 'Activé',
   role: '',
   email: '',
   contactNumber: '',
@@ -21,7 +21,7 @@ const defaultModel = () => ({
 });
 
 export function useUsers() {
-  const crud = useCrud('/apps/users', 'users', defaultModel());
+  const crud = useCrud('/apps/staff', 'users', defaultModel());
 
   const items = crud.searchItems((x) => {
     return {
@@ -46,14 +46,14 @@ export function useUsers() {
 
 export const sidebar = [
   { icon: 'ri-asterisk', id: '', label: 'Tous' },
-  { icon: 'ri-checkbox-circle-line', id: 'Active', label: 'Active' },
-  { icon: 'ri-close-circle-line', id: 'Rejetée', label: 'Rejetée' },
+  { icon: 'ri-checkbox-circle-line', id: 'Activé', label: 'Activé' },
+  { icon: 'ri-close-circle-line', id: 'Désactivé', label: 'Désactivé' },
 ];
 
 export const header = [
   {
-    id: 'Active',
-    label: 'Active',
+    id: 'Activé',
+    label: 'Activé',
     icon: 'ri-checkbox-circle-line',
     isDown: true,
     value: '0.7%',
@@ -61,8 +61,8 @@ export const header = [
     info: 'depuis la semaine dernière',
   },
   {
-    id: 'Rejetée',
-    label: 'Rejetée',
+    id: 'Désactivé',
+    label: 'Désactivé',
     icon: 'ri-close-circle-line',
     isDown: false,
     value: '0.6%',
@@ -75,14 +75,14 @@ export const headValues = ['Numéro', 'Nom', 'Rôle', 'E-mail', 'Contact Nr.'];
 
 export const more = [
   {
-    id: 'Active',
-    label: 'Active',
+    id: 'Activé',
+    label: 'Activé',
     className: 'rename',
     icon: 'ri-checkbox-circle-line',
   },
   {
-    id: 'Rejetée',
-    label: 'Rejetée',
+    id: 'Désactivé',
+    label: 'Désactivé',
     className: 'delete',
     icon: 'ri-close-circle-line',
   },
