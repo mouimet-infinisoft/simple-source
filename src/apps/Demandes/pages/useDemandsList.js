@@ -1,11 +1,33 @@
-import { useEffect, useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-  createEventHandlerMutatorShallow,
-  getValue,
-  useBrainStack,
-} from '../../../App';
+import { useState } from 'react';
+import { getValue } from '../../../App';
 import { defaultModel } from '../assets/datamock';
+import { useCrud } from '../../../modules/hooks';
+
+export function useDemandsList() {
+  // toggle sidebar in mobile
+  const [isSidebarShow] = useState(false);
+  const crud = useCrud('/apps/demandes', 'demandes', defaultModel());
+
+  const items = crud.searchItems((x) => {
+    let contactsString = '';
+    if (Array.isArray(x?.contacts)) {
+      contactsString = x.contacts
+        ?.map(({ id }) => getValue(`contacts.${id}.name`))
+        ?.join(', ');
+    }
+
+    return {
+      ...x,
+      columns: [x.reference, x.created, x.status, contactsString, x.service],
+    };
+  });
+
+  return {
+    ...crud,
+    items,
+    isSidebarShow,
+  };
+}
 
 export const sidebar = [
   { icon: 'ri-asterisk', id: '', label: 'Tous' },
@@ -76,69 +98,3 @@ export const header = [
     info: 'depuis la semaine dernière',
   },
 ];
-
-function countStatus(demandes) {
-  return Object.values(demandes).reduce((acc, demande) => {
-    acc[demande.status] = (acc[demande.status] || 0) + 1;
-    return acc;
-  }, {});
-}
-
-export function useDemandsList() {
-  const bstack = useBrainStack();
-  const navigate = useNavigate();
-  const { search, update, create, list } =
-    bstack.store.createCRUDObject('demandes');
-
-  useEffect(() => {
-    document.body.classList.add('page-app');
-    return () => {
-      document.body.classList.remove('page-app');
-    };
-  }, []);
-
-  // toggle sidebar in mobile
-  const [isSidebarShow, setSidebarShow] = useState(false);
-
-  const isActive = (_value) => (getValue('search') === _value ? 'active' : '');
-
-  const onClickFilter = (_value) => () => {
-    createEventHandlerMutatorShallow('search')(_value);
-  };
-
-  const onChangeStatus = (_value, status) => () => {
-    update({ ..._value, status });
-  };
-
-  const statusCount = useMemo(() => countStatus(list()), [list]);
-
-  const onCreate = () => {
-    const c = create(defaultModel());
-    navigate(`/apps/demandes/${c.id}`);
-  };
-
-  const items = Object.values(search(getValue('search'))).map((x) => {
-    let contactsString = '';
-    if (Array.isArray(x?.contacts)) {
-      contactsString = x.contacts
-        ?.map(({ id }) => getValue(`contacts.${id}.name`))
-        ?.join(', ');
-    }
-
-    return {
-      ...x,
-      columns: [x.reference, x.created, x.status, contactsString, x.service],
-    };
-  });
-
-  return {
-    items,
-    statusCount,
-    isSidebarShow,
-    search,
-    onClickFilter,
-    onCreate,
-    onChangeStatus,
-    isActive,
-  };
-}

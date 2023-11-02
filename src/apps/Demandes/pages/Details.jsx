@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Form } from 'react-bootstrap';
 import { useParams, Link, Outlet } from 'react-router-dom';
-import { createEventHandlerMutator, getValue, useBrainStack } from '../../../App';
+import { createEventHandlerMutator, getValue } from '../../../App';
 import Header from "../../../layouts/Header";
 import DemandesDetailsHeader from '../components/DemandesDetailsHeader';
 import ServiceOptions from '../components/ServiceOptions';
@@ -10,7 +10,6 @@ import Activity from '../../../pages/Activity';
 function DemandesDetails() {
   const { demandeId } = useParams()
   const [key, setKey] = useState('step1');
-  const bstack = useBrainStack()
 
   return (
     <React.Fragment>

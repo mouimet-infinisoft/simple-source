@@ -1,3 +1,5 @@
+import avatar from '../../assets/img/sarah.jpg'
+
 export const usersList = {
     1: {
       id: 1,
@@ -8,7 +10,7 @@ export const usersList = {
       email: "bob.dupuis@example.com",
       contactNumber: "+1234567890",
       hireDate: "2021-01-10",
-      status: "Active",
+      status: "Activé",
       address: "1234 Elm Street, City, State, Zip",
       emergencyContact: {
         name: "Alice Dupuis",
@@ -19,13 +21,14 @@ export const usersList = {
     2: {
       id: 2,
       name: "Alice Tremblay",
+      avatar,
       employeeID: "E002",
       department: "HR",
       role: "HR Manager",
       email: "alice.tremblay@example.com",
       contactNumber: "+1122334455",
       hireDate: "2020-05-15",
-      status: "Active",
+      status: "Activé",
       address: "5678 Oak Street, City, State, Zip",
       emergencyContact: {
         name: "Marc Tremblay",
