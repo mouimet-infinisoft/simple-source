@@ -33,3 +33,11 @@ export default {
 export const Default = {
   args: {},
 };
+
+
+export const WithoutValues = {
+  args: {
+    links: undefined,
+    filterLabel: undefined
+  },
+};

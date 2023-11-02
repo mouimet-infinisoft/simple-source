@@ -152,14 +152,14 @@ export default function Header({ onSkin }) {
       <Dropdown className="dropdown-profile ms-3 ms-xl-4" align="end">
         <Dropdown.Toggle as={CustomToggle}>
           <div className="avatar online">
-            <img src={userAvatar} alt="" />
+            <img src={getValue(`me.avatar`)} alt="" />
           </div>
         </Dropdown.Toggle>
         <Dropdown.Menu className="mt-10-f">
           <div className="dropdown-menu-body">
-            <div className="avatar avatar-xl online mb-3"><img src={userAvatar} alt="" /></div>
-            <h5 className="mb-1 text-dark fw-semibold">Sarah Diaz</h5>
-            <p className="fs-sm text-secondary">Intervenante</p>
+            <div className="avatar avatar-xl online mb-3"><img src={getValue(`me.avatar`)} alt="" /></div>
+            <h5 className="mb-1 text-dark fw-semibold">{getValue(`me.name`)}</h5>
+            <p className="fs-sm text-secondary">{getValue(`me.role`)}</p>
 
             <nav className="nav">
               {/* <Link to=""><i className="ri-edit-2-line"></i> Modifier le profil</Link> */}

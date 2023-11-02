@@ -12,3 +12,4 @@ function NotesRoutes() {
   );
 }
 export default NotesRoutes;
+  

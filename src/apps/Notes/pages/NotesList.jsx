@@ -10,7 +10,6 @@ import Table from '../../../components/atoms/Table';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useNotes, sidebar, header, headValues, more } from './useNotes';
 
-
 export function NotesListComponent() {
   const {
     items,
@@ -55,7 +54,6 @@ export function NotesListComponent() {
 }
 
 export default function NotesList() {
-
   return (
     <React.Fragment>
       <Header />

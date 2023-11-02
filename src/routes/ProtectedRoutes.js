@@ -80,7 +80,7 @@ import MapLeaflet from "../docs/MapLeaflet";
 import MapVector from "../docs/MapVector";
 import IconRemix from "../docs/IconRemix";
 import IconFeather from "../docs/IconFeather";
-import UsersList from "../apps/UsersManagement/List";
+import UserManagement from "../apps/UsersManagement";
 import Notes from "../apps/Notes";
 import Demandes from "../apps/Demandes";
 import Dossiers from "../apps/Dossiers";
@@ -105,7 +105,7 @@ const protectedRoutes = [
   { path: "apps/file-manager", element: <FileManager /> },
   { path: "apps/demandes/*", element: <Demandes /> },  
   { path: "apps/dossiers/*", element: <Dossiers /> },  
-  { path: "apps/staff", element: <UsersList /> },
+  { path: "apps/staff/*", element: <UserManagement /> },
   { path: "pages/pricing", element: <Pricing /> },
   { path: "pages/faq", element: <Faq /> },
   { path: "pages/profile", element: <Profile /> },

@@ -13,8 +13,6 @@ import Stats from '../../../components/atoms/Stats';
 import { editorHeader, useNotes } from './useNotes';
 import { Button } from 'react-bootstrap';
 import Typewriter from 'typewriter-effect';
-import { EditorState, convertToRaw } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
 import BrainPulse from '../../../components/atoms/BrainPulse';
 
 const NotesEditor = () => {
