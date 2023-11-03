@@ -54,18 +54,38 @@ const More = ({ file, items, Link, onChangeStatus }) => (
   </Dropdown>
 );
 
-const Table = ({ header, items, route, Link, moreContext, onChangeStatus }) => {
+const Table = ({
+  checkBoxes,
+  header,
+  items,
+  route,
+  Link,
+  moreContext,
+  onChangeStatus,
+  onCheckToggle,
+}) => {
   return (
     <BootstrapTable className="table table-files" responsive>
       <Head items={header} />
       <tbody>
         {items.map((file) => {
-          const { id, color, icon, columns } = file;
+          const { id, color, icon, columns, checked } = file;
           const link = columns[0];
           const otherColumns = columns.slice(1);
 
           return (
             <tr key={id}>
+              {checkBoxes && (
+                <td>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => onCheckToggle(id)}
+                  />
+                </td>
+              )}
+
               <td>
                 <div className={'media-icon ' + color}>
                   <i className={icon}></i>
@@ -85,12 +105,14 @@ const Table = ({ header, items, route, Link, moreContext, onChangeStatus }) => {
               ))}
 
               <td>
-                <More
-                  file={file}
-                  items={moreContext}
-                  onChangeStatus={onChangeStatus}
-                  Link={Link}
-                />
+                {moreContext && (
+                  <More
+                    file={file}
+                    items={moreContext}
+                    onChangeStatus={onChangeStatus}
+                    Link={Link}
+                  />
+                )}
               </td>
             </tr>
           );
