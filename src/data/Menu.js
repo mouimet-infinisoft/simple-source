@@ -81,7 +81,7 @@ const applicationsMenu = [
   },
   {
     "label": "Rapports",
-    "link": "/apps/chat",
+    "link": "/apps/reports",
     "icon": "ri-article-line"
   },
   {

@@ -81,6 +81,7 @@ import MapVector from "../docs/MapVector";
 import IconRemix from "../docs/IconRemix";
 import IconFeather from "../docs/IconFeather";
 import UserManagement from "../apps/UsersManagement";
+import Reports from "../apps/Reports";
 import Notes from "../apps/Notes";
 import Demandes from "../apps/Demandes";
 import Dossiers from "../apps/Dossiers";
@@ -106,6 +107,7 @@ const protectedRoutes = [
   { path: "apps/demandes/*", element: <Demandes /> },  
   { path: "apps/dossiers/*", element: <Dossiers /> },  
   { path: "apps/staff/*", element: <UserManagement /> },
+  { path: "apps/reports/*", element: <Reports /> },
   { path: "pages/pricing", element: <Pricing /> },
   { path: "pages/faq", element: <Faq /> },
   { path: "pages/profile", element: <Profile /> },
