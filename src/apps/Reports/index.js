@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Notes from './pages/ReportNotes';
+import Notes from '../Notes/pages/ReportNotes';
 // import NotesEditor from './pages/NotesEditor';
 
 function NotesRoutes() {
@@ -12,4 +12,3 @@ function NotesRoutes() {
   );
 }
 export default NotesRoutes;
-  

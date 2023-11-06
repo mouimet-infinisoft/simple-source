@@ -5,7 +5,7 @@ import Header from '../../../layouts/Header';
 import FileSidebar from '../../../components/atoms/FileSidebar';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { useNotes, sidebar, headValues } from '../../Notes/pages/useNotes';
+import { useNotes, sidebar, headValues } from './useNotes';
 import Table from '../../../components/atoms/Table';
 import { Link } from 'react-router-dom';
 
