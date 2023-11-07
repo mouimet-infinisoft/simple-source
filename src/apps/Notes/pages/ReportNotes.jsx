@@ -1,20 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import Header from '../../../layouts/Header';
 import FileSidebar from '../../../components/atoms/FileSidebar';
-
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { useNotes, sidebar, headValues } from './useNotes';
 import Table from '../../../components/atoms/Table';
-import { Link } from 'react-router-dom';
+
+import { useNotes, sidebar, headValues } from './useNotes';
 
 export function NotesListComponent() {
-  const { items, isActive, onChangeStatus, onCheckToggle, onClickFilter } =
-    useNotes();
+  const {
+    items,
+    checked,
+    isActive,
+    onChangeStatus,
+    navigateTo,
+    onCheckToggle,
+    onClickFilter,
+  } = useNotes();
 
   const generateReport = () => {
-    alert('Creating PDF file...');
+    const selected = items.filter((x) => x.checked);
+    if (selected) {
+      navigateTo('/apps/reports/edit', checked);
+    }
   };
 
   return (

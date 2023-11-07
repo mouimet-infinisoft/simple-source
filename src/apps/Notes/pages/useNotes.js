@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { EditorState } from 'draft-js';
 import axios from 'axios';
@@ -21,6 +22,11 @@ export function useNotes() {
   const bstack = useBrainStack();
   const crud = useCrud('/apps/notes', 'notes', defaultModel());
   const [checked, setChecked] = useState(new Set());
+  const navigate = useNavigate();
+
+  const navigateTo = (route, values) => {
+    navigate(route, { state: values });
+  };
 
   const onFileChange = useCallback(
     async (event) => {
@@ -80,6 +86,7 @@ export function useNotes() {
     ...crud,
     items,
     checked,
+    navigateTo,
     onFileChange,
     onCheckToggle,
   };
