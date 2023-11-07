@@ -38,11 +38,11 @@ const NotesEditor = ({ isReport }) => {
   });
 
   if (isReport) {
-    const selected = items.filter(x => state.has(x.id))
+    const selected = items.filter((x) => state.has(x.id));
     console.log('selected items', selected.length);
   }
 
-  const linkTo = isReport ? '/apps/reports' : '/apps/notes';
+  const linkTo = `/apps/${isReport ? 'reports' : 'notes'}`;
 
   return (
     <>
