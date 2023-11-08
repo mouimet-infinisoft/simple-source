@@ -27,19 +27,22 @@ const NotesEditor = ({ isReport }) => {
   const { onFileChange, items } = useNotes();
   const [isProcessing, setIsProcessing] = useState(false);
   const [noteTyping, setNoteTyping] = useState(null);
+
   bstack.useOn('notes.ai.transcription.processing', () => {
     setIsProcessing(true);
   });
+
   bstack.useOn('notes.ai.transcription.incoming', ({ note }) => {
     setNoteTyping(note);
   });
+
   bstack.useOn('notes.ai.transcription.complete', () => {
     setIsProcessing(false);
   });
 
   if (isReport) {
     const selected = items.filter((x) => state.has(x.id));
-    console.log('selected items', selected.length);
+    console.log('selected items', selected);
   }
 
   const linkTo = `/apps/${isReport ? 'reports' : 'notes'}`;
