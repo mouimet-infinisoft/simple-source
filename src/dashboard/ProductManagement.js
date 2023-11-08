@@ -772,7 +772,7 @@ export default function ProductManagement() {
                   </Col>
                   <Col sm="8" md="9" xl="8" className="d-flex flex-column">
                     <h6 className="fw-semibold text-dark lh-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</h6>
-                    <p className="text-secondary">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <span class="d-xl-none d-xxl-inline">dolore eu fugiat nulla pariatur</span>...</p>
+                    <p className="text-secondary">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <span className="d-xl-none d-xxl-inline">dolore eu fugiat nulla pariatur</span>...</p>
                     <div className="product-review-footer mt-auto">
                       <Link to=""><i className="ri-thumb-up-line"></i></Link>
                       <Link to=""><i className="ri-thumb-down-line"></i></Link>

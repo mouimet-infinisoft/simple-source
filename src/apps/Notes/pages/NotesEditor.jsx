@@ -52,7 +52,7 @@ const NotesEditor = ({ isReport }) => {
         <div className="container-fluid">
           <h1>
             <Link to={linkTo}>
-              <i class="ri-arrow-left-line"></i>
+              <i className="ri-arrow-left-line"></i>
             </Link>
             Éditeur notes
           </h1>

@@ -14,7 +14,7 @@ export default function UsersEditor() {
       <div className="main main-app p-3 p-lg-4">
       <div className="py-4 mb-2 bg-body-tertiary rounded-3">
           <div className="container-fluid">
-            <h1><Link to='/apps/staff'><i class="ri-arrow-left-line"></i></Link> Employé</h1>
+            <h1><Link to='/apps/staff'><i className="ri-arrow-left-line"></i></Link> Employé</h1>
           </div>
         </div>
         <Form>

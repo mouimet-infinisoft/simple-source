@@ -78,7 +78,7 @@ const Table = ({
               {checkBoxes && (
                 <td>
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="checkbox"
                     checked={checked}
                     onChange={() => onCheckToggle(id)}
