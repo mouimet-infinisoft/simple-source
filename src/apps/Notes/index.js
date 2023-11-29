@@ -2,8 +2,9 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import NotesList from './pages/NotesList';
 import NotesEditor from './pages/NotesEditor';
+import ReportNotes from './pages/ReportNotes';
 
-function NotesRoutes() {
+export function NotesRoutes() {
   return (
     <Routes>
       <Route path="/" element={<NotesList />} />
@@ -11,5 +12,12 @@ function NotesRoutes() {
     </Routes>
   );
 }
-export default NotesRoutes;
-  
+
+export function ReportNotesRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<ReportNotes />} />
+      <Route path="/edit" element={<NotesEditor isReport={true} />} />
+    </Routes>
+  );
+}

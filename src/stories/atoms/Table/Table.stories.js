@@ -38,10 +38,12 @@ export default {
   },
   tags: ['autodocs'],
   argTypes: {
+    checkBoxes: false,
     header: Array,
     route: String,
     items: Array,
     onChangeStatus: Function,
+    onCheckToggle: Function
   },
   args: {
     header: headValues,
@@ -55,4 +57,10 @@ export default {
 
 export const Default = {
   args: {},
+};
+
+export const WithCheckboxes = {
+  args: {
+    checkBoxes: true,
+  },
 };

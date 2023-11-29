@@ -1,4 +1,5 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { EditorState } from 'draft-js';
 import axios from 'axios';
@@ -20,6 +21,12 @@ const defaultModel = () => ({
 export function useNotes() {
   const bstack = useBrainStack();
   const crud = useCrud('/apps/notes', 'notes', defaultModel());
+  const [checked, setChecked] = useState(new Set());
+  const navigate = useNavigate();
+
+  const navigateTo = (route, values) => {
+    navigate(route, { state: values });
+  };
 
   const onFileChange = useCallback(
     async (event) => {
@@ -48,10 +55,21 @@ export function useNotes() {
     [bstack.store]
   );
 
+  const onCheckToggle = (id) => {
+    const newSet = new Set(checked);
+    if (checked.has(id)) {
+      newSet.delete(id);
+    } else {
+      newSet.add(id);
+    }
+    setChecked(newSet);
+  };
+
   const items = crud.searchItems((x) => {
     return {
       ...x,
       icon: 'ri-sticky-note-line',
+      checked: checked.has(x.id),
       columns: [
         x.reference,
         x.title,
@@ -67,7 +85,10 @@ export function useNotes() {
   return {
     ...crud,
     items,
+    checked,
+    navigateTo,
     onFileChange,
+    onCheckToggle,
   };
 }
 

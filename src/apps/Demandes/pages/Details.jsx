@@ -17,7 +17,7 @@ function DemandesDetails() {
       <div className={"main main-file-manager p-3 p-lg-4"}>
         <div className="py-4 mb-2 bg-body-tertiary rounded-3">
           <div className="container-fluid">
-            <h1><Link to='/apps/demandes'><i class="ri-arrow-left-line"></i></Link> Demande</h1>
+            <h1><Link to='/apps/demandes'><i className="ri-arrow-left-line"></i></Link> Demande</h1>
           </div>
         </div>
         <DemandesDetailsHeader />

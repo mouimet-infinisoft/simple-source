@@ -31,7 +31,7 @@ export default function Profile() {
       <div className="main p-4 p-lg-5">
         <div className="py-4 mb-2 bg-body-tertiary rounded-3">
           <div className="container-fluid">
-            <h1><Link to='/dashboard/events'><i class="ri-arrow-left-line"></i></Link> Mon profile</h1>
+            <h1><Link to='/dashboard/events'><i className="ri-arrow-left-line"></i></Link> Mon profile</h1>
           </div>
         </div>
         <Row className="g-5">
